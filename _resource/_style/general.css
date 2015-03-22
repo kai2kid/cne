@@ -1,0 +1,129 @@
+.vs-m{
+	height: 30px;
+	width: 100%;
+}
+
+.vs-s{
+	height: 15px;
+	width: 100%;
+}
+
+.hs-s{
+	margin-right: 2px;
+}
+
+.welcome-msg{
+	margin-top: 15px;
+	font-weight: normal;
+	font-size: 15px;
+	margin-right: 10px;
+	float: left;
+}
+
+.account{
+	margin-top: 8px;	
+}
+
+.circular {
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+	-webkit-border-radius: 15px;
+	-moz-border-radius: 15px;
+	background: url(../images/user.png) no-repeat;
+	background-size: 30px 30px;
+	border: 1px solid black;
+	float: left;
+	margin-top: 10px;
+}
+
+.bs-callout {
+  padding: 10px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+  border-left-width: 5px;
+  border-radius: 3px;
+}
+
+.bs-callout-info {
+  border-left-color: #12728e;
+}
+
+.title {
+	font-size: 26px;  
+	font-weight: normal;
+}
+
+.content{
+	font-size: 14px;
+	color: black;
+}
+
+.min-padding{
+	padding-left: 2px;
+}
+
+.no-pad-r{
+	padding-right: 0px;	
+}
+
+.no-pad-l{
+	padding-left: 0px;	
+}
+
+.pop-up{
+	width: 700px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.table-font{
+	font-size: 14px;
+}
+
+
+.paginate_button {
+	padding: 5px 10px;
+	font-size: 13px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;		
+	cursor: pointer;
+}
+
+.paginate_button:hover {
+	text-decoration: none;
+}
+
+.login-page{
+	width: 400px;
+	height: 350px;
+	background: #f1f2f4;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+	top: 100px;
+	border-radius: 5px;
+}
+
+.login-page img{
+	position: relative;
+	top: 10px;
+	left: 20px;
+}
+
+.login-input{
+	font-size: 16px;
+	height: 40px;
+	padding: 6px 12px;
+	
+}
+
+.login-form{
+	width: 325px;
+	height: auto;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+

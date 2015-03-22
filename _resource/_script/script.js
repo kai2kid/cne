@@ -1,0 +1,4 @@
+$(document).ready( function () {
+  $('input[type=date]').datepicker();
+  $('table.datatable').dataTable();
+} );

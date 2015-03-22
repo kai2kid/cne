@@ -1,0 +1,1 @@
+<input type=<?php echo $type; ?> id="<?php echo $id; ?>" name="<?php echo $name; ?>" size="<?php echo $size; ?>" value="<?php echo $value; ?>" maxlength="<?php echo $maxlength; ?>" />

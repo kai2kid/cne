@@ -1,0 +1,1 @@
+<textarea id="<?php echo $id; ?>" name="<?php echo $name; ?>" cols="<?php echo $cols; ?>" rows="<?php echo $rows; ?>"><?php echo $value; ?></textarea>
