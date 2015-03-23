@@ -19,8 +19,7 @@
         <th>Position</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>City</th>
-        <th>Country</th>
+        <th>Country</th>	    <th>City</th>
       </tr>
     </thead>
     <tfoot>
@@ -29,8 +28,8 @@
         <th>Position</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>City</th>
         <th>Country</th>
+        <th>City</th>
       </tr>
     </tfoot>
     
@@ -40,9 +39,9 @@
           <td><?php echo $data["staff_name"]; ?></td>
           <td><?php echo $data["staff_position"]; ?></td>
           <td><?php echo $data["staff_hp"]; ?></td>
-          <td><?php echo $data["staff_email"]; ?></td>
-          <td><?php echo $data["staff_city"]; ?></td>
+          <td><?php echo $data["staff_email"]; ?></td>		  
           <td><?php echo $data["staff_country"]; ?></td>
+          <td><?php echo $data["staff_city"]; ?></td>
       </tr>
       <?php } ?>      
     </tbody>    
@@ -64,7 +63,7 @@
     <div class="modal-dialog">
       <div class="pop-up">  
         <div class="panel panel-success" id="updateFormContent">
-          <?php //include (_PATH_VIEW . "view_staff_update.php"); ?>
+          <?php include (_PATH_VIEW . "view_staff_update.php"); ?>
         </div>    
       </div>
     </div>
@@ -75,7 +74,7 @@
     <div class="modal-dialog">
       <div class="pop-up">  
         <div class="panel panel-danger" id="deleteFormContent">
-          <?php //include (_PATH_VIEW . "view_staff_delete.php"); ?>
+          <?php include (_PATH_VIEW . "view_staff_delete.php"); ?>
         </div>    
       </div>
     </div>
