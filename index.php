@@ -24,8 +24,6 @@
     include_once(_PATH_CONTROLLER . $file_name);
   }
   eval("\$controller = new controller_".$controller."('".$_controller."');");  
-  //Hmm
-  //testing
-  //end test
+
 ?>
 <?php $controller->invoke($module,$_module); ?>
