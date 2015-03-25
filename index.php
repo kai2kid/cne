@@ -23,8 +23,6 @@
   if (file_exists(_PATH_CONTROLLER . $file_name)) {
     include_once(_PATH_CONTROLLER . $file_name);
   }
-  //coba commit
   eval("\$controller = new controller_".$controller."('".$_controller."');");  
-  //test
 ?>
 <?php $controller->invoke($module,$_module); ?>
