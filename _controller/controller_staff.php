@@ -36,8 +36,8 @@ class controller_staff extends basicController {
   public function updating() {
     $model = new model_staff($_POST['staff_code']);
     $update = $_POST;
-    $insert['staff_updated'] = date("Y-m-d H:i:s");
-    $insert['staff_updated_name'] = $_SESSION[_SESSION_USER];
+    $update['staff_updated'] = date("Y-m-d H:i:s");
+    $update['staff_updated_name'] = $_SESSION[_SESSION_USER];
     $model->updating($update);
     $this->forward("staff");
   }

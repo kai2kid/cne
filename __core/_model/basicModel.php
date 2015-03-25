@@ -138,7 +138,7 @@ class model_iquery {
     foreach ($vals as &$val)
       $val = $this->escape_and_quote($val);
     $sql .= '(' . implode(',',$keys) . ') VALUES (' . implode(',',$vals) . ')';
-    echo $sql;
+//    echo $sql;
     return $this->query_exec($sql);
   }
 

@@ -65,17 +65,14 @@
       </div>  
     </div>
     <div class="form-group">
-      <label for="guide_country" class="control-label col-md-3 no-pad-r">Country</label>
-      <div class="col-md-4">
+      <label for="guide_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+      <div class="col-md-4 no-pad-r" style="padding-right:5px;">
         <input name="guide_country" type="text" class="form-control" id="guide_country" placeholder="Country">
-      </div>            
-    </div>
-    <div class="form-group">
-      <label for="guide_city" class="control-label col-md-3 no-pad-r">City</label>
-      <div class="col-md-4">
+      </div>   
+	  <div class="col-md-4 no-pad-l">
         <input name="guide_city" type="text" class="form-control" id="guide_city" placeholder="City">
-      </div>            
-    </div>
+      </div>  	
+    </div>    
     <div class="form-group">
       <label class="control-label col-md-9">&nbsp;</label>
       <div class="col-md-2">

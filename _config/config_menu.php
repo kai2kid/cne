@@ -65,6 +65,13 @@
   $_menu["master"]->submenu["entrance"] = $tmp;
 
   $tmp = new configMenu();
+  $tmp->text = "Shop";
+  $tmp->role = "admin";
+  $tmp->url = "shop";
+  $tmp->onclick = "";
+  $_menu["master"]->submenu["shop"] = $tmp;
+  
+  $tmp = new configMenu();
   $tmp->text = "Location";
   $tmp->role = "admin";
   $tmp->url = "location";

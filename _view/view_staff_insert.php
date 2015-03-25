@@ -74,17 +74,14 @@
       </div>  
     </div>
     <div class="form-group">
-      <label for="staff_country" class="control-label col-md-3 no-pad-r">Country</label>
-      <div class="col-md-4">
+      <label for="staff_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+      <div class="col-md-4 no-pad-r" style="padding-right:5px;">
         <input name="staff_country" type="text" class="form-control" id="staff_country" placeholder="Country">
-      </div>            
-    </div>
-    <div class="form-group">
-      <label for="staff_city" class="control-label col-md-3 no-pad-r">City</label>
-      <div class="col-md-4">
+      </div>   
+	  <div class="col-md-4 no-pad-l">
         <input name="staff_city" type="text" class="form-control" id="staff_city" placeholder="City">
-      </div>            
-    </div>
+      </div>          
+    </div>    
     <div class="form-group">
       <label class="control-label col-md-9">&nbsp;</label>
       <div class="col-md-2">

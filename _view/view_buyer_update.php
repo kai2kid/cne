@@ -40,7 +40,7 @@
           <div class="form-group">
 			  <label for="buyer_website" class="control-label col-md-3 no-pad-r">Website</label>
 			  <div class="col-md-5">
-				<input name="buyer_website" type="text" class="form-control" id="buyer_website" placeholder="ID Number" value="<?php echo $data['buyer_website']; ?>">
+				<input name="buyer_website" type="text" class="form-control" id="buyer_website" placeholder="Website" value="<?php echo $data['buyer_website']; ?>">
 			  </div>
 		  </div>             
           <div class="form-group">
@@ -59,22 +59,18 @@
             </div>  
           </div>
           <div class="form-group">
-            <label for="buyer_country" class="control-label col-md-3 no-pad-r">Country</label>
-            <div class="col-md-4">
+            <label for="buyer_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+            <div class="col-md-4 no-pad-r" style="padding-right:5px;">
               <input name="buyer_country" type="text" class="form-control" id="buyer_country" placeholder="Country" value="<?php echo $data['buyer_country']; ?>">
-            </div>            
-          </div>
-          <div class="form-group">
-            <label for="buyer_city" class="control-label col-md-3 no-pad-r">City</label>
-            <div class="col-md-4">
+            </div>  
+            <div class="col-md-4 no-pad-l">
               <input name="buyer_city" type="text" class="form-control" id="buyer_city" placeholder="City" value="<?php echo $data['buyer_city']; ?>">
-            </div>            
-          </div>
+            </div>  			
+          </div>          
 		  <div class="form-group">
 			  <label for="buyer_memo" class="control-label col-md-3 no-pad-r">Memo</label>
 			  <div class="col-md-8">
-				<input name="buyer_memo" type="text" class="form-control" id="buyer_memo" placeholder="Memo" value="<?php echo $data['buyer_memo']; ?>">
-				</select>
+				<textarea class="form-control" name="buyer_memo" id="buyer_memo" placeholder="Memo"><?php echo $data['buyer_memo']; ?></textarea> 				
 			  </div>            
 			</div>
           <div class="form-group">

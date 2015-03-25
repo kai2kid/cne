@@ -30,13 +30,13 @@ class controller_guide extends basicController {
     $insert['guide_updated'] = date("Y-m-d H:i:s");
     $insert['guide_updated_name'] = $_SESSION[_SESSION_USER];
     $model->inserting($insert);
-//    $this->forward("guide");
+    $this->forward("guide");
   }
   public function updating() {
     $model = new model_guide($_POST['guide_code']);
     $update = $_POST;
-    $insert['guide_updated'] = date("Y-m-d H:i:s");
-    $insert['guide_updated_name'] = $_SESSION[_SESSION_USER];
+    $update['guide_updated'] = date("Y-m-d H:i:s");
+    $update['guide_updated_name'] = $_SESSION[_SESSION_USER];
     $model->updating($update);
     $this->forward("guide");
   }

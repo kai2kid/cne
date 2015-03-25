@@ -21,6 +21,9 @@ define("_PATH_SCRIPT"     , _PATH_RESOURCE . "_script/");
 define("_PATH_STYLE"      , _PATH_RESOURCE . "_style/");
 define("_PATH_LIBRARY"    , _PATH_RESOURCE . "_library/");
 define("_PATH_IMAGE"      , _PATH_RESOURCE . "_image/");
+define("_PATH_PHOTO"      , "../resources/photo/");
+define("_PATH_PHOTO_MHS"  , _PATH_PHOTO . "mahasiswa/");
+define("_PATH_PHOTO_ALUMNI", _PATH_PHOTO . "alumni/");
 
 define("_PATH_CONFIG_LOADER"   , _PATH_CONFIG  . "_config.php");
 define("_PATH_SCRIPT_LOADER"   , _PATH_SCRIPT  . "_script.php");

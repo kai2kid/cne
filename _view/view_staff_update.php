@@ -3,7 +3,7 @@
         <h3 class="panel-title">Update Staff</h3>
       </div>
       <div class="panel-body">
-        <form class="form-horizontal" action="staff_updating" method="post" id="form_update">
+        <form class="form-horizontal" action="staff_updating" method="post">
           <div class="form-group">
             <label for="staff_code" class="control-label col-md-3 no-pad-r">Code</label>
             <div class="col-md-5">
@@ -33,16 +33,16 @@
           </div>
           <div class="form-group">
             <label for="staff_hp" class="control-label col-md-3 no-pad-r">Contact Number</label>
-            <div class="col-md-3">
+            <div class="col-md-3 no-pad-r" style="padding-right: 5px;">
               <input name="staff_hp" type="text" class="form-control" id="staff_hp" placeholder="Handphone" value="<?php echo $data['staff_hp']; ?>">
-            </div>            
-          </div>
+            </div> 				
+          </div>   
           <div class="form-group">
-            <label for="staff_phone" class="control-label col-md-3">&nbsp;</label>
-            <div class="col-md-3">
-              <input name="staff_phone" type="text" class="form-control" id="staff_phone" placeholder="Phone" value="<?php echo $data['staff_phone']; ?>">
-            </div>            
-          </div>
+			  <label for="staff_phone" class="control-label col-md-3">&nbsp;</label>
+			  <div class="col-md-3">
+				<input name="staff_phone" type="text" class="form-control" id="staff_phone" placeholder="Phone" value="<?php echo $data['staff_phone']; ?>">
+			  </div>            
+			</div>		  
           <div class="form-group">
             <label for="staff_fax" class="control-label col-md-3">&nbsp;</label>
             <div class="col-md-3">
@@ -79,18 +79,15 @@
               <input name="staff_postal" type="text" class="form-control" id="staff_postal" placeholder="Postal" value="<?php echo $data['staff_postal']; ?>">
             </div>  
           </div>
-          <div class="form-group">
-            <label for="staff_country" class="control-label col-md-3 no-pad-r">Country</label>
-            <div class="col-md-4">
-              <input name="staff_country" type="text" class="form-control" id="staff_country" placeholder="Country" value="<?php echo $data['staff_country']; ?>">
-            </div>            
-          </div>
-          <div class="form-group">
-            <label for="staff_city" class="control-label col-md-3 no-pad-r">City</label>
-            <div class="col-md-4">
-              <input name="staff_city" type="text" class="form-control" id="staff_city" placeholder="City" value="<?php echo $data['staff_city']; ?>">
-            </div>            
-          </div>
+		  <div class="form-group">
+			  <label for="staff_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+			  <div class="col-md-4 no-pad-r" style="padding-right:5px;">
+				<input name="staff_country" type="text" class="form-control" id="staff_country" placeholder="Country" value="<?php echo $data['staff_country']; ?>">
+			  </div>   
+			  <div class="col-md-4 no-pad-l">
+				<input name="staff_city" type="text" class="form-control" id="staff_city" placeholder="City" value="<?php echo $data['staff_city']; ?>">
+			  </div>          
+		  </div>   		  
           <div class="form-group">
             <label class="control-label col-md-9">&nbsp;</label>
             <div class="col-md-2">

@@ -1,10 +1,10 @@
 <div class="bs-callout bs-callout-info">
   <div class="collapse navbar-collapse" style="padding-left:0px;">
-    <label class="title">Master Staff</label>
+    <label class="title">Master Shop</label>
     <ul class="nav navbar-nav navbar-right">
-          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('staff','insert')">Add</button></li>
-          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('staff','update')" disabled>Update</button></li>
-          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('staff','delete')" disabled>Delete</button></li>
+          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('shop','insert')">Add</button></li>
+          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('shop','update')" disabled>Update</button></li>
+          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('shop','delete')" disabled>Delete</button></li>
     </ul>
     <input type="hidden" value="" id="masterID">
   </div>
@@ -15,34 +15,31 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Handphone</th>
+        <th>Name</th>        
+        <th>Phone</th>
         <th>Email</th>
-        <th>City</th>
         <th>Country</th>
+        <th>City</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <th>Name</th>
-        <th>Position</th>
-        <th>Handphone</th>
+        <th>Name</th>        
+        <th>Phone</th>
         <th>Email</th>
-        <th>City</th>
         <th>Country</th>
+        <th>City</th>
       </tr>
     </tfoot>
     
     <tbody>
       <?php foreach($model->directory() as $data) { ?>
-      <tr onclick="setID('<?php echo $data["staff_code"]; ?>')">
-          <td><?php echo $data["staff_name"]; ?></td>
-          <td><?php echo $data["staff_position"]; ?></td>
-          <td><?php echo $data["staff_hp"]; ?></td>
-          <td><?php echo $data["staff_email"]; ?></td>
-          <td><?php echo $data["staff_city"]; ?></td>
-          <td><?php echo $data["staff_country"]; ?></td>
+      <tr onclick="setID('<?php echo $data["shop_code"]; ?>')">
+          <td><?php echo $data["shop_name"]; ?></td>          
+          <td><?php echo $data["shop_phone"]; ?></td>
+          <td><?php echo $data["shop_email"]; ?></td>          
+          <td><?php echo $data["shop_country"]; ?></td>
+		  <td><?php echo $data["shop_city"]; ?></td>
       </tr>
       <?php } ?>      
     </tbody>    
@@ -52,8 +49,8 @@
   <div class="modal fade" id="formInsert" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="pop-up">  
-        <div class="panel panel-primary" id="insertFormContent">
-          <?php include(_PATH_VIEW . "view_staff_insert.php"); ?>
+        <div class="panel panel-primary">
+          <?php include(_PATH_VIEW . "view_shop_insert.php"); ?>
         </div>
       </div>    
     </div>
@@ -64,21 +61,22 @@
     <div class="modal-dialog">
       <div class="pop-up">  
         <div class="panel panel-success" id="updateFormContent">
-          <?php //include (_PATH_VIEW . "view_staff_update.php"); ?>
+          <?php include (_PATH_VIEW . "view_shop_update.php"); ?>
         </div>    
       </div>
     </div>
   </div>  
 
-  <!-- Modal -->
+  <!-- Modal -->	
+  
   <div class="modal fade" id="formDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="pop-up">  
         <div class="panel panel-danger" id="deleteFormContent">
-          <?php //include (_PATH_VIEW . "view_staff_delete.php"); ?>
+          <?php include (_PATH_VIEW . "view_shop_delete.php"); ?>
         </div>    
       </div>
     </div>
   </div>
-  
+ 
 </div>

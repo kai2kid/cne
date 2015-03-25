@@ -1,13 +1,13 @@
 <div class="panel-heading">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h3 class="panel-title">Delete Staff</h3>
+  <h3 class="panel-title">Delete Shop</h3>
 </div>
 <div class="panel-body">
-  <form class="form-horizontal" action="staff_deleting" method="post">
+  <form class="form-horizontal" action="shop_deleting" method="post">
     <div class="form-group">
-      <label for="edName" class="control-label col-md-6 no-pad-r">Do you really want to delete </label>
+      <label for="shop_code" class="control-label col-md-6 no-pad-r">Do you really want to delete </label>
       <div class="col-md-3">
-        <input name="staff_code" type="text" class="form-control" id="edCode" value="<?php echo $data['staff_code']; ?>" readonly>
+        <input name="shop_code" type="text" class="form-control" id="shop_code" value="<?php echo $data['shop_code']; ?>" readonly>
       </div>
     </div>          
     <div class="form-group">

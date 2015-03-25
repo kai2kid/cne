@@ -26,13 +26,17 @@ class controller_buyer extends basicController {
   public function inserting() {
     $model = new model_buyer();
     $insert = $_POST;
-    $insert['buyer_code'] = $model->autogenerate();    
+    $insert['buyer_code'] = $model->autogenerate();  
+    $insert['buyer_updated'] = date("Y-m-d H:i:s");
+    $insert['buyer_updated_name'] = $_SESSION[_SESSION_USER];	
     $model->inserting($insert);
     $this->forward("buyer");
   }
   public function updating() {
     $model = new model_buyer($_POST['buyer_code']);
     $update = $_POST;    
+	$update['buyer_updated'] = date("Y-m-d H:i:s");
+    $update['buyer_updated_name'] = $_SESSION[_SESSION_USER];
     $model->updating($update);
     $this->forward("buyer");
   }

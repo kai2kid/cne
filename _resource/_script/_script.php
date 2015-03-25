@@ -5,6 +5,8 @@
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/jquery.dataTables.min.js"></script>  
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/dataTables.bootstrap.js"></script>  
 
+<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>bootstrap-select.js"></script>
+
 <!--<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>DataTables/js/jquery.dataTables.min.js'></script>-->
 <!--<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>DataTables/css/jquery.dataTables.css' type='text/css' />-->
 <script type="text/javascript">
