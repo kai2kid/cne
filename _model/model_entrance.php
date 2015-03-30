@@ -1,6 +1,6 @@
 <?php
-class model_hotel extends basicModel {
-  protected $tb_name = "hotel";
+class model_entrance extends basicModel {
+  protected $tb_name = "entrance";
   private $id = "";
   protected $data;
   public function __construct($id = "") {
@@ -14,7 +14,7 @@ class model_hotel extends basicModel {
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
         LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
-        WHERE hotel_code = '".$this->id."'
+        WHERE entrance_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
     } else {
@@ -22,39 +22,39 @@ class model_hotel extends basicModel {
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
         LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
-        WHERE hotel_status = 1
+        WHERE entrance_status = 1
         ";
       $this->data = $this->query($qry);
     }
   }
   public function autogenerate() {
-    $qry = "SELECT MAX(RIGHT(hotel_code,4)) max_id FROM hotel WHERE hotel_code LIKE 'HT%'";
+    $qry = "SELECT MAX(RIGHT(entrance_code,4)) max_id FROM entrance WHERE entrance_code LIKE 'EN%'";
     $row = $this->query_one($qry);
-    $id = "HT" . str_pad($row["max_id"]+1,4,"0",STR_PAD_LEFT) ;
+    $id = "EN" . str_pad($row["max_id"]+1,4,"0",STR_PAD_LEFT) ;
     return $id;
   }
   public function directory($param="") {
     return $this->data;
   }
   public function inserting($param) {
-    $param['hotel_code'] = $this->autogenerate();     
-    $param['hotel_updated'] = date("Y-m-d H:i:s");
-    $param['hotel_updated_name'] = $_SESSION[_SESSION_USER];  
-    $param['hotel_status'] = 1;
+    $param['entrance_code'] = $this->autogenerate();     
+    $param['entrance_updated'] = date("Y-m-d H:i:s");
+    $param['entrance_updated_name'] = $_SESSION[_SESSION_USER];  
+    $param['entrance_status'] = 1;
     $ret = $this->insert($this->tb_name,$param);
     return $ret;
   }
   public function updating($param) {
-    $param['hotel_updated'] = date("Y-m-d H:i:s");
-    $param['hotel_updated_name'] = $_SESSION[_SESSION_USER];
-    $ret = $this->update($this->tb_name,$param,"hotel_code = '" . $this->id . "'");
+    $param['entrance_updated'] = date("Y-m-d H:i:s");
+    $param['entrance_updated_name'] = $_SESSION[_SESSION_USER];  
+    $ret = $this->update($this->tb_name,$param,"entrance_code = '" . $this->id . "'");
     return $ret;
   }
   public function deleting() {
-    $param['hotel_status'] = 0;
-    $param['hotel_updated'] = date("Y-m-d H:i:s");
-    $param['hotel_updated_name'] = $_SESSION[_SESSION_USER];
-    $ret = $this->update($this->tb_name,$param,"hotel_code = '" . $this->id."'");
+    $param['entrance_updated'] = date("Y-m-d H:i:s");
+    $param['entrance_updated_name'] = $_SESSION[_SESSION_USER];  
+    $param['entrance_status'] = 0;
+    $ret = $this->update($this->tb_name,$param,"entrance_code = '" . $this->id."'");
     return $ret;
   }
 }

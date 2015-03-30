@@ -27,7 +27,7 @@ class controller_location extends basicController {
     $model = new model_location();
     $insert = $_POST;
     $insert['location_code'] = $model->autogenerate();    
-	$insert['location_updated'] = date("Y-m-d H:i:s");
+	  $insert['location_updated'] = date("Y-m-d H:i:s");
     $insert['location_updated_name'] = $_SESSION[_SESSION_USER];
     $model->inserting($insert);
     $this->forward("location");
