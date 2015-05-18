@@ -9,6 +9,12 @@
       <div class="col-md-5">
         <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name">
       </div>
+    </div>      
+    <div class="form-group">
+      <label for="hotel_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+      <div class="col-md-5">
+        <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="이름">
+      </div>
     </div>    	
 	<div class="form-group">
       <label for="hotel_level" class="control-label col-md-3 no-pad-r">Level</label>

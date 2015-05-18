@@ -41,7 +41,7 @@
           <td><?php echo $data["guide_id_no"]; ?></td>
           <td><?php echo $data["guide_hp"]; ?></td>
           <td><?php echo $data["guide_email"]; ?></td>
-		  <td><?php echo $data["guide_country"]; ?></td>
+		      <td><?php echo $data["guide_country"]; ?></td>
           <td><?php echo $data["guide_city"]; ?></td>          
       </tr>
       <?php } ?>      

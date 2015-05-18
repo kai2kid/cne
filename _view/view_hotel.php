@@ -20,7 +20,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Country</th>
-        <th>City</th>
+        <!--<th>City</th>-->
         <th>Location</th>
       </tr>
     </thead>
@@ -30,7 +30,7 @@
         <th>Phone</th>
         <th>Email</th>
         <th>Country</th>
-        <th>City</th>
+        <!--<th>City</th>-->
         <th>Location</th>
       </tr>
     </tfoot>
@@ -42,7 +42,7 @@
           <td><?php echo $data["hotel_phone"]; ?></td>
           <td><?php echo $data["hotel_email"]; ?></td>          
           <td><?php echo $data["hotel_country"]; ?></td>
-          <td><?php echo $data["hotel_city"]; ?></td>
+          <!--<td><?php echo $data["hotel_city"]; ?></td>-->
           <td><?php echo $data["location_name"]; ?></td>
       </tr>
       <?php } ?>      

@@ -1,12 +1,12 @@
 <?php
-class model_dhotel extends basicModel {
+class model_dhotelperiod extends basicModel {
   public $p_code = "";
-  public $prefix = "room";  
+  public $prefix = "period";  
   
-  protected $pk = "room_code";
+  protected $pk = "period_id";
   protected $p_pk = "hotel_code";
 
-  protected $tb_name = "hotel_room";
+  protected $tb_name = "hotel_period";
   private $id = "";
   public $dataParent = "";
   protected $data;
@@ -30,34 +30,28 @@ class model_dhotel extends basicModel {
       $this->data = $this->query_one($qry);
     } else {
       $qry = "
-        SELECT *,
-          CASE room_type 
-            WHEN 'B' THEN 'Budget'
-            WHEN 'D' THEN 'Deluxe'
-            WHEN 'SD' THEN 'Super Deluxe'
-            WHEN 'BB' THEN 'Breakfast Budget'
-            WHEN 'BD' THEN 'Breakfast Deluxe'
-            WHEN 'BSD' THEN 'Breakfast Super Deluxe'
-          END room_type_name        
-        FROM ".$this->tb_name."
-        WHERE ".$this->p_pk." ='".$this->p_code."' AND ".$this->prefix."_status = 1
-        ";
+        SELECT
+          period_id 
+          , period_type
+          , CASE period_type 
+            WHEN '1' THEN 'Low Season'
+            WHEN '2' THEN 'High Season'
+            WHEN '3' THEN 'Peak Season'
+          END period_type_name
+          , period_start
+          , period_end
+        FROM hotel_period
+        WHERE ".$this->p_pk." = '".$this->p_code."'
+        ORDER BY period_type ASC, period_start ASC
+      ";
       $this->data = $this->query($qry);
-      
     }
   }
-  public function autogenerate() {
-    $qry = "SELECT MAX(RIGHT(room_code,6)) max_id FROM hotel_room WHERE room_code LIKE 'HR%'";
-    $row = $this->query_one($qry);
-    $id = "HR" . str_pad($row["max_id"]+1,6,"0",STR_PAD_LEFT) ;
-    return $id;
-  }
+  public function autogenerate() { }
   public function directory($param="") {
     return $this->data;
   }
   public function inserting($param) {
-    $param[$this->prefix.'_status'] = 1;
-    $param[$this->prefix.'_code'] = $this->autogenerate();     
     $ret = $this->insert($this->tb_name,$param);
     return $ret;
   }
@@ -66,8 +60,7 @@ class model_dhotel extends basicModel {
     return $ret;
   }
   public function deleting() {
-    $param[$this->prefix.'_status'] = 0;
-    $ret = $this->update($this->tb_name,$param,$this->pk . " = '" . $this->id."'");
+    $ret = $this->delete($this->tb_name,$this->pk . " = '" . $this->id."'");
     return $ret;
   }
 }

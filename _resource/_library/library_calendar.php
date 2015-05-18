@@ -1,28 +1,28 @@
 <?php
-  define('_MONTH_1' ,'Januari');
-  define('_MONTH_2' ,'Februari');
-  define('_MONTH_3' ,'Maret');
+  define('_MONTH_1' ,'January');
+  define('_MONTH_2' ,'February');
+  define('_MONTH_3' ,'March');
   define('_MONTH_4' ,'April');
-  define('_MONTH_5' ,'Mei');
-  define('_MONTH_6' ,'Juni');
-  define('_MONTH_7' ,'Juli');
-  define('_MONTH_8' ,'Agustus');
+  define('_MONTH_5' ,'May');
+  define('_MONTH_6' ,'June');
+  define('_MONTH_7' ,'July');
+  define('_MONTH_8' ,'August');
   define('_MONTH_9' ,'September');
-  define('_MONTH_10','Oktober');
+  define('_MONTH_10','October');
   define('_MONTH_11','November');
-  define('_MONTH_12','Desember');
+  define('_MONTH_12','December');
   
-  define('_DAY_1','Senin');
-  define('_DAY_2','Selasa');
-  define('_DAY_3','Rabu');
-  define('_DAY_4','Kamis');
-  define('_DAY_5','Jumat');
-  define('_DAY_6','Sabtu');
-  define('_DAY_7','Minggu');
+  define('_DAY_1','Monday');
+  define('_DAY_2','Tuesday');
+  define('_DAY_3','Wednesday');
+  define('_DAY_4','Thursday');
+  define('_DAY_5','Friday');
+  define('_DAY_6','Saturday');
+  define('_DAY_7','Sunday');
   
-  define('_TIME_HOUR','Jam');
-  define('_TIME_MINUTE','Menit');
-  define('_TIME_SECOND','Detik');
+  define('_TIME_HOUR','Hour');
+  define('_TIME_MINUTE','Minute');
+  define('_TIME_SECOND','Second');
 
   function monthToText($month) {
     switch ($month) {
@@ -67,6 +67,11 @@
   function formatTanggal2($date) {
     $tmp = explode("-",$date);
     $ret = $tmp[0] . " " . monthToText($tmp[1]) . " " . $tmp[2];
+    return $ret;
+  }
+  function formatYearly($date) {
+    $tmp = explode("-",$date);
+    $ret = $tmp[1] . " " . monthToText($tmp[0]);
     return $ret;
   }
   function timeToSeconds($time = "00:00:00") {

@@ -11,6 +11,24 @@
       </div>
     </div>    
     <div class="form-group">
+      <label for="guide_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+      <div class="col-md-5">
+        <input name="guide_name_korean" type="text" class="form-control" id="guide_name_korean" placeholder="이름">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="guide_nickname" class="control-label col-md-3 no-pad-r">Nickname</label>
+      <div class="col-md-5">
+        <input name="guide_nickname" type="text" class="form-control" id="guide_nickname" placeholder="Nickname">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="guide_language" class="control-label col-md-3 no-pad-r">Language</label>
+      <div class="col-md-5">
+        <input name="guide_language" type="text" class="form-control" id="guide_language" placeholder="Language">
+      </div>
+    </div>
+    <div class="form-group">
       <label for="guide_id_no" class="control-label col-md-3 no-pad-r">ID Number</label>
       <div class="col-md-5">
         <input name="guide_id_no" type="text" class="form-control" id="guide_id_no" placeholder="ID Number">
