@@ -44,3 +44,29 @@ function loadForm(type,mode) {
     }
   } );
 }
+
+function loadForm2(type,mode) {
+  id = "";
+  if (mode != "insert") {
+    id = $("#masterID2").val();
+  }
+  targetID = mode + "FormContent2";
+  url = type + "_" + mode + "AjaxForm";
+  if (id != "") {
+    url += "~" + id;
+  }
+
+  $("#"+targetID).html("");
+  $.ajax( {    
+    url:url,
+//    async:false,
+    success:function(data){
+      $("#"+targetID).html(data.html);
+      eval(data.script);
+      //if (mode == "delete") {
+        //table = $("#table_master").row('.selected').remove().draw( false );
+      //}
+      
+    }
+  } );
+}

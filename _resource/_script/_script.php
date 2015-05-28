@@ -25,14 +25,14 @@
 <link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.11.4/jquery-ui.css' type='text/css' />
 <script type="text/javascript">
   $.datepicker.setDefaults({
-    //Indonesian setting
+    //USA setting
     dateFormat:'yy-mm-dd',
-    monthNames: ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','Nopember','Desember'],
-    monthNamesShort: ['Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agus','Sep','Okt','Nop','Des'],
-    dayNames: ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'],
-    dayNamesShort: ['Min','Sen','Sel','Rab','kam','Jum','Sab'],
-    dayNamesMin: ['Mg','Sn','Sl','Rb','Km','jm','Sb'],
-    weekHeader: 'Mg',
+    monthNames: ['January','February','March','April','May','June','July','August','September','October','November','December'],
+    monthNamesShort: ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
+    dayNames: ['Sunday','monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    dayNamesShort: ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    dayNamesMin: ['Sn','Mn','Tu','Wd','Th','Fr','St'],
+    weekHeader: 'Wk',
 
     changeMonth:true,
     changeYear:true,
