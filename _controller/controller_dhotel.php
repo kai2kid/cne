@@ -12,7 +12,9 @@ class controller_dhotel extends basicController {
   }
   public function index() {
     eval('$model = new model_'.$this->self.'($this->p_code);');    
+    $modelperiod = new model_dhotelperiod($this->p_code);
     $param['model'] = $model;
+    $param['model2'] = $modelperiod;
     $this->loadView($this->prefix,$param);
   }
   public function insertAjaxForm() {

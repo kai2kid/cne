@@ -19,8 +19,10 @@
   });
 </script>
 
-<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js'></script>
-<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.8.21.custom/css/ui-lightness/jquery-ui-1.8.21.custom.css' type='text/css' />
+<!--<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.8.21.custom/js/jquery-ui-1.8.21.custom.min.js'></script>-->
+<!--<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.8.21.custom/css/ui-lightness/jquery-ui-1.8.21.custom.css' type='text/css' />-->
+<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.11.4/jquery-ui.js'></script>
+<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.11.4/jquery-ui.css' type='text/css' />
 <script type="text/javascript">
   $.datepicker.setDefaults({
     //Indonesian setting
@@ -53,4 +55,6 @@
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script_master.js"></script>
 
-
+<script type="text/javascript">
+  console.log("_script.php loaded");
+</script>

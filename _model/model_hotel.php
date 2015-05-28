@@ -3,6 +3,7 @@ class model_hotel extends basicModel {
   protected $tb_name = "hotel";
   private $id = "";
   protected $data;
+  protected $period;
   public function __construct($id = "") {
     $this->db_connect();
     if ($id != "") $this->id = $id;
@@ -13,7 +14,7 @@ class model_hotel extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE hotel_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
@@ -21,7 +22,7 @@ class model_hotel extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE hotel_status = 1
         ";
       $this->data = $this->query($qry);
@@ -57,5 +58,18 @@ class model_hotel extends basicModel {
     $ret = $this->update($this->tb_name,$param,"hotel_code = '" . $this->id."'");
     return $ret;
   }
+  public function initPeriod() {
+    $this->period["high"]["start"] = "04-01"; $this->period["high"]["end"] = "06-30";
+    $this->period["high"]["start"] = "09-01"; $this->period["high"]["end"] = "11-30";
+    $this->period["low"]["start"]  = "01-01"; $this->period["low"]["end"]  = "03-31";
+    $this->period["low"]["start"]  = "07-01"; $this->period["low"]["end"]  = "08-31";
+    $this->period["low"]["start"]  = "12-01"; $this->period["low"]["end"]  = "12-31";
+    $this->period["peak"]["start"] = "04-29"; $this->period["peak"]["end"] = "04-30";
+    $this->period["peak"]["start"] = "05-01"; $this->period["peak"]["end"] = "05-05";
+    $this->period["peak"]["start"] = "07-17"; $this->period["peak"]["end"] = "07-19";
+    $this->period["peak"]["start"] = "08-13"; $this->period["peak"]["end"] = "08-16";
+    $this->period["peak"]["start"] = "12-24"; $this->period["peak"]["end"] = "12-26";
+    $this->period["peak"]["start"] = "12-31"; $this->period["peak"]["end"] = "01-02";
+  }                                           
 }
 ?>

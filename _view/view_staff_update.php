@@ -17,6 +17,12 @@
             </div>
           </div>
           <div class="form-group">
+            <label for="staff_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+            <div class="col-md-5">
+              <input name="staff_name_korean" type="text" class="form-control" id="staff_name_korean" placeholder="이름" value="<?php echo $data['staff_name_korean']; ?>">
+            </div>
+          </div>
+          <div class="form-group">
             <label for="staff_position" class="control-label col-md-3 no-pad-r">Position</label>
             <div class="col-md-4">
               <select name="staff_position" class="form-control min-padding" id="staff_position">

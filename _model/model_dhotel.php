@@ -10,6 +10,7 @@ class model_dhotel extends basicModel {
   private $id = "";
   public $dataParent = "";
   protected $data;
+  public $period = "";
   public function __construct($parent_code, $id = "") {
     $this->db_connect();
     if ($id != "") $this->id = $id;
@@ -42,6 +43,7 @@ class model_dhotel extends basicModel {
         WHERE ".$this->p_pk." ='".$this->p_code."' AND ".$this->prefix."_status = 1
         ";
       $this->data = $this->query($qry);
+      
     }
   }
   public function autogenerate() {

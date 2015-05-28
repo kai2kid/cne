@@ -61,6 +61,33 @@
         <textarea name="transport_memo" class="form-control" id="transport_memo" placeholder="Memo"></textarea>      
       </div>            
     </div>
+  <div class="form-group">
+    <label class="control-label col-md-3 no-pad-r">Contact Person</label>
+  </div>        
+  <div class="form-group">
+    <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
+    <div class="col-md-5">
+      <input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="Name">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_position" class="control-label col-md-3 no-pad-r">Position</label>
+    <div class="col-md-3">
+      <input name="pic_position" type="text" class="form-control" id="pic_position" placeholder="Position">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
+    <div class="col-md-3">
+      <input name="pic_phone" type="text" class="form-control" id="pic_phone" placeholder="Phone">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_email" class="control-label col-md-3 no-pad-r">Email</label>
+    <div class="col-md-4">
+      <input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email">
+    </div>            
+  </div>
     <div class="form-group">
       <label class="control-label col-md-9">&nbsp;</label>
       <div class="col-md-2">

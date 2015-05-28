@@ -4,7 +4,7 @@
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('location','insert')">Add</button></li>
           <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('location','update')" disabled>Update</button></li>
-          <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('location','delete')" disabled>Delete</button></li>-->
+          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('location','delete')" disabled>Delete</button></li>
     </ul>
     <input type="hidden" value="" id="masterID">
   </div>
@@ -17,12 +17,14 @@
       <tr>
         <th>Code</th>
         <th>Name</th>       
+        <th>Korean Name</th>       
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th>Code</th>
         <th>Name</th>
+        <th>Korean Name</th>
       </tr>
     </tfoot>
     
@@ -31,6 +33,7 @@
       <tr onclick="setID('<?php echo $data["location_code"]; ?>')">
           <td><?php echo $data["location_code"]; ?></td>
           <td><?php echo $data["location_name"]; ?></td>          
+          <td><?php echo $data["location_name_korean"]; ?></td>          
       </tr>
       <?php } ?>      
     </tbody>    

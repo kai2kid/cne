@@ -16,6 +16,12 @@
               <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name" value="<?php echo $data['hotel_name']; ?>">
             </div>
           </div>     	
+          <div class="form-group">
+            <label for="hotel_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+            <div class="col-md-5">
+              <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="이름" value="<?php echo $data['hotel_name_korean']; ?>">
+            </div>
+          </div>      
 		  <div class="form-group">
 			  <label for="hotel_level" class="control-label col-md-3 no-pad-r">Level</label>
 			  <div class="col-md-3">		
@@ -79,11 +85,44 @@
 				<input name="hotel_currency" type="text" class="form-control" id="hotel_currency" placeholder="Currency" value="<?php echo $data['hotel_currency']; ?>">				
 			  </div>            
 			</div>
+      <div class="form-group">
+        <label for="hotel_tax" class="control-label col-md-3 no-pad-r">Tax Rate</label>
+        <div class="col-md-2">
+          <input name="hotel_tax" type="text" class="form-control" id="hotel_tax" placeholder="Tax" value="<?php echo $data['hotel_tax']; ?>">
+        </div>            
+      </div>
 		  <div class="form-group">
 			  <label for="hotel_memo" class="control-label col-md-3 no-pad-r">Memo</label>
 			  <div class="col-md-8">
 				<textarea name="hotel_memo" class="form-control" id="hotel_memo" placeholder="Memo"><?php echo $data['hotel_memo']; ?></textarea>      				
 			  </div>            
+  <div class="form-group">
+    <label class="control-label col-md-3 no-pad-r">Contact Person</label>
+  </div>        
+  <div class="form-group">
+    <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
+    <div class="col-md-5">
+      <input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="Name" value="<?php echo $data['pic_name']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_position" class="control-label col-md-3 no-pad-r">Position</label>
+    <div class="col-md-3">
+      <input name="pic_position" type="text" class="form-control" id="pic_position" placeholder="Position" value="<?php echo $data['pic_position']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
+    <div class="col-md-3">
+      <input name="pic_phone" type="text" class="form-control" id="pic_phone" placeholder="Phone" value="<?php echo $data['pic_phone']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_email" class="control-label col-md-3 no-pad-r">Email</label>
+    <div class="col-md-4">
+      <input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email" value="<?php echo $data['pic_email']; ?>">
+    </div>            
+  </div>
 			</div>
           <div class="form-group">
             <label class="control-label col-md-9">&nbsp;</label>

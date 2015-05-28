@@ -24,13 +24,6 @@
 			<label for="transport_name" class="control-label col-md-1 no-pad-r">Name</label>			
 			<label id="transport_name" class="control-label col-md-3 no-pad-r"><?php echo $model->dataParent["transport_name"] ?></label>			
 		</div>
-		<div class="vs-xs"></div>  
-		<div class="row">
-			<label for="transport_location" class="control-label col-md-1 no-pad-r"><?php echo $model->dataParent["transport_name"] ?></label>						
-			<label id="transport_city" class="control-label col-md-2 no-pad-r no-pad-l" style="padding-right: 5px;"><?php echo $model->dataParent["transport_name"] ?></label>			
-			<label id="transport_country" class="control-label col-md-2 no-pad-r no-pad-l" style="padding-right: 5px;"><?php echo $model->dataParent["transport_name"] ?></label>
-		</div>
-	  </div>
 	</div>
 	
 	
@@ -43,27 +36,24 @@
     <thead>
       <tr>
         <th>Name</th>        
-        <th>Type</th>
-        <th>Low Price</th>        
-		    <th>High Price</th>        
+        <th>Capacity</th>
+        <th>Location</th>        
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th>Name</th>        
-        <th>Type</th>
-        <th>Low Price</th>        
-		    <th>High Price</th>
+        <th>Capacity</th>
+        <th>Location</th>        
       </tr>
     </tfoot>
     
     <tbody>
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["vehicle_code"]; ?>')">
-          <td><?php echo $data["vehicle_name"]; ?></td>          
-          <td><?php echo $data["vehicle_type"]; ?></td>
-          <td><?php echo $data["vehicle_price_low"]; ?></td>                
-		      <td><?php echo $data["vehicle_price_high"]; ?></td>                
+          <td><?php echo $data["type_name"]; ?></td>          
+          <td><?php echo $data["type_capacity"]; ?></td>
+          <td><?php echo $data["location_name"]; ?></td>
       </tr>
       <?php } ?>      
     </tbody>    

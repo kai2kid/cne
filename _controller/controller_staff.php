@@ -10,6 +10,8 @@ class controller_staff extends basicController {
   }
   public function insertAjaxForm() {
     $o['html'] = $this->bufferView("staff_insert");
+    $o['script'] = "var tags = ['Surabaya','Sidoarjo','Krian','Jombang'];";
+    $o['script'] .= "$('#staff_name').autocomplete({source:tags});";
     $this->output_json($o);
   }
   public function updateAjaxForm($id) {

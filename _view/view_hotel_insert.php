@@ -9,6 +9,12 @@
       <div class="col-md-5">
         <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name">
       </div>
+    </div>      
+    <div class="form-group">
+      <label for="hotel_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+      <div class="col-md-5">
+        <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="이름">
+      </div>
     </div>    	
 	<div class="form-group">
       <label for="hotel_level" class="control-label col-md-3 no-pad-r">Level</label>
@@ -67,18 +73,53 @@
         <input name="hotel_rooms" type="number" class="form-control" id="hotel_rooms" placeholder="Number of Room">        
       </div>            
     </div>
-	<div class="form-group">
+  <div class="form-group">
       <label for="hotel_currency" class="control-label col-md-3 no-pad-r">Currency</label>
       <div class="col-md-2">
-        <input name="hotel_currency" type="text" class="form-control" id="hotel_currency" placeholder="Currency">
+        <input name="hotel_currency" type="text" class="form-control" id="hotel_currency" placeholder="Currency" value="KRW">
       </div>            
     </div>
+	<div class="form-group">
+    <label for="hotel_tax" class="control-label col-md-3 no-pad-r">Tax Rate</label>
+    <div class="col-md-2">
+      <input name="hotel_tax" type="text" class="form-control" id="hotel_tax" placeholder="Tax" value="0.00">
+    </div>            
+  </div>
 	<div class="form-group">
       <label for="hotel_memo" class="control-label col-md-3 no-pad-r">Memo</label>
       <div class="col-md-8">
         <textarea name="hotel_memo" class="form-control" id="hotel_memo" placeholder="Memo"></textarea>      
       </div>            
     </div>
+
+  <div class="form-group">
+    <label class="control-label col-md-3 no-pad-r">Contact Person</label>
+  </div>        
+  <div class="form-group">
+    <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
+    <div class="col-md-5">
+      <input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="Name">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_position" class="control-label col-md-3 no-pad-r">Position</label>
+    <div class="col-md-3">
+      <input name="pic_position" type="text" class="form-control" id="pic_position" placeholder="Position">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
+    <div class="col-md-3">
+      <input name="pic_phone" type="text" class="form-control" id="pic_phone" placeholder="Phone">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_email" class="control-label col-md-3 no-pad-r">Email</label>
+    <div class="col-md-4">
+      <input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email">
+    </div>            
+  </div>
+
     <div class="form-group">
       <label class="control-label col-md-9">&nbsp;</label>
       <div class="col-md-2">

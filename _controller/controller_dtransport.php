@@ -13,6 +13,8 @@ class controller_dtransport extends basicController {
   public function index() {
     eval('$model = new model_'.$this->self.'($this->p_code);');    
     $param['model'] = $model;
+    $v = new model_dtransport();
+    $param['type'] = $v->directory();
     $this->loadView($this->prefix,$param);
   }
   public function insertAjaxForm() {
@@ -22,6 +24,8 @@ class controller_dtransport extends basicController {
   public function updateAjaxForm($id) {
     eval('$model = new model_'.$this->self.'($this->p_code,$id);');
     $param['data'] = $model->data();
+    $v = new model_dtransport();
+    $param['type'] = $v->directory();
     $o['html'] = $this->bufferView($this->prefix."_update",$param);
     $this->output_json($o);                       
   }

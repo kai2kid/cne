@@ -17,21 +17,19 @@
     <thead>
       <tr>
         <th>Name</th>        
+        <th>Location</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>Location</th>
+        <th>PIC</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th>Name</th>        
+        <th>Location</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Country</th>
-        <th>City</th>
-        <th>Location</th>
+        <th>PIC</th>
       </tr>
     </tfoot>
     
@@ -39,11 +37,10 @@
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["hotel_code"]; ?>')">
           <td><?php echo $data["hotel_name"]; ?></td>          
+          <td><?php echo $data["location_name"]; ?></td>
           <td><?php echo $data["hotel_phone"]; ?></td>
           <td><?php echo $data["hotel_email"]; ?></td>          
-          <td><?php echo $data["hotel_country"]; ?></td>
-          <td><?php echo $data["hotel_city"]; ?></td>
-          <td><?php echo $data["location_name"]; ?></td>
+          <td><?php echo $data["pic_name"]." - ".$data["pic_phone"]; ?></td>          
       </tr>
       <?php } ?>      
     </tbody>    

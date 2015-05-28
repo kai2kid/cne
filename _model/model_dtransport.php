@@ -10,10 +10,10 @@ class model_dtransport extends basicModel {
   private $id = "";
   public $dataParent = "";
   protected $data;
-  public function __construct($parent_code, $id = "") {
+  public function __construct($parent_code = "", $id = "") {
     $this->db_connect();
     if ($id != "") $this->id = $id;
-    $this->p_code = $parent_code;
+    if ($parent_code != "") $this->p_code = $parent_code;
     $this->initdata();
   }
   public function initdata() {
@@ -28,11 +28,22 @@ class model_dtransport extends basicModel {
       ";
       $this->data = $this->query_one($qry);
     } else {
-      $qry = "
-        SELECT *      
-        FROM ".$this->tb_name."
-        WHERE ".$this->p_pk." ='".$this->p_code."' AND ".$this->prefix."_status = 1
-        ";
+      if ($this->p_code != "") {        
+        $qry = "
+          SELECT *      
+          FROM ".$this->tb_name."
+          LEFT JOIN location l ON l.location_code = ".$this->tb_name.".vehicle_location
+          LEFT JOIN transport_type t ON t.type_id = ".$this->tb_name.".vehicle_type
+          WHERE ".$this->p_pk." ='".$this->p_code."' AND ".$this->prefix."_status = 1
+          ";
+      } else {
+        $qry = "
+          SELECT *      
+          FROM ".$this->tb_name."
+          LEFT JOIN location l ON l.location_code = ".$this->tb_name.".vehicle_location
+          LEFT JOIN transport_type t ON t.type_id = ".$this->tb_name.".vehicle_type
+          ";        
+      }
       $this->data = $this->query($qry);
     }
   }

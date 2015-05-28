@@ -79,6 +79,13 @@
   $_menu["master"]->submenu["location"] = $tmp;
   
   $tmp = new configMenu();
+  $tmp->text = "Route";
+  $tmp->role = "admin";
+  $tmp->url = "route";
+  $tmp->onclick = "";
+  $_menu["master"]->submenu["route"] = $tmp;
+  
+  $tmp = new configMenu();
   $tmp->text = "Quotation";
   $tmp->role = "admin";
   $tmp->url = "quotation";

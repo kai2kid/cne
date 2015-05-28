@@ -66,6 +66,33 @@
 			  <div class="col-md-8">
 				<textarea name="transport_memo" class="form-control" id="transport_memo" placeholder="Memo"><?php echo $data['transport_memo']; ?></textarea>      				
 			  </div>            
+  <div class="form-group">
+    <label class="control-label col-md-3 no-pad-r">Contact Person</label>
+  </div>        
+  <div class="form-group">
+    <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
+    <div class="col-md-5">
+      <input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="Name" value="<?php echo $data['pic_name']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_position" class="control-label col-md-3 no-pad-r">Position</label>
+    <div class="col-md-3">
+      <input name="pic_position" type="text" class="form-control" id="pic_position" placeholder="Position" value="<?php echo $data['pic_position']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
+    <div class="col-md-3">
+      <input name="pic_phone" type="text" class="form-control" id="pic_phone" placeholder="Phone" value="<?php echo $data['pic_phone']; ?>">
+    </div>            
+  </div>
+  <div class="form-group">
+    <label for="pic_email" class="control-label col-md-3 no-pad-r">Email</label>
+    <div class="col-md-4">
+      <input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email" value="<?php echo $data['pic_email']; ?>">
+    </div>            
+  </div>
 			</div>
           <div class="form-group">
             <label class="control-label col-md-9">&nbsp;</label>
