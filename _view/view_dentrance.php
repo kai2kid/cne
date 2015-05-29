@@ -3,8 +3,8 @@
     <label class="title">Master Entrance - Detail Ticket</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','insert')">Add</button></li>
-          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','update')" disabled>Update</button></li>
-          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','delete')" disabled>Delete</button></li>
+          <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','update')" disabled>Update</button></li>-->
+          <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','delete')" disabled>Delete</button></li>-->
 		  <li><button id="btnBack" class="btn-sm btn-default hs-s" data-toggle="modal" data-target="#" onclick="document.location='entrance';">Back</button></li>
     </ul>
     <input type="hidden" value="" id="masterID">
@@ -44,14 +44,12 @@
     <thead>
       <tr>
         <th>Name</th>        
-        <th>Curr.</th>
         <th>Price</th>        
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th>Name</th>        
-        <th>Curr.</th>
         <th>Price</th> 
       </tr>
     </tfoot>
@@ -59,8 +57,11 @@
     <tbody>
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["ticket_code"]; ?>')">
+          <td>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','update','<?php echo $data["ticket_code"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('dentrance~<?php echo $model->dataParent["entrance_code"] ?>','delete','<?php echo $data["ticket_code"]; ?>')" />
+          </td>
           <td><?php echo $data["ticket_name"]; ?></td>
-          <td><?php echo $model->dataParent["entrance_currency"]; ?></td>
           <td><?php echo $data["ticket_price"]; ?></td>          
       </tr>
       <?php } ?>      

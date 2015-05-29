@@ -43,11 +43,9 @@
     <div class="form-group">
       <label for="transport_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
       <div class="col-md-4 no-pad-r" style="padding-right:5px;">
-        <input name="transport_country" type="text" class="form-control" id="transport_country" placeholder="Country">
+        <input name="transport_country" type="hidden" class="form-control" id="transport_country" placeholder="Country" value="Korea">
+        <?php echo $cb_location; ?>
       </div>  
-      <div class="col-md-4 no-pad-l">
-        <input name="transport_city" type="text" class="form-control" id="transport_city" placeholder="City">
-      </div> 	  
     </div>   	
 	<div class="form-group">
       <label for="transport_currency" class="control-label col-md-3 no-pad-r">Currency</label>

@@ -5,6 +5,8 @@ class controller_hotel extends basicController {
   }
   public function index() {
     $param['model'] = new model_hotel();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("hotel_location");
     $this->loadView("hotel",$param);
   }
   public function insertAjaxForm() {
@@ -14,6 +16,8 @@ class controller_hotel extends basicController {
   public function updateAjaxForm($id) {
     $model = new model_hotel($id);
     $param['data'] = $model->data();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("hotel_location",$param['data']['hotel_location']);
     $o['html'] = $this->bufferView("hotel_update",$param);
     $this->output_json($o);
   }

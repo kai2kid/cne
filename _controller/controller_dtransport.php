@@ -6,19 +6,23 @@ class controller_dtransport extends basicController {
   public $prefix = "dtransport";  
   public $pk = "vehicle_code";
   public $p_pk = "transport_code";
+  public $location;
   public function __construct($code="") {
     parent::__construct();
     if ($code != "") $this->p_code = $code;
+    $this->location = new model_location();
   }
   public function index() {
     eval('$model = new model_'.$this->self.'($this->p_code);');    
     $param['model'] = $model;
     $v = new model_dtransport();
     $param['type'] = $v->directory();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("vehicle_location");
     $this->loadView($this->prefix,$param);
   }
   public function insertAjaxForm() {
-    $o['html'] = $this->bufferView($this->prefix."_insert");
+    $o['html'] = $this->bufferView($this->prefix."_insert",$param);
     $this->output_json($o);
   }
   public function updateAjaxForm($id) {
@@ -26,6 +30,8 @@ class controller_dtransport extends basicController {
     $param['data'] = $model->data();
     $v = new model_dtransport();
     $param['type'] = $v->directory();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("vehicle_location",$param['data']['vehicle_location']);
     $o['html'] = $this->bufferView($this->prefix."_update",$param);
     $this->output_json($o);                       
   }

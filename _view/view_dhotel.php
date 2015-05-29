@@ -3,8 +3,8 @@
     <label class="title">Master Hotel - Detail Room</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','insert')">Add</button></li>
-          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','update')" disabled>Update</button></li>
-          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete')" disabled>Delete</button></li>
+          <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','update')" disabled>Update</button></li>-->
+          <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete')" disabled>Delete</button></li>-->
 		  <li><button id="btnBack" class="btn-sm btn-default hs-s" data-toggle="modal" data-target="#" onclick="document.location='hotel';">Back</button></li>
     </ul>
     <input type="hidden" value="" id="masterID">
@@ -44,6 +44,7 @@
     <thead>
       <tr>
         <!--<th>Name</th>-->
+        <th rowspan="3" class="no-sort" width="25px">&nbsp;</th>
         <th rowspan="3" valign="middle" align="center">Type</th>        
         <th rowspan="3" valign="middle" align="center">XB</th>
         <th colspan="6" valign="middle" align="center">Fit</th>
@@ -75,6 +76,10 @@
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["room_code"]; ?>')">
           <!--<td><?php echo $data["room_name"]; ?></td>-->
+          <td>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','update','<?php echo $data["room_code"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete','<?php echo $data["room_code"]; ?>')" />
+          </td>
           <td><?php echo $data["room_type_name"]; ?></td>                
           <td align="right"><?php echo number_format($data["room_extrabed"]); ?></td>                
           <td align="right"><?php echo number_format($data["room_fit_breakfast"]); ?></td>                
@@ -134,8 +139,8 @@
     <label class="title">Master Hotel - Period</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert2" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert2" onclick="loadForm2('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','insert')">Add</button></li>
-          <li><button id="btnUpdate2" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate2" onclick="loadForm2('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','update')" disabled>Update</button></li>
-          <li><button id="btnDelete2" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete2" onclick="loadForm2('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','delete')" disabled>Delete</button></li>
+          <!--<li><button id="btnUpdate2" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate2" onclick="loadForm2('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','update')" disabled>Update</button></li>-->
+          <!--<li><button id="btnDelete2" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete2" onclick="loadForm2('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','delete')" disabled>Delete</button></li>-->
       <li><button id="btnBack" class="btn-sm btn-default hs-s" data-toggle="modal" data-target="#" onclick="document.location='hotel';">Back</button></li>
     </ul>
     <input type="hidden" value="" id="masterID2">
@@ -149,6 +154,7 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
+        <th class="no-sort" width="25px">&nbsp;</th>
         <th>Type</th>
         <th>Start</th>
         <th>End</th>        
@@ -156,6 +162,7 @@
     </thead>
     <tfoot>
       <tr>
+        <th class="no-sort" width="25px">&nbsp;</th>
         <th>Type</th>
         <th>Start</th>
         <th>End</th>        
@@ -165,6 +172,10 @@
     <tbody>
       <?php foreach ($model2->directory() as $data) { ?>
       <tr onclick="setID2('<?php echo $data["period_id"]; ?>')">
+          <td>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','update','<?php echo $data["period_id"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('dhotelperiod~<?php echo $model->dataParent["hotel_code"] ?>','delete','<?php echo $data["period_id"]; ?>')" />
+          </td>
           <td><?php echo $data["period_type_name"]; ?></td>
           <td><?php echo formatYearly($data["period_start"]); ?></td>
           <td><?php echo formatYearly($data["period_end"]); ?></td>

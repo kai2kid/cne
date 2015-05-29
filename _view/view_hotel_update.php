@@ -64,15 +64,13 @@
               <input name="hotel_postal" type="text" class="form-control" id="hotel_postal" placeholder="Postal" value="<?php echo $data['hotel_postal']; ?>">
             </div>  
           </div>
-          <div class="form-group">
-            <label for="hotel_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
-            <div class="col-md-4 no-pad-r" style="padding-right:5px;">
-              <input name="hotel_country" type="text" class="form-control" id="hotel_country" placeholder="Country" value="<?php echo $data['hotel_country']; ?>">
-            </div>    
-			<div class="col-md-4 no-pad-l">
-              <input name="hotel_city" type="text" class="form-control" id="hotel_city" placeholder="City" value="<?php echo $data['hotel_city']; ?>">
-            </div> 
-          </div>          
+        <div class="form-group">
+          <label for="hotel_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+          <div class="col-md-4 no-pad-r" style="padding-right:5px;">
+            <!--<input name="hotel_country" type="text" class="form-control" id="hotel_country" placeholder="Country">-->
+            <?php echo $cb_location; ?>
+          </div>
+        </div>   
 		  <div class="form-group">
 			  <label for="hotel_rooms" class="control-label col-md-3 no-pad-r">Number of Room</label>
 			  <div class="col-md-3">

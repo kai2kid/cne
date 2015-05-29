@@ -14,8 +14,12 @@
   $.fn.dataTableExt.oStdClasses.sStripeOdd = '';
   $.fn.dataTableExt.oStdClasses.sStripeEven = '';
   $.extend( $.fn.dataTable.defaults, {
+    columnDefs: [
+      { targets: 'no-sort', orderable: false }
+    ],
     'iDisplayLength' : 25,
-    'bAutoWidth' : false
+    'bAutoWidth' : false,
+    'order': [1,'asc']
   });
 </script>
 

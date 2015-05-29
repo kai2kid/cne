@@ -70,3 +70,26 @@ function loadForm2(type,mode) {
     }
   } );
 }
+
+
+function openForm(type,mode,id) {
+  targetID = mode + "FormContent";
+  url = type + "_" + mode + "AjaxForm";
+  if (id != "") {
+    url += "~" + id;
+  }
+
+  $("#"+targetID).html("");
+  $.ajax( {    
+    url:url,
+//    async:false,
+    success:function(data){
+      $("#"+targetID).html(data.html);
+      eval(data.script);
+      //if (mode == "delete") {
+        //table = $("#table_master").row('.selected').remove().draw( false );
+      //}
+      
+    }
+  } );
+}

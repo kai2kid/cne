@@ -3,8 +3,8 @@
     <label class="title">Master Restaurant - Detail Menu</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','insert')">Add</button></li>
-          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','update')" disabled>Update</button></li>
-          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','delete')" disabled>Delete</button></li>
+          <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','update')" disabled>Update</button></li>-->
+          <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','delete')" disabled>Delete</button></li>-->
 		  <li><button id="btnBack" class="btn-sm btn-default hs-s" data-toggle="modal" data-target="#" onclick="document.location='restaurant';">Back</button></li>
     </ul>
     <input type="hidden" value="" id="masterID">
@@ -43,16 +43,16 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
+        <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
-		<th>Curr.</th>
         <th>Price</th>
         <th>Memo</th>        
       </tr>
     </thead>
     <tfoot>
       <tr>
+        <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
-		<th>Curr.</th>
         <th>Price</th>
         <th>Memo</th> 
       </tr>
@@ -61,8 +61,11 @@
     <tbody>
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["menu_code"]; ?>')">                 
+          <td>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','update','<?php echo $data["menu_code"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','delete','<?php echo $data["menu_code"]; ?>')" />
+          </td>
           <td><?php echo $data["menu_name"]; ?></td>
-		      <td><?php echo $model->dataParent["restaurant_currency"]; ?></td>
           <td><?php echo $data["menu_price"]; ?></td>                
 		      <td><?php echo $data["menu_memo"]; ?></td>
       </tr>

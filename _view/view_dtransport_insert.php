@@ -18,7 +18,7 @@
 	<div class="form-group">
       <label for="vehicle_location" class="control-label col-md-3 no-pad-r">Location</label>
       <div class="col-md-3">
-        <input name="vehicle_location" type="text" class="form-control" id="vehicle_location">
+        <?php echo $cb_location; ?>
       </div>            
     </div>	
     <div class="form-group">

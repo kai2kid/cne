@@ -5,3 +5,4 @@
 <link rel="stylesheet" href="<?php echo _PATH_STYLE?>bootstrap-select.css">
 <link rel="stylesheet" href="<?php echo _PATH_STYLE?>general.css">
 <link rel="stylesheet" href="<?php echo _PATH_STYLE?>change.css">
+<link rel="stylesheet" href="<?php echo _PATH_STYLE?>style.css">

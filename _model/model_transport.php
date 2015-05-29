@@ -13,7 +13,7 @@ class model_transport extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE transport_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
@@ -21,7 +21,7 @@ class model_transport extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE transport_status = 1
         ";
       $this->data = $this->query($qry);

@@ -3,8 +3,8 @@
     <label class="title">Master Location</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('location','insert')">Add</button></li>
-          <li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('location','update')" disabled>Update</button></li>
-          <li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('location','delete')" disabled>Delete</button></li>
+          <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('location','update')" disabled>Update</button></li>-->
+          <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('location','delete')" disabled>Delete</button></li>-->
     </ul>
     <input type="hidden" value="" id="masterID">
   </div>
@@ -15,13 +15,15 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th>Code</th>
+        <th class="no-sort" width="25px">&nbsp;</th>
+        <th>Code</th>        0
         <th>Name</th>       
         <th>Korean Name</th>       
       </tr>
     </thead>
     <tfoot>
       <tr>
+        <th class="no-sort" width="25px">&nbsp;</th>
         <th>Code</th>
         <th>Name</th>
         <th>Korean Name</th>
@@ -31,6 +33,10 @@
     <tbody>
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["location_code"]; ?>')">
+          <td>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('location','update','<?php echo $data["location_code"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('location','delete','<?php echo $data["location_code"]; ?>')" />
+          </td>
           <td><?php echo $data["location_code"]; ?></td>
           <td><?php echo $data["location_name"]; ?></td>          
           <td><?php echo $data["location_name_korean"]; ?></td>          
