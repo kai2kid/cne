@@ -21,6 +21,10 @@ class controller_quotation extends basicController {
 	$this->loadView("quotation_insert_price_hotel");
   }
   
+  public function formInsertPriceEntrance() {
+	$this->loadView("quotation_insert_price_entrance");
+  }
+  
   public function formUpdate() {
 	$this->loadView("quotation_insert");
   }

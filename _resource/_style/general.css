@@ -161,3 +161,11 @@
 	margin-right: 0px;
 }
 
+input[type="number"]{
+	text-align: right;
+}
+
+.borderless tr td {
+    border: none !important;    
+}
+

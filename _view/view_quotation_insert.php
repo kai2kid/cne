@@ -148,6 +148,8 @@
 			</div>		
 		</div>
 	</div>
+	
+	<!----------ENTRANCE---------->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 s-h-quotation">
@@ -157,12 +159,26 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						1
+						<form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post">
+							
+
+							<div class="form-group group-btn-entrance">
+								<label class="control-label col-md-8">&nbsp;</label>
+								<div class="col-md-1 no-pad-r" style="margin-right: 5px">
+									<input type="submit" class="btn btn-primary btn-block" value="Save">
+								</div>  
+								<div class="col-md-2 no-pad-l">
+									<input type="button" class="btn btn-default btn-block" value="Add Price" onclick="navigate('quotation_formInsertPriceEntrance')">
+								</div>
+							</div>	
+						</form>
 					</div>
 				</div>
 			</div>		
 		</div>
 	</div>
+	
+	<!-------MEAL--------->
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 s-h-quotation">
@@ -172,13 +188,26 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						1
+						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post">
+							
+							
+							<div class="form-group group-btn-meal">
+								<label class="control-label col-md-8">&nbsp;</label>
+								<div class="col-md-1 no-pad-r" style="margin-right: 5px">
+									<input type="submit" class="btn btn-primary btn-block" value="Save">
+								</div>  
+								<div class="col-md-2 no-pad-l">
+									<input type="button" class="btn btn-default btn-block" value="Add Price" onclick="alert('masih belum tau yang 3 jenis itu')">
+								</div>
+							</div>	
+						</form>
 					</div>
 				</div>
 			</div>		
 		</div>
 	</div>
-
+	
+	<!--
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 s-h-quotation">
@@ -194,7 +223,8 @@
 			</div>		
 		</div>
 	</div>
-
+	-->
+	
 	<div class="container">
 		<div class="row">
 			<div class="col-md-10 s-h-quotation">
@@ -204,7 +234,18 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						1
+						<form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post">
+							
+							
+							
+							
+							<div class="form-group group-btn-rundown">
+								<label class="control-label col-md-10">&nbsp;</label>
+								<div class="col-md-1 no-pad-r" style="margin-right: 5px">
+									<input type="submit" class="btn btn-primary btn-block" value="Save">
+								</div>  								
+							</div>
+						</form>
 					</div>
 				</div>
 			</div>		
