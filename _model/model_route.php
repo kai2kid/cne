@@ -46,6 +46,9 @@ class model_route extends basicModel {
     $ret = $this->update($this->tb_name,array("route_status"=>"0"),"route_code = '" . $this->id."'");
     return $ret;
   }
+  public function _combobox($name,$selected = "") {
+    return HTML::combobox(fetchDataset($this->data,"route_code","route_title"),["name"=>$name,"class"=>"form-control min-padding"],$selected);
+  }
   
 }
 ?>

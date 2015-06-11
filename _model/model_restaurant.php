@@ -57,5 +57,8 @@ class model_restaurant extends basicModel {
     $ret = $this->update($this->tb_name,$param,"restaurant_code = '" . $this->id."'");
     return $ret;
   }
+  public function _combobox($name,$selected = "") {
+    return HTML::combobox(fetchDataset($this->data,"restaurant_code","restaurant_name"),["name"=>$name,"class"=>"form-control min-padding"],$selected);
+  }
 }
 ?>

@@ -276,3 +276,10 @@ function changeHotel(tipe)
 		$("#formInsertHotel"+tipe).append(isi);	
 	}	
 }
+
+function copyElement(id,newname) {
+  o = $("#"+id);
+  o.attr("name",newname);
+  o.attr("id",newname);
+  return o;
+}
