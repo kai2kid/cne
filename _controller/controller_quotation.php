@@ -47,6 +47,16 @@ class controller_quotation extends basicController {
   }
   public function preview() {
     $param['model'] = new model_quotation($this->id);    
+    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];
+    $param['rate'] = 0.0009;
+    $param['data'] = "";
+    $this->loadView("quotation_preview",$param);
+  }
+  public function proposal() {
+    $param['model'] = new model_quotation($this->id);    
+    $pax = rand(10,40);
+    $param['pax_estimated'] = [$pax => $pax];
+    $param['rate'] = 0.0009;
     $param['data'] = "";
     $this->loadView("quotation_preview",$param);
   }

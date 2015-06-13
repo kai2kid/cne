@@ -59,6 +59,9 @@
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script_master.js"></script>
 
+<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.js'></script>
+<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.css' type='text/css' />
+
 <script type="text/javascript">
   console.log("_script.php loaded");
 </script>

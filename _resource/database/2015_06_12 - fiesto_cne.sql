@@ -402,12 +402,13 @@ CREATE TABLE `qday_hotel` (
   `hotel_code` varchar(10) NOT NULL,
   `qday_code` varchar(10) NOT NULL,
   `qday_hotel_night` int(11) DEFAULT '1',
+  `qday_room_level` tinyint(4) DEFAULT '3',
   PRIMARY KEY (`hotel_code`,`qday_code`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `qday_hotel` */
 
-insert  into `qday_hotel`(`hotel_code`,`qday_code`,`qday_hotel_night`) values ('HT0001','Q0101',1),('HT0002','Q0101',1),('HT0003','Q0101',1),('HT0004','Q0102',1),('HT0005','Q0102',1),('HT0006','Q0102',1),('HT0007','Q0103',2),('HT0007','Q0104',2),('HT0008','Q0103',2),('HT0008','Q0104',2),('HT0009','Q0103',2),('HT0009','Q0104',2),('HT0013','Q0105',1),('HT0014','Q0105',1),('HT0015','Q0105',1);
+insert  into `qday_hotel`(`hotel_code`,`qday_code`,`qday_hotel_night`,`qday_room_level`) values ('HT0001','Q0101',1,3),('HT0002','Q0101',1,4),('HT0003','Q0101',1,5),('HT0004','Q0102',1,3),('HT0005','Q0102',1,4),('HT0006','Q0102',1,5),('HT0007','Q0103',2,3),('HT0007','Q0104',2,4),('HT0008','Q0103',2,5),('HT0008','Q0104',2,3),('HT0009','Q0103',2,4),('HT0009','Q0104',2,5),('HT0013','Q0105',1,3),('HT0014','Q0105',1,4),('HT0015','Q0105',1,5);
 
 /*Table structure for table `qday_restaurant` */
 

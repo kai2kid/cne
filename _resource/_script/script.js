@@ -1,6 +1,7 @@
 $(document).ready( function () {
   $('input[type=date]').datepicker();
   $('table.datatable').dataTable();  
+  $('.combobox').combobox();  
   
 	$('.panel-heading span.clickable').on("click", function (e) {
 		if ($(this).hasClass('panel-collapsed')) {

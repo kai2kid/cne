@@ -55,7 +55,9 @@ class model_quotation extends basicModel {
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
-        $this->detail['hotel'][$row['qday_day']][] = $row;
+        $row['hotel_price_room_standard'] = 50000 + rand(0,50000);
+        $row['hotel_price_breakfast_standard'] = 10000 + rand(0,10000);
+        $this->detail['hotel'][$row['qday_day']][$row['qday_room_level']] = $row;
       }
       
       //Restaurant
@@ -69,8 +71,11 @@ class model_quotation extends basicModel {
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
-        $this->detail['restaurant'][$row['qday_day']][] = $row;
+        $this->detail['restaurant'][$row['qday_day']][$row['qday_rest_type']] = $row;
       }
+      $this->detail['restaurant']['restaurant_price_low'] = 5000;
+      $this->detail['restaurant']['restaurant_price_standard'] = 10000;
+      $this->detail['restaurant']['restaurant_price_upgrade'] = 15000;
       
       //Transport
       $qry = "

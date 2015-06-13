@@ -72,7 +72,10 @@ class model_hotel extends basicModel {
     $this->period["peak"]["start"] = "12-31"; $this->period["peak"]["end"] = "01-02";
   }                                           
   public function _combobox($name,$selected = "") {
-    return HTML::combobox(fetchDataset($this->data,"hotel_code","hotel_name"),["name"=>$name,"class"=>"form-control min-padding"],$selected);
+    return HTML::combobox(fetchDataset($this->data,"hotel_code","hotel_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
+  }
+  public function price() {
+    return 500;
   }
 }
 ?>

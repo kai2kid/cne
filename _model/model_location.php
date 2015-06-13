@@ -46,7 +46,7 @@ class model_location extends basicModel {
   }
   */
   public function _combobox($name,$selected = "") {
-    return HTML::combobox(fetchDataset($this->data,"location_code","location_name"),["name"=>$name,"class"=>"form-control min-padding"],$selected);
+    return HTML::combobox(fetchDataset($this->data,"location_code","location_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
   }
 }
 ?>

@@ -58,7 +58,7 @@ class model_restaurant extends basicModel {
     return $ret;
   }
   public function _combobox($name,$selected = "") {
-    return HTML::combobox(fetchDataset($this->data,"restaurant_code","restaurant_name"),["name"=>$name,"class"=>"form-control min-padding"],$selected);
+    return HTML::combobox(fetchDataset($this->data,"restaurant_code","restaurant_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
   }
 }
 ?>

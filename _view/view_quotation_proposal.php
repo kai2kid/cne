@@ -69,7 +69,7 @@
       <tr>
         <th width="25px">Day</th>
         <th>Name</th>
-        <th class="text-right" width="110px">1 RM</th>
+        <th class="text-right">1 RM</th>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <th class="text-right" width="110px"><?php echo $title . " (".(ceil($pax / 2))." RM)"?></th>
         <?php } ?>
@@ -115,7 +115,7 @@
       <tr>
         <th width="25px">Day</th>
         <th>Name</th>
-        <th class="text-right" width="110px">1 person</th>
+        <th class="text-right">1 person</th>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <th class="text-right" width="110px"><?php echo $title; ?></th>
         <?php } ?>
@@ -159,7 +159,7 @@
     <thead>
       <tr>
         <th>Type</th>
-        <th class="text-right" width="110px">1 person</th>
+        <th class="text-right">1 person</th>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <th class="text-right" width="110px"><?php echo $title; ?></th>
         <?php $subt[$pax] = 0; ?>
@@ -230,7 +230,7 @@
       <tr>
         <th width="25px">Day</th>
         <th>Name</th>
-        <th class="text-right" width="110px">1</th>
+        <th class="text-right">1</th>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <th class="text-right" width="110px"><?php echo $title; ?></th>
         <?php $subt[$pax] = 0; ?>
