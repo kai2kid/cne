@@ -93,3 +93,19 @@ function openForm(type,mode,id) {
     }
   } );
 }
+
+function submitForm(formID) {
+  
+  f = $("#"+formID);
+  f.serialize();
+  alert();
+  $.post(
+    f.attr("action"),
+    f.serialize(),
+    function(data){
+      if(data.result) {
+        alert("Sukses");
+      }
+    }
+  );
+}

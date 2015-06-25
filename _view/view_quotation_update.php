@@ -32,9 +32,10 @@
 						<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post">
+						<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post" onsubmit="submitForm(this.id);return false;">
+              <input type="hidden" name="quotation_code" value="<?php echo $model->quotation_code; ?>">
               <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-							<div class="form-group">
+							<div class="form-group input-transport">
 							  <label for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
 							  <div class="col-md-5">
 								<!--<input name="qtransport_start" type="text" class="form-control" id="qtransport_start">-->
@@ -80,14 +81,14 @@
 								</div>
 								<!-- list per night -->
                 <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][0]["hotel_code"] != $model->detail['hotel'][$day-1][0]["hotel_code"])) {?>
+                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][5]["hotel_code"] != $model->detail['hotel'][$day-1][5]["hotel_code"])) {?>
 								<div class="form-group input-hotel<?php echo $day;?>">
 									<label for="qhotel_type11_cb" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 									<div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-                  <?php echo $hotel->_combobox('hotel_5_'.$day,$model->detail['hotel'][$day][0]['hotel_code']); ?>
+                  <?php echo $hotel->_combobox('hotel_5_'.$day,$model->detail['hotel'][$day][5]['hotel_code']); ?>
 									</div>
 									<div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][0]["qday_hotel_night"]; ?>">
+										<input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][5]["qday_hotel_night"]; ?>">
 									</div>
 									
 								</div>
@@ -105,14 +106,14 @@
                 </div>
                 <!-- list per night -->
                 <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][1]["hotel_code"] != $model->detail['hotel'][$day-1][1]["hotel_code"])) {?>
+                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][4]["hotel_code"] != $model->detail['hotel'][$day-1][4]["hotel_code"])) {?>
                 <div class="form-group input-hotel<?php echo $day;?>">
                   <label for="qhotel_type11_cb" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
                   <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-                  <?php echo $hotel->_combobox('hotel_4_'.$day,$model->detail['hotel'][$day][1]['hotel_code']); ?>
+                  <?php echo $hotel->_combobox('hotel_4_'.$day,$model->detail['hotel'][$day][4]['hotel_code']); ?>
                   </div>
                   <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-                    <input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][1]["qday_hotel_night"]; ?>">
+                    <input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][4]["qday_hotel_night"]; ?>">
                   </div>
                   
                 </div>
@@ -129,14 +130,14 @@
                 </div>
                 <!-- list per night -->
                 <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][2]["hotel_code"] != $model->detail['hotel'][$day-1][2]["hotel_code"])) {?>
+                <?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][3]["hotel_code"] != $model->detail['hotel'][$day-1][3]["hotel_code"])) {?>
                 <div class="form-group input-hotel<?php echo $day;?>">
                   <label for="qhotel_type31_cb" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
                   <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-                  <?php echo $hotel->_combobox('hotel_3_'.$day,$model->detail['hotel'][$day][2]['hotel_code']); ?>
+                  <?php echo $hotel->_combobox('hotel_3_'.$day,$model->detail['hotel'][$day][3]['hotel_code']); ?>
                   </div>
                   <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-                    <input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][2]["qday_hotel_night"]; ?>">
+                    <input name="qhotel_type11_night" type="text" class="form-control" id="qhotel_type11_night" placeholder="Night" onchange="changeHotel(1)" value="<?php echo $model->detail['hotel'][$day][3]["qday_hotel_night"]; ?>">
                   </div>
                   
                 </div>
@@ -172,15 +173,15 @@
 					</div>
 					<div class="panel-body quotation-body">
 						<form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post">
-              <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-              <div class="form-group">
-                <?php foreach ($model->detail['entrance'][$day] as $detail) { ?>
-                <label for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
-                <div class="col-md-5">
-                <?php echo $entrance->_combobox('entrance_'.$day,$detail['entrance_code']); ?>
-                <?php } ?>
-                </div>
-              </div>
+						<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+							<div class="form-group input-entrance">
+							<?php foreach ($model->detail['entrance'][$day] as $detail) { ?>
+								<label for="entrance_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
+								<div class="col-md-8">
+								<?php echo $entrance->_combobox('entrance_'.$day,$detail['entrance_code']); ?>
+							<?php } ?>
+								</div>
+						</div>
               <?php } ?>
 							
 
@@ -213,30 +214,30 @@
 					</div>
 					<div class="panel-body quotation-body">
 						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post">
-              <div class="form-group">
-                <div id='meal'>
-                <table class='table borderless table-font' cellspacing='0' width='100%'>
-                  <tbody>
-                    <tr>
-                      <td>&nbsp;</td>
-                      <td align='center'>Breakfast</td>
-                      <td align='center'>Lunch</td>
-                      <td align='center'>Dinner</td>
-                    </tr>
-                  <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-                    <tr>
-                      <td align='right'>
-                        <label class='control-label'>D<?php echo $day; ?></label>
-                      </td>
-                      <td><?php echo $restaurant->_combobox('restaurant_'.$day,$model->detail['restaurant'][$day][0]['restaurant_code']); ?></td>
-                      <td><?php echo $restaurant->_combobox('restaurant_'.$day,$model->detail['restaurant'][$day][1]['restaurant_code']); ?></td>
-                      <td><?php echo $restaurant->_combobox('restaurant_'.$day,$model->detail['restaurant'][$day][2]['restaurant_code']); ?></td>
-                    </tr>                    
-                  <?php } ?>
-                  </tbody>
-                </table>
-                </div>
-              </div>
+						  <div class="form-group input-meal">
+							<div id='meal'>
+							<table class='table borderless table-font' cellspacing='0' width='100%' id="table-meal">
+							  <tbody>
+								<tr>
+								  <td>&nbsp;</td>
+								  <td align='center'>Breakfast</td>
+								  <td align='center'>Lunch</td>
+								  <td align='center'>Dinner</td>
+								</tr>
+							  <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+								<tr class="list-of-meal">
+								  <td align='right'>
+									<label class='control-label'>D<?php echo $day; ?></label>
+								  </td>
+								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_1",$model->detail['restaurant'][$day][1]['restaurant_code']); ?></td>
+								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_2",$model->detail['restaurant'][$day][2]['restaurant_code']); ?></td>
+								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_3",$model->detail['restaurant'][$day][3]['restaurant_code']); ?></td>
+								</tr>                    
+							  <?php } ?>
+							  </tbody>
+							</table>
+							</div>
+						  </div>
 													
 							<div class="form-group group-btn-meal">
 								<label class="control-label col-md-10">&nbsp;</label>
@@ -285,42 +286,40 @@
 					<div class="panel-body quotation-body">
 						<form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post">
 							<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-              <div class='panel' id='run_<?php echo $day;?>'>
-              <div class='form-group'>
-                <label class='control-label col-md-3 no-pad-l' style='margin-right: 5px;'>D<?php echo $day. ": " .$model->days[$day]["route_title"]; ?></label>
-              </div>
-              <?php $i=0; ?>
-              <?php foreach ($model->detail['rundown'][$day] as $detail) { ?>
-              <?php $i++; ?>
-              <div id='wrapperTime<?php echo $i; ?>'>
-                <div class='form-group'>
-                  <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>
-                    <input name='qtimeStart_<?php echo $day;?>1' type='time' class='form-control' id='qtimeStart_<?php echo $day;?>1' value="<?php echo $detail["qdetail_time_start"]; ?>">
-                  </div>
-                  <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
-                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                    <input name='qtimeEnd_<?php echo $day;?>1' type='time' class='form-control' id='qtimeEnd_<?php echo $day;?>1'  value="<?php echo $detail["qdetail_time_end"]; ?>">
-                  </div>
-                  <div class='col-md-4 no-pad-l'>
-                    <input name='qremark_<?php echo $day;?>1' type='text' class='form-control' id='qremark_<?php echo $day;?>1' value="<?php echo $detail["qdetail_title"]; ?>">
-                  </div>
-              
-                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>
-                    <?php if ($i==1) { ?>
-                    <button id='btnAddTime<?php echo $day;?>1' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addTime(this,<?php echo $day . ",";?> 2)'0>
-                    <span class='glyphicon glyphicon-plus'></span>
-                    <?php } else { ?>
-                    <button type='button' class='btn btn-danger' onclick='removeTime("+induk+", "+nomor+")'>
-                    <span class='glyphicon glyphicon-remove'></span>
-                    <?php } ?>
-                  </div>
-                </div>
-                </div>
-              <?php } ?>
-                
-              </div>
-              
-              <?php } ?>
+								  <div class='panel' id='run_<?php echo $day;?>'>
+								  <div class='form-group'>
+									<label id="runday_<?php echo $day; ?>" class='control-label col-md-5 no-pad-l' style='text-align: left; margin-left: 5px;'>D<?php echo $day. ": " .$model->days[$day]["route_title"]; ?></label>
+								  </div>
+								  <?php $i=0; ?>
+								  <?php foreach ($model->detail['rundown'][$day] as $detail) { ?>
+								  <?php $i++; ?>
+								  <div id='wrapperTime<?php echo $i; ?>'>
+									<div class='form-group'>
+									  <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>
+										<input name='qtimeStart_<?php echo $day;?>1' type='time' class='form-control' id='qtimeStart_<?php echo $day;?>1' value="<?php echo $detail["qdetail_time_start"]; ?>">
+									  </div>
+									  <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
+									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+										<input name='qtimeEnd_<?php echo $day;?>1' type='time' class='form-control' id='qtimeEnd_<?php echo $day;?>1'  value="<?php echo $detail["qdetail_time_end"]; ?>">
+									  </div>
+									  <div class='col-md-4 no-pad-l'>
+										<input name='qremark_<?php echo $day;?>1' type='text' class='form-control' id='qremark_<?php echo $day;?>1' value="<?php echo $detail["qdetail_title"]; ?>">
+									  </div>
+								  
+									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>
+										<?php if ($i==1) { ?>
+										<button id='btnAddTime<?php echo $day;?>1' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addTime(this,<?php echo $day . ",";?> 2)'0>
+										<span class='glyphicon glyphicon-plus'></span>
+										<?php } else { ?>
+										<button type='button' class='btn btn-danger' onclick='removeTime("+induk+", "+nomor+")'>
+										<span class='glyphicon glyphicon-remove'></span>
+										<?php } ?>
+									  </div>
+									</div>
+									</div>
+								<?php } ?>                
+								</div>              
+							<?php } ?>
               <div class="form-group group-btn-rundown">
                 <label class="control-label col-md-10">&nbsp;</label>
                 <div class="col-md-1 no-pad-r" style="margin-right: 5px">

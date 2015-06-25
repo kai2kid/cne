@@ -49,14 +49,15 @@ class model_quotation extends basicModel {
         SELECT *
         FROM quotation_day d
         LEFT JOIN qday_hotel q ON d.qday_code = q.qday_code
+        LEFT JOIN hotel_room r ON r.room_code = q.room_code
         LEFT JOIN hotel h ON q.hotel_code = h.hotel_code
         WHERE d.quotation_code = '".$this->id."'
         ORDER BY d.qday_day ASC, h.hotel_level DESC
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
-        $row['hotel_price_room_standard'] = 50000 + rand(0,50000);
-        $row['hotel_price_breakfast_standard'] = 10000 + rand(0,10000);
+        $row['hotel_price_room_standard'] = $row['room_group_weekday_low'];
+        $row['hotel_price_breakfast_standard'] = $row['room_group_breakfast'];
         $this->detail['hotel'][$row['qday_day']][$row['qday_room_level']] = $row;
       }
       
@@ -139,6 +140,14 @@ class model_quotation extends basicModel {
   }
   public function deleting() {
     $ret = $this->update($this->tb_name,array("pic_status"=>"0"),"pic_type_code = '" . $this->id."'");
+    return $ret;
+  }
+  public function modifyTransport($data) {
+    $ret = 1;
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $update["route_code"] = $data["route_$day"];
+      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    }
     return $ret;
   }
 }

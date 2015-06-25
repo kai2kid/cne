@@ -36,110 +36,60 @@ $(document).ready( function () {
 		//hapus
 		if (jumElemen-dayCount-1 > 0) {			
 			mulai = dayCount+1;			
-			for (i=dayCount+1; i<jumElemen; i++){
-				$("div").remove("#qtw_"+i);		
-				$("div").remove("#ent_"+i);	
-				$("div").remove("#meal_"+i);
+			for (i=dayCount+1; i<jumElemen; i++){				
+				$(".input-transport:last").remove();				
+				$(".input-entrance:last").remove();	
+				$(".input-meal:last").remove();
 				$("div").remove("#run_"+i);
 			}
 		} else {			
 			//nambah
 			for (i=jumElemen; i<=dayCount; i++){
-				//TRANSPORT
-				isi = "<div class='form-group input-transport' id='qtw_" + i + "'>";
-				isi += "<label for='qtransport_route" + i + "' class='control-label col-md-1 no-pad-r'>D" + i + "</label>";
-				isi += "<div class='col-md-2 no-pad-r'>";
-				isi += "<input name='qtransport_route_start" + i + "' type='text' class='form-control' id='qtransport_route_start" + i + "' readonly></div>";				
-				isi += "<label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>";
-				isi += "<div class='col-md-5 no-pad-l'>";				
-				isi += "<input name='qtransport_route" + i + "' type='text' class='form-control' id='qtransport_route" + i + "' onchange='changeRoute("+i+")'></div></div>";
-				//$("#formInsertTransport").append(isi);							  							
-				$(isi).insertBefore(".group-btn-transport");
+				//TRANSPORT				
+				myEl = $(".input-transport").first().clone(false);					
+				myEl.find("label").attr("for", "route_"+i);
+				myEl.find("label").html("Day "+i);	
+				myEl.find(".combobox-container").remove();				
+				myEl.find("select").attr('id', myEl.find("select").attr('id').substring(0, myEl.find("select").attr('id').indexOf("_"))+"_"+i);
+				myEl.find("select").combobox();
+				myEl.find("input[type='hidden']").attr("name", "route_"+i);			
+				myEl.find("input[type='hidden']").attr("onchange", "changeRoute('"+i+"')");
+				myEl.insertBefore(".group-btn-transport");
 				
 				//ENTRANCE
-				isi = "<div class='panel' id='ent_"+ i +"'>";
-				isi += "<div class='form-group'>";
-				isi += "<label for='qentrance_start' class='control-label col-md-1 no-pad-r'>D"+i+"</label>";
-				isi += "<div class='col-md-4 no-pad-r' style='margin-right: 5px;'>";
-				isi += "<input name='qentrance_"+i+"1' type='text' class='form-control' id='qentrance_"+i+"1'>";
-				isi += "</div>";
-				isi += "<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>";
-				isi += "<button id='btnAddEn"+i+"1' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addEntrance(this,"+i+", 2)'>";
-				isi += "<span class='glyphicon glyphicon-plus'></span>";
-				isi += "</div>";
-				isi += "</div></div>";
-				$(isi).insertBefore(".group-btn-entrance");		
+				myEl = $(".input-entrance").first().clone(false);	
+				myEl.find("label").attr("for", "entrance_"+i);
+				myEl.find("label").html("Day "+i);					
+				myEl.find(".combobox-container").remove();				
+				myEl.find("select").attr('id', myEl.find("select").attr('id').substring(0, myEl.find("select").attr('id').indexOf("_"))+"_"+i);
+				myEl.find("select").combobox();
+				myEl.find("input[type='hidden']").attr("name", "entrance_"+i);					
+				myEl.insertBefore(".group-btn-entrance");		
 
 				//MEAL
-				isi = "<div id='meal_"+i+"'>";
-				isi += "<table class='table borderless table-font' cellspacing='0' width='100%'>";
-				isi += "<tbody><tr><td>&nbsp;</td><td align='center'>Breakfast</td><td align='center'>Lunch</td><td align='center'>Dinner</td></tr>";
-				isi += "<tr><td align='right'><label class='control-label'>D"+i+"</label></td><td>";
-				//--------------RESTOURANT BREAKFAST ---------------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserolesinuseongtown</option>";
-				isi += "<option>Abalone Porridgesejong Garden</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//--------------RESTOURANT LUNCH ---------------	
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserolesinuseongtown</option>";
-				isi += "<option>Abalone Porridgesejong Garden</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//--------------RESTOURANT DINNER ---------------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserolesinuseongtown</option>";
-				isi += "<option>Abalone Porridgesejong Garden</option>";
-				isi += "</select>";
-				isi += "</td></tr>";
-				isi += "<tr><td align='right'><label class='control-label'>Menu 1</label></td><td>";
-				//-------------MENU 1 : BREAKFAST ---------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//-------------MENU 1 : LUNCH ---------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//-------------MENU 1 : DINNER ---------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td></tr><tr><td align='right'><label class='control-label'>Menu 2</label></td><td>";
-				//-------------MENU 2 : BREAKFAST ---------	
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//-------------MENU 2 : LUNCH ---------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td><td>";
-				//-------------MENU 2 : DINNER ---------
-				isi += "<select class='form-control'>";
-				isi += "<option>Abalone Casserole</option>";
-				isi += "<option>Abalone Porridge</option>";
-				isi += "</select>";
-				isi += "</td></tr></tbody></table><hr></div>";
-
-				$(isi).insertBefore(".group-btn-meal");	
+				myEl = $(".list-of-meal").first().clone(false);					
+				myEl.find("label").html("D"+i);							
+				myEl.find(".combobox-container").remove();
+				
+				c = 1;
+				myEl.find("select").each(function(){				
+					$(this).attr('id', $(this).attr('id').substring(0, $(this).attr('id').indexOf("_"))+"_"+i+"_"+c);
+					c++;
+				});
+				myEl.find("select").combobox();
+				
+				c = 1;
+				myEl.find("input[type='hidden']").each(function(){
+					$(this).attr("name", "restaurant_"+i+"_"+c);	
+					c++;
+				});
+				
+				$("#table-meal").append(myEl);
 				
 				//RUNDOWN
 				isi = "<div class='panel' id='run_"+i+"'>";
 				isi += "<div class='form-group'>";
-				isi += "<label class='control-label col-md-1 no-pad-r' style='margin-right: 5px;'>D"+i+"</label>";
-				isi += "<div class='col-md-6 no-pad-l'>";
-				isi += "<input name='qrundownRoute_"+i+"' type='text' class='form-control' id='qrundownRoute_"+i+"' readonly>";
-				isi += "</div>";
+				isi += "<label id='runday_"+i+"' class='control-label col-md-5 no-pad-l' style='text-align: left; margin-left: 5px;'>D"+i+": </label>";				
 				isi += "</div>";
 				isi += "<div class='form-group'>";
 				isi += "<div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>";
@@ -234,14 +184,10 @@ function addEntrance(el, induk, nomor)
 }
 
 function changeRoute(no)
-{
-	str = $("#qtransport_route"+no).val();	
-	lastPlace = (str.substr(str.lastIndexOf(" - ")+3, str.length - (str.lastIndexOf(" - ")+3))).trim();	
-	$("#qtransport_route_start"+(parseInt(no)+1)).val(lastPlace);
-	
-	//MENGISI BAGIAN RUNDOWN
-	rute = $("#qtransport_route_start"+no).val()+ " - " + $("#qtransport_route"+no).val();
-	$("#qrundownRoute_"+no).val(rute);
+{	
+	//MENGISI BAGIAN RUNDOWN			
+	rute = $('#route_6').find('option:selected').text();	
+	$("#runday_"+no).html("D"+no+": "+rute);
 }
 
 function changeHotel(tipe)
