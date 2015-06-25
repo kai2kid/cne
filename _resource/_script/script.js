@@ -18,14 +18,7 @@ $(document).ready( function () {
 		}
 	});
 	
-	$("#qtransport_start").change(function(){		
-		$("#qtransport_route_start1").val($(this).val());
-	});
-	
-	$("#quotation_day").change(function(){
-		//harus cek yang di hotel dulu
-		//???
-		
+	$("#quotation_day").change(function(){		
 		dayCount = parseInt($("#quotation_day").val());
 		if ($.trim(dayCount) == ""){
 			dayCount = 0
@@ -153,75 +146,68 @@ function removeTime(induk, nomor)
 	
 }
 
-function removeEntrance(induk, nomor)
-{
-	nomorLama = nomor - 1;
-	
-	if ($("#btnAddEn"+induk+nomor).prop('disabled')==false){
-		$("#btnAddEn"+induk+nomorLama).prop('disabled',false);
-	}	
-	$("#wrapperEntrance"+induk+nomor).remove();
-	
-}
-
-function addEntrance(el, induk, nomor)
-{
-	nomorBaru = parseInt(nomor) + 1;
-	isi = "<div id='wrapperEntrance"+induk+nomor+"'><div class='form-group'>";
-	isi += "<label for='qentrance_start' class='control-label col-md-1 no-pad-r'>&nbsp;</label>";
-	isi += "<div class='col-md-4 no-pad-r' style='margin-right: 5px;'>";
-	isi += "<input name='qentrance_"+induk+nomor+"' type='text' class='form-control' id='qentrance_"+induk+nomor+"'>";
-	isi += "</div>";
-	isi += "<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>";
-	isi += "<button id='btnAddEn"+induk+nomor+"' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addEntrance(this, "+induk+", "+nomorBaru+")'>";
-	isi += "<span class='glyphicon glyphicon-plus'></span>";
-	isi += "</button>";				
-	isi += "<button type='button' class='btn btn-danger' onclick='removeEntrance("+induk+", "+nomor+")'>";
-	isi += "<span class='glyphicon glyphicon-remove'></span>";
-	isi += "</button></div></div>";
-	$("#ent_"+induk).append(isi);
-	$(el).prop('disabled',true);	
-}
-
 function changeRoute(no)
 {	
 	//MENGISI BAGIAN RUNDOWN			
-	rute = $('#route_6').find('option:selected').text();	
+	kode = $("input[type='hidden'][name='route_6']").val();
+	rute = $("#route_6 option[value='"+kode+"']").text();	
 	$("#runday_"+no).html("D"+no+": "+rute);
 }
 
-function changeHotel(tipe)
-{
-	jumElemen = $(".input-hotel"+tipe).length;
-	//menghitung berapa malam yang diinputkan
-	jumNight = 0;
-	for (i=1; i<=jumElemen; i++){
-		jumNight += parseInt($("#qhotel_type"+tipe+i+"_night").val());
-	}
+
+
+function changeHotel(tipe, hari)
+{	
+	jumInput = $(".cont-hotel"+tipe).find(".hotel_type"+tipe).length;	
+	jumMalam = parseInt($("#quotation_night").val());
 	
-	//kalau masih kurang, create 1 lagi
-	noElemen = jumElemen + 1;
-	night = jumNight + 1;
-	if (jumNight<parseInt($("#quotation_night").val())){
-		isi = "<div class='form-group input-hotel"+tipe+"'>";
-		isi += "<label for='qhotel_type1"+noElemen+"_cb' class='control-label col-md-1 no-pad-r'>D"+night+"</label>";
-		isi += "<div class='col-md-4 no-pad-r' style='margin-right: 5px;'>";
-		isi += "<select name='qhotel_type1"+noElemen+"_cb' class='form-control min-padding' id='qhotel_type1"+noElemen+"_cb'>";
-		isi += "<option selected='selected'>Suwon Bloom Vista</option>";
-		isi += "<option>Summit Or Jamsung</option>";
-		isi += "</select>";
-		isi += "</div>";
-		isi += "<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px'>";
-		isi += "<input name='qhotel_type1"+noElemen+"_night' type='text' class='form-control' id='qhotel_type1"+noElemen+"_night' placeholder='Night' onchange='changeHotel(1)'>";
-		isi += "</div>";
-		
-		isi += "<div class='col-md-1 no-pad-l'>";
-		isi += "<button type='button' class='btn btn-danger'>";
-		isi += "<span class='glyphicon glyphicon-remove'></span></button></div></div>";
-								
-		
-		$("#formInsertHotel"+tipe).append(isi);	
+	c = 1;
+	jumNilai = 0;
+	stopElement = 0
+	$(".cont-hotel"+tipe).find(".hotel_type"+tipe).each(function(){		
+		temp = parseInt($(this).find("#hotel_ed_"+tipe+"_"+c).val());					
+		if (jumMalam >= jumNilai+temp){
+			if (c>1){			
+				x = jumNilai+1;
+				$(this).find("#hotel_lb_"+tipe+"_"+c).html("D"+x);
+			}
+			jumNilai = jumNilai + temp;
+		} else {
+			sisa = jumMalam - jumNilai;
+			$(this).find("#hotel_ed_"+tipe+"_"+c).val(sisa);
+			if (stopElement<=0 && sisa<=0) stopElement = c;
+		}					
+		c++;
+	});
+	
+	//jika kelebihan	
+	if (stopElement>0){
+		for (i=stopElement; i<=jumInput; i++){		
+			$("div .input-hotel"+tipe+"_"+i).remove();
+		}
 	}	
+	
+	//jika kurang
+	if (jumNilai<jumMalam){
+		alert("kurang");
+		nomor = jumInput + 1;
+		hari = jumNilai + 1;
+		
+		myEl = $(".hotel_type"+tipe).first().clone(false);					
+		myEl.removeClass("input-hotel"+tipe+"_1");
+		myEl.addClass("input-hotel"+tipe+"_"+nomor);
+		
+		myEl.find("label").attr("id","hotel_lb_"+tipe+"_"+nomor);
+		myEl.find("label").html("D"+hari);
+		myEl.find(".combobox-container").remove();	
+		myEl.find("select").attr("id","hotel_cb_"+tipe+"_"+nomor);
+		myEl.find("select").combobox();
+		myEl.find("input [type='number']").attr("id","hotel_ed_"+tipe+"_"+nomor);
+		myEl.find("input[type='number']").attr("onchange", "changeHotel('"+tipe+"','"+hari+"')");
+		myEl.find("input[type='number']").val(1);
+		
+		$(".cont-hotel"+tipe).append(myEl);			
+	}
 }
 
 function copyElement(id,newname) {
