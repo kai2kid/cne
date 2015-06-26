@@ -2,7 +2,7 @@
   <div class="collapse navbar-collapse" style="padding-left:0px;">
     <label class="title">Master Hotel - Detail Room</label>
     <ul class="nav navbar-nav navbar-right">
-          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','insert')">Add</button></li>
+          <!--<li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','insert')">Add</button></li>-->
           <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','update')" disabled>Update</button></li>-->
           <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete')" disabled>Delete</button></li>-->
 		  <li><button id="btnBack" class="btn-sm btn-default hs-s" data-toggle="modal" data-target="#" onclick="document.location='hotel';">Back</button></li>
@@ -40,35 +40,35 @@
 	</div>
   <div class="vs-m"></div> 
 <!--  <table class="tableList">-->
-  <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
+  <table class="table table-striped table-bordered table-font" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
         <!--<th>Name</th>-->
-        <th rowspan="3" class="no-sort" width="25px">&nbsp;</th>
-        <th rowspan="3" valign="middle" align="center">Type</th>        
-        <th rowspan="3" valign="middle" align="center">XB</th>
-        <th colspan="6" valign="middle" align="center">Fit</th>
-        <th colspan="6" valign="middle" align="center">Group</th>
+        <th rowspan="3" align="center" width="45px">&nbsp;</th>
+        <th rowspan="3" valign="middle" align="center" style="text-align: center;">Promo</th>        
+        <th rowspan="3" valign="middle" align="center" style="text-align: center;">XB</th>
+        <th colspan="6" valign="middle" align="center" style="text-align: center;">Fit</th>
+        <th colspan="6" valign="middle" align="center" style="text-align: center;">Group</th>
       </tr>
       <tr>
-        <th rowspan="2" valign="middle" align="center">Breakfast</th>
-        <th colspan="2" valign="middle" align="center">Low</th>        
-        <th colspan="2" valign="middle" align="center">High</th>
-        <th rowspan="2" valign="middle" align="center">Peak</th>
-        <th rowspan="2" valign="middle" align="center">Breakfast</th>
-        <th colspan="2" valign="middle" align="center">Low</th>        
-        <th colspan="2" valign="middle" align="center">High</th>
-        <th rowspan="2" valign="middle" align="center">Peak</th>      
+        <th rowspan="2" valign="middle" align="center" style="text-align: center;">Breakfast</th>
+        <th colspan="2" valign="middle" align="center" style="text-align: center;">Low</th>        
+        <th colspan="2" valign="middle" align="center" style="text-align: center;">High</th>
+        <th rowspan="2" valign="middle" align="center" style="text-align: center;">Peak</th>
+        <th rowspan="2" valign="middle" align="center" style="text-align: center;">Breakfast</th>
+        <th colspan="2" valign="middle" align="center" style="text-align: center;">Low</th>        
+        <th colspan="2" valign="middle" align="center" style="text-align: center;">High</th>
+        <th rowspan="2" valign="middle" align="center" style="text-align: center;">Peak</th>      
       </tr>
       <tr>
-        <th valign="middle" align="center">WD</th>
-        <th valign="middle" align="center">WE</th>
-        <th valign="middle" align="center">WD</th>
-        <th valign="middle" align="center">WE</th>
-        <th valign="middle" align="center">WD</th>
-        <th valign="middle" align="center">WE</th>
-        <th valign="middle" align="center">WD</th>
-        <th valign="middle" align="center">WE</th>
+        <th valign="middle" align="center" style="text-align: center;">WD</th>
+        <th valign="middle" align="center" style="text-align: center;">WE</th>
+        <th valign="middle" align="center" style="text-align: center;">WD</th>
+        <th valign="middle" align="center" style="text-align: center;">WE</th>
+        <th valign="middle" align="center" style="text-align: center;">WD</th>
+        <th valign="middle" align="center" style="text-align: center;">WE</th>
+        <th valign="middle" align="center" style="text-align: center;">WD</th>
+        <th valign="middle" align="center" style="text-align: center;">WE</th>
       </tr>
     </thead>
     
@@ -78,9 +78,9 @@
           <!--<td><?php echo $data["room_name"]; ?></td>-->
           <td>
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','update','<?php echo $data["room_code"]; ?>')" /> &nbsp;
-            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete','<?php echo $data["room_code"]; ?>')" />
+            <!--<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('dhotel~<?php echo $model->dataParent["hotel_code"] ?>','delete','<?php echo $data["room_code"]; ?>')" />-->
           </td>
-          <td><?php echo $data["room_type_name"]; ?></td>                
+          <td align="right"><?php echo number_format($data["room_promo"]); ?></td>                
           <td align="right"><?php echo number_format($data["room_extrabed"]); ?></td>                
           <td align="right"><?php echo number_format($data["room_fit_breakfast"]); ?></td>                
           <td align="right"><?php echo number_format($data["room_fit_weekday_low"]); ?></td>                

@@ -43,6 +43,13 @@ class model_hotel extends basicModel {
     $param['hotel_updated_name'] = $_SESSION[_SESSION_USER];  
     $param['hotel_status'] = 1;
     $ret = $this->insert($this->tb_name,$param);
+    
+    //Adding 1 detail room
+    $model2 = new model_dhotel($param['hotel_code']);
+    unset($insert);
+    $insert['hotel_code'] = $param['hotel_code'];
+    $model2->inserting($insert);
+    
     return $ret;
   }
   public function updating($param) {

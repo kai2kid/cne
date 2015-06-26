@@ -34,7 +34,7 @@
           </td>
           <td>
             <?php foreach ($model->detail['restaurant'][$day] as $detail) { ?>
-              <?php echo text_mealLevel($detail["qday_rest_type"],0) . ": " . $detail["restaurant_name"]; ?><br>
+              <?php echo text_mealLevel($detail["qday_rest_type"],0) . ": " . $detail["restaurant_name"] . " <br> " . $detail["menu_name"]; ?><br>
             <?php } ?>
           </td>
           <td>
@@ -154,11 +154,13 @@
   <?php } ?>      
 
   <!-- MEAL PRICE -->
+  <?php foreach([2,3] as $type) { ?>
   <table class="table table-striped table-bordered table-font" cellspacing="0" width="100%" id="table_master">
-    <caption><b>Meal (Lunch & Dinner) each days [x 2 (Lunch & Dinner) x <?php echo $model->quotation_days-1; ?> (days)]</b></caption>
+    <caption><b><?php echo text_mealLevel($type,1)?> Meal</b></caption>
     <thead>
       <tr>
-        <th>Type</th>
+        <th width="25px">Day</th>
+        <th>Meal</th>
         <th class="text-right" width="110px">1 person</th>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <th class="text-right" width="110px"><?php echo $title; ?></th>
@@ -167,62 +169,36 @@
       </tr>
     </thead>
     <tbody>
+      <?php foreach ($pax_estimated as $title=>$pax) { $subt[$pax] = 0;} ?>
+      <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
       <tr>
-        <td>Low</td>
-        <td align="right"><?php echo number_format($model->detail['restaurant']['restaurant_price_low']); ?></td>
-        <?php foreach ($pax_estimated as $title=>$pax) { ?>
-        <td align="right">
-          <?php 
-            $amt = $model->detail['restaurant']['restaurant_price_low'];
-            $sub = ($amt * 0 * ($model->quotation_days-1)); 
-            echo number_format($sub); 
-            $subt[$pax] += $sub; 
-            $gtot[$pax]['*'] += $subt[$pax]; 
-          ?>
-        </td>
-        <?php } ?>
+          <td><?php echo $day; ?></td>
+          <td><?php echo $model->detail['restaurant'][$day][$type]['restaurant_name'].": ".$model->detail['restaurant'][$day][$type]['menu_name']; ?></td>
+          <td align="right"><?php echo number_format($model->detail['restaurant'][$day][$type]['menu_price_lunch']); ?></td>
+          <?php foreach ($pax_estimated as $title=>$pax) { ?>
+          <td align="right">
+            <?php 
+              $amt = $model->detail['restaurant'][$day][$type]['menu_price_lunch'];
+              $sub = ($amt * $pax);
+              echo number_format($sub); 
+              $subt[$pax] += $sub; 
+              $gtot[$pax]['*'] += $subt[$pax]; 
+            ?>
+          </td>
+          <?php } ?>
       </tr>      
-      <tr>
-        <td>Standard</td>
-        <td align="right"><?php echo number_format($model->detail['restaurant']['restaurant_price_standard']); ?></td>
-        <?php foreach ($pax_estimated as $title=>$pax) { ?>
-        <td align="right">
-          <?php 
-            $amt = $model->detail['restaurant']['restaurant_price_standard'];
-            $sub = ($amt * $pax * ($model->quotation_days-1)); 
-            echo number_format($sub); 
-            $subt[$pax] += $sub; 
-            $gtot[$pax]['*'] += $subt[$pax]; 
-          ?>
-        </td>
-        <?php } ?>
-      </tr>      
-      <tr>
-        <td>Upgrade</td>
-        <td align="right"><?php echo number_format($model->detail['restaurant']['restaurant_price_upgrade']); ?></td>
-        <?php foreach ($pax_estimated as $title=>$pax) { ?>
-        <td align="right">
-          <?php 
-            $amt = $model->detail['restaurant']['restaurant_price_upgrade'];
-            $sub = ($amt * 0 * ($model->quotation_days-1)); 
-            echo number_format($sub); 
-            $subt[$pax] += $sub; 
-            $gtot[$pax]['*'] += $subt[$pax]; 
-          ?>
-        </td>
-        <?php } ?>
-      </tr>      
-    </tbody>    
+      <?php }?>
+    </tbody>
     <tfoot>          
       <tr>
-        <td colspan="2" align="right">Sub total:</td>        
+        <td colspan="3" align="right">Sub total:</td>        
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
         <td align="right"><b><?php echo number_format($subt[$pax]); ?></b></td>
         <?php } ?>
       </tr>
     </tfoot>
   </table>
-
+<?php } ?>
   <!-- ENTRANCE PRICE -->
   <table class="table table-striped table-bordered table-font" cellspacing="0" width="100%" id="table_master">
     <caption><b>Entrance Ticket</b></caption>

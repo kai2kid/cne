@@ -12,6 +12,12 @@
       </div>
     </div>      
     <div class="form-group">
+      <label for="route_title_korean" class="control-label col-md-3 no-pad-r">Korean</label>
+      <div class="col-md-5">
+        <input name="route_title_korean" type="text" class="form-control" id="route_title_korean" placeholder="이름" value="<?php echo $data['route_title_korean']; ?>">
+      </div>
+    </div>      
+    <div class="form-group">
       <label for="route_start" class="control-label col-md-3 no-pad-r">Start</label>
       <div class="col-md-5">
         <input name="route_start" type="text" class="form-control" id="route_start" placeholder="Start" value="<?php echo $data['route_start']; ?>">
@@ -29,6 +35,7 @@
         <input name="route_path" type="text" class="form-control" id="route_path" placeholder="Path" value="<?php echo $data['route_path']; ?>">
       </div>
     </div>      
+<!--    
     <div class="form-group">
       <label for="route_mainland" class="control-label col-md-3 no-pad-r">Mainland Path</label>
       <div class="col-md-5">
@@ -41,6 +48,7 @@
         <input name="route_jeju" type="text" class="form-control" id="route_jeju" placeholder="Jeju" value="<?php echo $data['route_jeju']; ?>">
       </div>
     </div>      
+-->
     <div class="form-group">
       <label for="route_cost1" class="control-label col-md-3 no-pad-r">1-4 Pax</label>
       <div class="col-md-5">

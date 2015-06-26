@@ -6,16 +6,13 @@
   <form class="form-horizontal" action="hotel_inserting" method="post">
     <div class="form-group">
       <label for="hotel_name" class="control-label col-md-3 no-pad-r">Name</label>
-      <div class="col-md-5">
+      <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
         <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name">
       </div>
-    </div>      
-    <div class="form-group">
-      <label for="hotel_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
-      <div class="col-md-5">
+	  <div class="col-md-4 no-pad-l">
         <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="이름">
       </div>
-    </div>    	
+    </div>         
 	<div class="form-group">
       <label for="hotel_level" class="control-label col-md-3 no-pad-r">Level</label>
       <div class="col-md-3">		
@@ -23,10 +20,21 @@
 			<option value="1" data-content="<img src='<?php echo _PATH_IMAGE; ?>star1.gif'>"></option>
 			<option value="2" data-content="<img src='<?php echo _PATH_IMAGE; ?>star2.gif'>"></option>
 			<option value="3" data-content="<img src='<?php echo _PATH_IMAGE; ?>star3.gif'>"></option>
+			<option value="3.5" data-content="<img src='<?php echo _PATH_IMAGE; ?>star35.gif'>"></option>
 			<option value="4" data-content="<img src='<?php echo _PATH_IMAGE; ?>star4.gif'>"></option>
+			<option value="4.5" data-content="<img src='<?php echo _PATH_IMAGE; ?>star45.gif'>"></option>
 			<option value="5" data-content="<img src='<?php echo _PATH_IMAGE; ?>star5.gif'>"></option>
 		</select> 	  
-      </div>	  
+      </div>			
+		<label for="hotel_type" class="control-label col-md-1 no-pad-r" style="margin-right: 5px;">Type</label>
+		<div class="col-md-3 no-pad-l">		
+			<select name="hotel_type" id="hotel_type" class="form-control">
+				<option value="SD" selected>SUPER DELUXE</option>
+				<option value="DX">DELUXE</option>
+				<option value="BS">BUSINESS</option>
+				<option value="BD">BUDGET</option>				
+			</select> 	  
+		</div>	
     </div>    	
     <div class="form-group">
       <label for="hotel_phone" class="control-label col-md-3 no-pad-r">Contact Number</label>
@@ -73,18 +81,7 @@
         <input name="hotel_rooms" type="number" class="form-control" id="hotel_rooms" placeholder="Number of Room">        
       </div>            
     </div>
-  <div class="form-group">
-      <label for="hotel_currency" class="control-label col-md-3 no-pad-r">Currency</label>
-      <div class="col-md-2">
-        <input name="hotel_currency" type="text" class="form-control" id="hotel_currency" placeholder="Currency" value="KRW">
-      </div>            
-    </div>
-	<div class="form-group">
-    <label for="hotel_tax" class="control-label col-md-3 no-pad-r">Tax Rate</label>
-    <div class="col-md-2">
-      <input name="hotel_tax" type="text" class="form-control" id="hotel_tax" placeholder="Tax" value="0.00">
-    </div>            
-  </div>
+  
 	<div class="form-group">
       <label for="hotel_memo" class="control-label col-md-3 no-pad-r">Memo</label>
       <div class="col-md-8">
@@ -93,24 +90,27 @@
     </div>
 
   <div class="form-group">
-    <label class="control-label col-md-3 no-pad-r">Contact Person</label>
+    <label class="control-label col-md-3 no-pad-r"><u>Contact Person</u></label>
   </div>        
   <div class="form-group">
     <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
-    <div class="col-md-5">
+    <div class="col-md-5 no-pad-r" style="margin-right: 5px;">
       <input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="Name">
-    </div>            
-  </div>
-  <div class="form-group">
-    <label for="pic_position" class="control-label col-md-3 no-pad-r">Position</label>
-    <div class="col-md-3">
+    </div>        
+	<div class="col-md-3 no-pad-l">
       <input name="pic_position" type="text" class="form-control" id="pic_position" placeholder="Position">
-    </div>            
-  </div>
+    </div>       
+  </div>  
   <div class="form-group">
     <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
-    <div class="col-md-3">
+    <div class="col-md-2 no-pad-r" style="margin-right: 5px;">
       <input name="pic_phone" type="text" class="form-control" id="pic_phone" placeholder="Phone">
+    </div>   
+	<div class="col-md-3 no-pad-r no-pad-l" style="margin-right: 5px;">
+      <input name="pic_hp" type="text" class="form-control" id="pic_hp" placeholder="Handphone">
+    </div>            
+	<div class="col-md-2 no-pad-l no-pad-r">
+      <input name="pic_fax" type="text" class="form-control" id="pic_fax" placeholder="Fax">
     </div>            
   </div>
   <div class="form-group">

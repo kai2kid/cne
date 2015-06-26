@@ -45,7 +45,9 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
-        <th>Price</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+        <th>Weekend</th>
         <th>Memo</th>        
       </tr>
     </thead>
@@ -53,7 +55,9 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
-        <th>Price</th>
+        <th>Lunch</th>
+        <th>Dinner</th>
+        <th>Weekend</th>
         <th>Memo</th> 
       </tr>
     </tfoot>
@@ -66,7 +70,9 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('drestaurant~<?php echo $model->dataParent["restaurant_code"] ?>','delete','<?php echo $data["menu_code"]; ?>')" />
           </td>
           <td><?php echo $data["menu_name"]; ?></td>
-          <td><?php echo $data["menu_price"]; ?></td>                
+          <td align="right"><?php echo number_format($data["menu_price_lunch"]); ?></td>                
+          <td align="right"><?php echo number_format($data["menu_price_dinner"]); ?></td>                
+          <td align="right"><?php echo number_format($data["menu_price_weekend"]); ?></td>                
 		      <td><?php echo $data["menu_memo"]; ?></td>
       </tr>
       <?php } ?>      

@@ -63,10 +63,11 @@ class model_quotation extends basicModel {
       
       //Restaurant
       $qry = "
-        SELECT *
+        SELECT d.*, q.*, r.restaurant_name, m.*
         FROM quotation_day d
         LEFT JOIN qday_restaurant q ON d.qday_code = q.qday_code
-        LEFT JOIN restaurant r ON r.restaurant_code = q.restaurant_code
+        LEFT JOIN restaurant_menu m ON m.menu_code = q.menu_code
+        LEFT JOIN restaurant r ON r.restaurant_code = m.restaurant_code
         WHERE d.quotation_code = '".$this->id."'
         ORDER BY d.qday_day ASC, q.qday_rest_type ASC
       ";
@@ -142,12 +143,59 @@ class model_quotation extends basicModel {
     $ret = $this->update($this->tb_name,array("pic_status"=>"0"),"pic_type_code = '" . $this->id."'");
     return $ret;
   }
+  public function modifyHeader($data) {
+    $ret = 1;
+    $update["quotation_name"] = $data["quotation_name"];
+    $update["quotation_days"] = $data["quotation_day"];
+    if (!$this->update("quotation",$update,"quotation_code = '".$data['quotation_code']."'")) $ret = 0;
+    return $ret;
+  }
   public function modifyTransport($data) {
     $ret = 1;
     for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
       $update["route_code"] = $data["route_$day"];
       if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
     }
+    return $ret;
+  }
+  public function modifyHotel($data) {
+    $ret = 1;
+    /*/
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $update["route_code"] = $data["route_$day"];
+      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    }
+    /*/
+    return $ret;
+  }
+  public function modifyEntrance($data) {
+    $ret = 1;
+    /*/
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $update["route_code"] = $data["route_$day"];
+      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    }
+    /*/
+    return $ret;
+  }
+  public function modifyMeal($data) {
+    $ret = 1;
+    /*/
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $update["route_code"] = $data["route_$day"];
+      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    }
+    /*/
+    return $ret;
+  }
+  public function modifyRundown($data) {
+    $ret = 1;
+    /*/
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $update["route_code"] = $data["route_$day"];
+      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    }
+    /*/
     return $ret;
   }
 }

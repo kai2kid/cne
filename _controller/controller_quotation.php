@@ -12,7 +12,12 @@ class controller_quotation extends basicController {
   }
   
   public function formInsert() {
-	$this->loadView("quotation_insert");
+    $param['location'] = new model_location();
+    $param['route'] = new model_route();
+    $param['hotel'] = new model_hotel();
+    $param['entrance'] = new model_entrance();
+    $param['restaurant'] = new model_restaurant();
+	  $this->loadView("quotation_insert",$param);
   }
   
   public function formInsertPriceTransport() {
@@ -60,10 +65,50 @@ class controller_quotation extends basicController {
     $param['data'] = "";
     $this->loadView("quotation_preview",$param);
   }
+  public function insertHeader() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyHeader($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
   public function insertTransport() {    
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
     if ($q->modifyTransport($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
+  public function insertHotel() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyHotel($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
+  public function insertEntrance() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyEntrance($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
+  public function insertMeal() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyHotel($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
+  public function insertRundown() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyHotel($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);

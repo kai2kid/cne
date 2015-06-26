@@ -3,65 +3,67 @@
     <label class="title">Update Quotation</label>
 	
 <!-- INI START FORM -->	
+    <input type="hidden" id="quotation_code" name="quotation_code" value="<?php echo $model->quotation_code; ?>">
 	
-	<form class="form-horizontal" action="quotation_insertHeader" method="post">
-		<div class="form-group">
-		  <label for="quotation_name" class="control-label col-md-1 no-pad-r">Title</label>
-		  <div class="col-md-3">
-			<input name="quotation_name" type="text" class="form-control" id="quotation_name" placeholder="Name" value="<?php echo $model->quotation_name; ?>">
+	  <form class="form-horizontal" id="formInsertHeader" action="quotation_insertHeader" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
+		  <div class="form-group">
+		    <label for="quotation_name" class="control-label col-md-1 no-pad-r">Title</label>
+		    <div class="col-md-4">
+			  <input name="quotation_name" type="text" class="form-control" id="quotation_name" placeholder="Name" value="<?php echo $model->quotation_name; ?>">
+		    </div>
 		  </div>
-		</div>
-		<div class="form-group">
-		  <label for="quotation_day" class="control-label col-md-1 no-pad-r">Duration</label>
-		  <div class="col-md-1 no-pad-r" style="margin-right: 5px;">
-			<input name="quotation_day" type="text" class="form-control" id="quotation_day" placeholder="Day" value="<?php echo $model->quotation_days; ?>">Day
-		  </div>		  
-		  <div class="col-md-1 no-pad-l no-pad-r">
-			<input name="quotation_night" type="text" class="form-control" id="quotation_night" placeholder="Night" value="<?php echo $model->quotation_days - 1; ?>">Night
-		  </div>	
-		  <div class="col-md-1 no-pad-l" style="margin-left: 5px;">
-			<input type="submit" class="btn btn-primary btn-block" value="Save">
-		  </div>		
-		</div>
-	</form>		
-  </div>
-  <!--------------------TRANPORT--------------------->
-	<div class="container">
-		<div class="row">
-			<div class="col-md-10 s-h-quotation">
-				<div class="panel panel-default quotation-panel">
-					<div class="panel-heading">
-						<h3 class="panel-title">TRANSPORT</h3>
-						<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
-					</div>
-					<div class="panel-body quotation-body">
-              <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-							<div class="form-group input-transport">
-							  <label for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
-							  <div class="col-md-5">
-								<!--<input name="qtransport_start" type="text" class="form-control" id="qtransport_start">-->
-                <?php echo $route->_combobox('route_'.$day,$model->days[$day]['route_code']); ?>
+		  <div class="form-group">
+		    <label for="quotation_day" class="control-label col-md-1 no-pad-r">Duration</label>
+		    <div class="col-md-1 no-pad-r" style="margin-right: 5px;">
+			  <input name="quotation_day" type="text" class="form-control" id="quotation_day" placeholder="Day" value="<?php echo $model->quotation_days; ?>">Day
+		    </div>		  
+		    <div class="col-md-1 no-pad-l no-pad-r">
+			  <input name="quotation_night" type="text" class="form-control" id="quotation_night" placeholder="Night" value="<?php echo $model->quotation_days - 1; ?>">Night
+		    </div>	
+		    <div class="col-md-1 no-pad-l" style="margin-left: 5px;">
+			  <input type="submit" class="btn btn-primary btn-block" value="Save">
+		    </div>		
+		  </div>
+	  </form>		
+    </div>
+    <!--------------------TRANPORT--------------------->
+	  <div class="container">
+		  <div class="row">
+			  <div class="col-md-10 s-h-quotation">
+				  <div class="panel panel-default quotation-panel">
+					  <div class="panel-heading">
+						  <h3 class="panel-title">TRANSPORT</h3>
+						  <span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
+					  </div>
+					  <div class="panel-body quotation-body">
+              <form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
+                <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+							  <div class="form-group input-transport">
+							    <label for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
+							    <div class="col-md-5">
+								  <!--<input name="qtransport_start" type="text" class="form-control" id="qtransport_start">-->
+                  <?php echo $route->_combobox('route_'.$day,$model->days[$day]['route_code']); ?>
+							    </div>
 							  </div>
-							</div>
-              <?php } ?>
+                <?php } ?>
 
-							<div class="form-group group-btn-transport">
-								<label class="control-label col-md-10">&nbsp;</label>
-								<div class="col-md-1 no-pad-r" style="margin-right: 5px">
-									<input type="submit" class="btn btn-primary btn-block" value="Save">
-								</div>  
-<!--
-								<div class="col-md-2 no-pad-l">
-									<input type="button" class="btn btn-default btn-block" value="Add Price" onclick="navigate('quotation_formInsertPriceTransport')">
-								</div>
--->
-							</div>	
-						</form>
-					</div>
-				</div>
-			</div>		
-		</div>
-	</div>
+							  <div class="form-group group-btn-transport">
+								  <label class="control-label col-md-10">&nbsp;</label>
+								  <div class="col-md-1 no-pad-r" style="margin-right: 5px">
+									  <input type="submit" class="btn btn-primary btn-block" value="Save">
+								  </div>  
+  <!--
+								  <div class="col-md-2 no-pad-l">
+									  <input type="button" class="btn btn-default btn-block" value="Add Price" onclick="navigate('quotation_formInsertPriceTransport')">
+								  </div>
+  -->
+							  </div>	
+						  </form>
+					  </div>
+				  </div>
+			  </div>		
+		  </div>
+	  </div>
 	<!--------------------HOTEL--------------------->
 	<div class="container">
 		<div class="row">
@@ -73,7 +75,7 @@
 					</div>
 					<div class="panel-body quotation-body">
 						<div class="panel-body quotation-body">
-							<form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post">
+							<form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<!------------JENIS 1 : TIPE_DAY--------------->	
 								<div class="cont-hotel1">
 									<div class="form-group">
@@ -173,7 +175,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post">
+						<form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 						<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
 							<div class="form-group input-entrance">
 							<?php foreach ($model->detail['entrance'][$day] as $detail) { ?>
@@ -214,7 +216,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post">
+						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 						  <div class="form-group input-meal">
 							<div id='meal'>
 							<table class='table borderless table-font' cellspacing='0' width='100%' id="table-meal">
@@ -230,9 +232,9 @@
 								  <td align='right'>
 									<label class='control-label'>D<?php echo $day; ?></label>
 								  </td>
-								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_1",$model->detail['restaurant'][$day][1]['restaurant_code']); ?></td>
-								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_2",$model->detail['restaurant'][$day][2]['restaurant_code']); ?></td>
-								  <td><?php echo $restaurant->_combobox('restaurant_'.$day."_3",$model->detail['restaurant'][$day][3]['restaurant_code']); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_1",$model->detail['restaurant'][$day][1]['menu_code']); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_2",$model->detail['restaurant'][$day][2]['menu_code']); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_3",$model->detail['restaurant'][$day][3]['menu_code']); ?></td>
 								</tr>                    
 							  <?php } ?>
 							  </tbody>
@@ -286,7 +288,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post">
+						<form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
 								  <div class='panel' id='run_<?php echo $day;?>'>
 								  <div class='form-group'>
@@ -337,7 +339,7 @@
 </div>
 
 <script type="text/javascript">
-$(document).ready( function () {  
-  $("#quotation_day").change();
-});
+  $(document).ready( function () {  
+    $("#quotation_day").change();
+  });
 </script>

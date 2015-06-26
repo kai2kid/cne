@@ -17,12 +17,24 @@
               <input name="menu_name" type="text" class="form-control" id="menu_name" placeholder="Name" value="<?php echo $data['menu_name']; ?>">
             </div>
           </div>     			  			
-			<div class="form-group">
-			  <label for="menu_price" class="control-label col-md-3 no-pad-r">Price</label>
-			  <div class="col-md-3">
-				<input name="menu_price" type="number" class="form-control" id="menu_price" placeholder="Price" value="<?php echo $data['menu_price']; ?>">        
-			  </div>            
-			</div>			  
+      <div class="form-group">
+        <label for="menu_price_lunch" class="control-label col-md-3 no-pad-r">Lunch</label>
+        <div class="col-md-3">
+        <input name="menu_price_lunch" type="number" class="form-control" id="menu_price_lunch" placeholder="Lunch" value="<?php echo $data['menu_price_lunch']; ?>">        
+        </div>            
+      </div>        
+      <div class="form-group">
+        <label for="menu_price_dinner" class="control-label col-md-3 no-pad-r">Dinner</label>
+        <div class="col-md-3">
+        <input name="menu_price_dinner" type="number" class="form-control" id="menu_price_dinner" placeholder="Dinner" value="<?php echo $data['menu_price_dinner']; ?>">        
+        </div>            
+      </div>        
+      <div class="form-group">
+        <label for="menu_price_weekend" class="control-label col-md-3 no-pad-r">Weekend</label>
+        <div class="col-md-3">
+        <input name="menu_price_weekend" type="number" class="form-control" id="menu_price_weekend" placeholder="Weekend" value="<?php echo $data['menu_price_weekend']; ?>">        
+        </div>            
+      </div>        
 		  <div class="form-group">
 			  <label for="menu_memo" class="control-label col-md-3 no-pad-r">Memo</label>
 			  <div class="col-md-8">

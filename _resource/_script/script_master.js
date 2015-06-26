@@ -94,17 +94,31 @@ function openForm(type,mode,id) {
   } );
 }
 
-function submitForm(formID) {
-  
+function submitForm(formID) {  
   f = $("#"+formID);
   f.serialize();
-  alert();
   $.post(
     f.attr("action"),
     f.serialize(),
     function(data){
       if(data.result) {
-        alert("Sukses");
+        alert("Data has been saved.");
+      }
+    }
+  );
+}
+
+function quotationSubmitForm(formID) {  
+  f = $("#"+formID);
+  $.post(
+    f.attr("action"),
+    f.serialize() + "&quotation_code=" + $("#quotation_code").val(),
+    function(data){
+      if(data.result == 1) {
+        alert("Data has been saved.");
+      } else {
+        alert("Data cannot be saved.");
+        alert(f.serialize() + "&quotation_code=" + $("#quotation_code").val());
       }
     }
   );

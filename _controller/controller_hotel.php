@@ -31,6 +31,7 @@ class controller_hotel extends basicController {
     $model = new model_hotel();
     $insert = $_POST;
     $model->inserting($insert);
+   
     $this->forward("hotel");
   }
   public function updating() {

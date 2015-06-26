@@ -17,7 +17,7 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Title</th>
-        <th>Path</th>       
+        <!--<th>Path</th>-->
         <th>1-4 Pax</th>       
         <th>5-9 Pax</th>       
         <th>10-14 Pax</th>       
@@ -29,7 +29,7 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Title</th>
-        <th>Path</th>       
+        <!--<th>Path</th>       -->
         <th>1-4 Pax</th>       
         <th>5-9 Pax</th>       
         <th>10-14 Pax</th>       
@@ -46,12 +46,12 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('route','delete','<?php echo $data["route_code"]; ?>')" />
           </td>
           <td><?php echo $data["route_title"]; ?></td>
-          <td><?php echo $data["route_path"]; ?></td>
-          <td><?php echo $data["route_cost1"]; ?></td>
-          <td><?php echo $data["route_cost2"]; ?></td>
-          <td><?php echo $data["route_cost3"]; ?></td>
-          <td><?php echo $data["route_cost4"]; ?></td>
-          <td><?php echo $data["route_cost5"]; ?></td>
+          <!--<td><?php echo $data["route_path"]; ?></td>-->
+          <td align="right"><?php echo number_format($data["route_cost1"]); ?></td>
+          <td align="right"><?php echo number_format($data["route_cost2"]); ?></td>
+          <td align="right"><?php echo number_format($data["route_cost3"]); ?></td>
+          <td align="right"><?php echo number_format($data["route_cost4"]); ?></td>
+          <td align="right"><?php echo number_format($data["route_cost5"]); ?></td>
       </tr>
       <?php } ?>      
     </tbody>    

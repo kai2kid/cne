@@ -1,5 +1,5 @@
-<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>basicScript.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>jquery-2.0.2.min.js"></script>
+<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>basicScript.js"></script>
 
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/bootstrap.js"></script>  
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/jquery.dataTables.min.js"></script>  
