@@ -123,3 +123,8 @@ function quotationSubmitForm(formID) {
     }
   );
 }
+
+function quotationFilterCombobox(name,location) {
+  $("#"+nama).children("*").hide();
+  $("#"+nama).children("."+location).show();
+}

@@ -102,7 +102,7 @@
     </div>            
   </div>
   <div class="form-group">
-    <label for="room_promo" class="control-label col-md-3 no-pad-r">Promo</label>
+    <label for="room_promo" class="control-label col-md-3 no-pad-r" style="color: red;">Promo</label>
     <div class="col-md-3">
       <input name="room_promo" type="number" class="form-control" id="room_promo" value='<?php echo $data['room_promo']; ?>' placeholder="Promo">        
     </div>            

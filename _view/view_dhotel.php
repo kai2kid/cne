@@ -45,7 +45,7 @@
       <tr>
         <!--<th>Name</th>-->
         <th rowspan="3" align="center" width="45px">&nbsp;</th>
-        <th rowspan="3" valign="middle" align="center" style="text-align: center;">Promo</th>        
+        <th rowspan="3" valign="middle" align="center" style="text-align: center; color: red;">Promo</th>        
         <th rowspan="3" valign="middle" align="center" style="text-align: center;">XB</th>
         <th colspan="6" valign="middle" align="center" style="text-align: center;">Fit</th>
         <th colspan="6" valign="middle" align="center" style="text-align: center;">Group</th>

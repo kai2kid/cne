@@ -58,7 +58,19 @@ class model_entrance extends basicModel {
     return $ret;
   }
   public function _combobox($name,$selected = "") {
-    return HTML::combobox(fetchDataset($this->data,"entrance_code","entrance_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
+    $qry = "
+      SELECT entrance_code, entrance_code, entrance_location
+      FROM entrance
+      ORDER BY entrance_name ASC
+    ";
+    $rows = $this->query($qry);
+    $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    foreach ($rows as $row) {
+      $s = ($selected != "" && $selected == $row['entrance_code'] ? "selected" : "");
+      $ret .= "<option class='".$row['entrance_location']."' value='".$row['entrance_code']."' $s>".$row['entrance_code']."</option>";
+    }
+    $ret .= "</select>";
+    return $ret;
   }
 }
 ?>

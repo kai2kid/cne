@@ -12,6 +12,7 @@ class controller_quotation extends basicController {
   }
   
   public function formInsert() {
+    $param['model'] = new model_quotation($this->id);
     $param['location'] = new model_location();
     $param['route'] = new model_route();
     $param['hotel'] = new model_hotel();

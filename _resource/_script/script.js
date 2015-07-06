@@ -39,6 +39,7 @@ $(document).ready( function () {
 			//nambah
 			for (i=jumElemen; i<=dayCount; i++){
 				//TRANSPORT				
+				$(".input-transport").find("input[type='hidden']").attr("onchange", "changeRoute('1')");	
 				myEl = $(".input-transport").first().clone(false);					
 				myEl.find("label").attr("for", "route_"+i);
 				myEl.find("label").html("Day "+i);	
@@ -147,11 +148,16 @@ function removeTime(induk, nomor)
 }
 
 function changeRoute(no)
-{	
+{		
 	//MENGISI BAGIAN RUNDOWN			
-	kode = $("input[type='hidden'][name='route_6']").val();
-	rute = $("#route_6 option[value='"+kode+"']").text();	
+	kode = $("input[type='hidden'][name='route_"+no+"']").val();
+	rute = $("#route_"+no+" option[value='"+kode+"']").text();	
 	$("#runday_"+no).html("D"+no+": "+rute);
+	
+	//BAGIAN SET BATASAN HOTEL
+	//1. dapatkan kode transport yang dipilih
+	//2. dapatkan day nomor berapa yang diganti
+	//3. update pilihan HOTEL, ENTRANCE, MEAL pada hari ybs
 }
 
 
@@ -165,7 +171,7 @@ function changeHotel(tipe, hari)
 	jumNilai = 0;
 	stopElement = 0
 	$(".cont-hotel"+tipe).find(".hotel_type"+tipe).each(function(){		
-		temp = parseInt($(this).find("#hotel_ed_"+tipe+"_"+c).val());					
+		temp = parseInt($(this).find("#hotel_ed_"+tipe+"_"+c).val());							
 		if (jumMalam >= jumNilai+temp){
 			if (c>1){			
 				x = jumNilai+1;
@@ -174,6 +180,7 @@ function changeHotel(tipe, hari)
 			jumNilai = jumNilai + temp;
 		} else {
 			sisa = jumMalam - jumNilai;
+			jumNilai = sisa;
 			$(this).find("#hotel_ed_"+tipe+"_"+c).val(sisa);
 			if (stopElement<=0 && sisa<=0) stopElement = c;
 		}					
@@ -188,8 +195,7 @@ function changeHotel(tipe, hari)
 	}	
 	
 	//jika kurang
-	if (jumNilai<jumMalam){
-		alert("kurang");
+	if (jumNilai<jumMalam){		
 		nomor = jumInput + 1;
 		hari = jumNilai + 1;
 		
@@ -206,7 +212,11 @@ function changeHotel(tipe, hari)
 		myEl.find("input[type='number']").attr("onchange", "changeHotel('"+tipe+"','"+hari+"')");
 		myEl.find("input[type='number']").val(1);
 		
-		$(".cont-hotel"+tipe).append(myEl);			
+		$(".cont-hotel"+tipe).append(myEl);	
+
+		//kalau munculkan baru, maka harus set daftar pilihannya
+		//1. dapatkan hari ke berapa hotel yang baru dibentuk	
+		//2. cek ke transport, dapatkan kode transport
 	}
 }
 

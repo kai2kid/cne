@@ -62,7 +62,7 @@ class model_restaurant extends basicModel {
   }
   public function _comboboxMeal($name,$selected = "") {
     $qry = "
-      SELECT * 
+      SELECT r.restaurant_code, r.restaurant_name, m.menu_code, m.menu_name
       FROM restaurant r
       LEFT JOIN restaurant_menu m ON r.restaurant_code = m.restaurant_code
       ";
