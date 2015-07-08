@@ -88,7 +88,7 @@ class model_hotel extends basicModel {
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['hotel_code'] ? "selected" : "");
-      $ret .= "<option class='".$row['hotel_location']."' value='".$row['hotel_code']."' $s>".$row['hotel_name']."</option>";
+      $ret .= "<option name='".$row['hotel_location']."' value='".$row['hotel_code']."' $s>".$row['hotel_name']."</option>";
     }
     $ret .= "</select>";
     return $ret;

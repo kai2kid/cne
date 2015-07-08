@@ -126,7 +126,7 @@
 									  <?php echo $hotel->_combobox('hotel_cb_3_1'); ?>
 									  </div>
 									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_3_1" type="number" class="form-control" name="hotel_ed_3_1" placeholder="Night" onchange="changeHotel(3,1)" value="1">
+										<input name="hotel_ed_3_1" type="number" class="form-control" id="hotel_ed_3_1" placeholder="Night" onchange="changeHotel(3,1)" value="1">
 									  </div>
 									  
 									</div>									
@@ -203,9 +203,9 @@
 								  <td align='right'>
 									<label class='control-label'>D1</label>
 								  </td>
-								  <td><?php echo $restaurant->_combobox('restaurant_1_1'); ?></td>
-								  <td><?php echo $restaurant->_combobox('restaurant_1_2'); ?></td>
-								  <td><?php echo $restaurant->_combobox('restaurant_1_3'); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_1_1'); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_1_2'); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_1_3'); ?></td>
 								</tr>                    							  
 							  </tbody>
 							</table>
@@ -273,9 +273,3 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-$(document).ready( function () {  
-  $("#quotation_day").change();
-});
-</script>

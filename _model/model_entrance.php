@@ -59,7 +59,7 @@ class model_entrance extends basicModel {
   }
   public function _combobox($name,$selected = "") {
     $qry = "
-      SELECT entrance_code, entrance_code, entrance_location
+      SELECT entrance_code, entrance_code, entrance_location, entrance_name
       FROM entrance
       ORDER BY entrance_name ASC
     ";
@@ -67,7 +67,7 @@ class model_entrance extends basicModel {
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['entrance_code'] ? "selected" : "");
-      $ret .= "<option class='".$row['entrance_location']."' value='".$row['entrance_code']."' $s>".$row['entrance_code']."</option>";
+      $ret .= "<option name='".$row['entrance_location']."' value='".$row['entrance_code']."' $s>".$row['entrance_name']."</option>";
     }
     $ret .= "</select>";
     return $ret;

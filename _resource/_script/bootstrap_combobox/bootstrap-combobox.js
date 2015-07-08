@@ -13,7 +13,7 @@
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
- * limitations under the License.
+  * limitations under the License.
  * ============================================================ */
 
 !function( $ ) {
@@ -74,15 +74,21 @@
         , selectedValue = '';
       this.$source.find('option').each(function() {
         var option = $(this);
-        if (option.val() === '') {
-          that.options.placeholder = option.text();
-          return;
-        }
-        map[option.text()] = option.val();
-        source.push(option.text());
-        if (option.prop('selected')) {
-          selected = option.text();
-          selectedValue = option.val();
+//////////////////////////////////////////////////////////Edited by KaI2KId
+////////////////////////////////////////////////////////// Only include <option> which not hidden (style:'display:none')
+        if(option.css("display") != "none") {          
+          
+          if (option.val() === '') {
+            that.options.placeholder = option.text();
+            return;
+          }
+          map[option.text()] = option.val();
+          source.push(option.text());
+          if (option.prop('selected')) {
+            selected = option.text();
+            selectedValue = option.val();
+          }
+          
         }
       })
       this.map = map;
@@ -253,6 +259,9 @@
         if (this.shown) {
           this.hide();
         } else {
+//////////////////////////////////////////////////////////Edited by KaI2KId
+//////////////////////////////////////////////////////////Refresh the options each time the options shown          
+          this.refresh();
           this.clearElement();
           this.lookup();
         }

@@ -160,12 +160,12 @@ class model_quotation extends basicModel {
   }
   public function modifyHotel($data) {
     $ret = 1;
-    /*/
-    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-      $update["route_code"] = $data["route_$day"];
-      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    for ($type = 1 ; $type <= 3 ; $type++) {
+      for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+        $update["route_code"] = $data["hotel_cb_".$type."_".$day];
+        if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+      }
     }
-    /*/
     return $ret;
   }
   public function modifyEntrance($data) {

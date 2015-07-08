@@ -1,7 +1,15 @@
 $(document).ready( function () {
-  $('input[type=date]').datepicker();
-  $('table.datatable').dataTable();  
-  $('.combobox').combobox();  
+	//starting quotation
+	$("#quotation_day").change();	
+    $('input[type=date]').datepicker();
+	$('table.datatable').dataTable();  
+	$('.combobox').combobox();  
+	
+	no = 1;	
+	$("#formInsertTransport").find(".input-transport").each(function(){	
+		$(this).find("input[type='hidden']").attr("onchange", "changeRoute('"+no+"')");	
+		no = no + 1;		
+	});
   
 	$('.panel-heading span.clickable').on("click", function (e) {
 		if ($(this).hasClass('panel-collapsed')) {
@@ -36,10 +44,10 @@ $(document).ready( function () {
 				$("div").remove("#run_"+i);
 			}
 		} else {			
-			//nambah
-			for (i=jumElemen; i<=dayCount; i++){
+			//nambah						
+			for (i=jumElemen; i<=dayCount; i++){				
 				//TRANSPORT				
-				$(".input-transport").find("input[type='hidden']").attr("onchange", "changeRoute('1')");	
+				$(".input-transport").first().find("input[type='hidden']").attr("onchange", "changeRoute('1')");	
 				myEl = $(".input-transport").first().clone(false);					
 				myEl.find("label").attr("for", "route_"+i);
 				myEl.find("label").html("Day "+i);	
@@ -66,8 +74,8 @@ $(document).ready( function () {
 				myEl.find(".combobox-container").remove();
 				
 				c = 1;
-				myEl.find("select").each(function(){				
-					$(this).attr('id', $(this).attr('id').substring(0, $(this).attr('id').indexOf("_"))+"_"+i+"_"+c);
+				myEl.find("select").each(function(){									
+					$(this).attr('id', "restaurant_"+i+"_"+c);
 					c++;
 				});
 				myEl.find("select").combobox();
@@ -148,16 +156,53 @@ function removeTime(induk, nomor)
 }
 
 function changeRoute(no)
-{		
+{			
 	//MENGISI BAGIAN RUNDOWN			
 	kode = $("input[type='hidden'][name='route_"+no+"']").val();
 	rute = $("#route_"+no+" option[value='"+kode+"']").text();	
 	$("#runday_"+no).html("D"+no+": "+rute);
 	
 	//BAGIAN SET BATASAN HOTEL
-	//1. dapatkan kode transport yang dipilih
-	//2. dapatkan day nomor berapa yang diganti
-	//3. update pilihan HOTEL, ENTRANCE, MEAL pada hari ybs
+	//1. dapatkan kode rute transport yang dipilih
+	//-dapatkan LI yang aktif
+	//-dapatkan LI ke berapa
+	//-dapatkan name dari OPTION yang ke LI
+	
+	urutan = no - 1;
+	LIke = $("#formInsertTransport").children().eq(urutan).find("ul > li.active").index();
+	pathRoute = $("#formInsertTransport").children().eq(urutan).find("select").children().eq(LIke).attr("name").split(";");		
+	
+	//2. update pilihan HOTEL, ENTRANCE, MEAL pada hari ybs
+	//-buat semua LI jadi display: none
+	//-for tiap elemen comboboxnya
+	//-kalau nemu OPTION yang namenya sesuai, maka 
+	//-LI pada urutan tersebut di display: inline
+	
+	
+	$("#formInsertEntrance").children().eq(urutan).find("select").children("*").hide();
+	$("#formInsertMeal").children().eq(urutan).find("select").children("*").hide();
+	
+	//temukan index D yang ke LIke
+	idx = 0;
+	c = 0;
+	$("#formInsertHotel > div.cont-hotel1").find("label.control-label").each(function(){		
+		if (parseInt(($(this).html()+" ").substring(1,2).trim()) == parseInt(urutan)+1){
+			idx = c;			
+		}
+		c++;
+	});
+	
+	$("#formInsertHotel > div.cont-hotel1").children().eq(idx).find("select").children("*").hide();
+	$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("*").hide();
+	$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("*").hide();
+	
+	for (i=0; i<pathRoute.length; i++){
+		$("#formInsertEntrance").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertMeal").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertHotel > div.cont-hotel1").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
+	}			
 }
 
 
@@ -172,7 +217,11 @@ function changeHotel(tipe, hari)
 	stopElement = 0
 	$(".cont-hotel"+tipe).find(".hotel_type"+tipe).each(function(){		
 		temp = parseInt($(this).find("#hotel_ed_"+tipe+"_"+c).val());							
-		if (jumMalam >= jumNilai+temp){
+		alert("jumNilai: " + jumNilai);
+		alert("isi: "+temp);
+		alert("c: "+c);
+		if (jumMalam >= jumNilai+temp){			
+			//update DAY satu per satu
 			if (c>1){			
 				x = jumNilai+1;
 				$(this).find("#hotel_lb_"+tipe+"_"+c).html("D"+x);
@@ -208,7 +257,7 @@ function changeHotel(tipe, hari)
 		myEl.find(".combobox-container").remove();	
 		myEl.find("select").attr("id","hotel_cb_"+tipe+"_"+nomor);
 		myEl.find("select").combobox();
-		myEl.find("input [type='number']").attr("id","hotel_ed_"+tipe+"_"+nomor);
+		myEl.find("input[type='number']").attr("id","hotel_ed_"+tipe+"_"+nomor);
 		myEl.find("input[type='number']").attr("onchange", "changeHotel('"+tipe+"','"+hari+"')");
 		myEl.find("input[type='number']").val(1);
 		

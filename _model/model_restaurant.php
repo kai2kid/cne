@@ -62,14 +62,14 @@ class model_restaurant extends basicModel {
   }
   public function _comboboxMeal($name,$selected = "") {
     $qry = "
-      SELECT r.restaurant_code, r.restaurant_name, m.menu_code, m.menu_name
+      SELECT r.restaurant_code, r.restaurant_location, r.restaurant_name, m.menu_code, m.menu_name
       FROM restaurant r
       LEFT JOIN restaurant_menu m ON r.restaurant_code = m.restaurant_code
       ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' class='form-control min-padding combobox'>";
     foreach($rows as $row) {
-      $ret .= "<option value='".$row['menu_name']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['restaurant_name'] . " - " . $row['menu_name']."</option>";
+      $ret .= "<option name='".$row['restaurant_location']."' value='".$row['menu_name']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['restaurant_name'] . " - " . $row['menu_name']."</option>";
     }
     $ret .= "</select>";
     return $ret;

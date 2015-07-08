@@ -47,7 +47,19 @@ class model_route extends basicModel {
     return $ret;
   }
   public function _combobox($name,$selected = "") {
-    return HTML::combobox(fetchDataset($this->data,"route_code","route_title"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
+    $qry = "
+      SELECT route_code, route_title, route_path
+      FROM route
+      ORDER BY route_title ASC
+    ";
+    $rows = $this->query($qry);
+    $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    foreach ($rows as $row) {
+      $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
+      $ret .= "<option name='".$row['route_path']."' value='".$row['route_code']."' $s>".$row['route_title']."</option>";
+    }
+    $ret .= "</select>";
+    return $ret;
   }
   
 }

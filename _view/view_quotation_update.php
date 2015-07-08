@@ -143,7 +143,7 @@
 									  <?php echo $hotel->_combobox('hotel_cb_3_'.$day,$model->detail['hotel'][$day][3]['hotel_code']); ?>
 									  </div>
 									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_3_<?php echo $day; ?>" type="number" class="form-control" name="hotel_ed_3_<?php echo $day; ?>" placeholder="Night" onchange="changeHotel(3,<?php echo $day;?>)" value="<?php echo $model->detail['hotel'][$day][3]["qday_hotel_night"]; ?>">
+										<input name="hotel_ed_3_<?php echo $day; ?>" type="number" class="form-control" id="hotel_ed_3_<?php echo $day; ?>" placeholder="Night" onchange="changeHotel(3,<?php echo $day;?>)" value="<?php echo $model->detail['hotel'][$day][3]["qday_hotel_night"]; ?>">
 									  </div>
 									  
 									</div>
@@ -337,9 +337,3 @@
 		</div>
 	</div>
 </div>
-
-<script type="text/javascript">
-  $(document).ready( function () {  
-    $("#quotation_day").change();
-  });
-</script>
