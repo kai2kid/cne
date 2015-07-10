@@ -1,4 +1,4 @@
-$(document).ready( function () {
+$(document).ready( function () {					
 	//starting quotation
 	$("#quotation_day").change();	
     $('input[type=date]').datepicker();
@@ -26,7 +26,13 @@ $(document).ready( function () {
 		}
 	});
 	
-	$("#quotation_day").change(function(){		
+	//NIGHT===================================================================================
+	//<div class="form-group hotel_type1 input-hotel1_1">
+	$("#quotation_night").change(changeNight);
+	
+	
+	//DAY=====================================================================================
+	$("#quotation_day").change(function(){		    
 		dayCount = parseInt($("#quotation_day").val());
 		if ($.trim(dayCount) == ""){
 			dayCount = 0
@@ -41,7 +47,7 @@ $(document).ready( function () {
 				$(".input-transport:last").remove();				
 				$(".input-entrance:last").remove();	
 				$(".input-meal:last").remove();
-				$("div").remove("#run_"+i);
+				$("div").remove("#run_"+i);								
 			}
 		} else {			
 			//nambah						
@@ -115,8 +121,47 @@ $(document).ready( function () {
 			}
 		}
 		//===========================================================
+    
+    $("#quotation_night").val(parseInt($("#quotation_day").val())-1);
+    changeNight();
 	});	
 } );
+
+function changeNight(){
+  niteCount = parseInt($("#quotation_night").val());
+    if ($.trim(niteCount) == ""){
+      niteCount = 0
+    } 
+    
+    jumElemen = $(".hotel_type1").length+1;
+    
+    if (jumElemen-niteCount-1 > 0) {      
+      mulai = niteCount+1;      
+      for (i=niteCount+1; i<jumElemen; i++){        
+        $(".hotel_type1:last").remove();                            
+        $(".hotel_type2:last").remove();  
+        $(".hotel_type3:last").remove();  
+      }
+    } else{
+      for (nomor=jumElemen; nomor<=niteCount; nomor++){
+        for (tipe=1; tipe<=3; tipe++){
+          myEl = $(".hotel_type"+tipe).first().clone(false);  
+          myEl.removeClass("input-hotel"+tipe+"_1");
+          myEl.addClass("input-hotel"+tipe+"_"+nomor);
+          
+          myEl.find("label").attr("id","hotel_lb_"+tipe+"_"+nomor);
+          myEl.find("label").html("D"+nomor);
+          myEl.find(".combobox-container").remove();  
+          myEl.find("select").attr("id","hotel_cb_"+tipe+"_"+nomor);
+          myEl.find("select").combobox();
+          
+          
+          $(".cont-hotel"+tipe).append(myEl);
+        }
+      }
+    }        
+  
+}
 
 function addTime(el, induk, nomor)
 {
@@ -160,24 +205,12 @@ function changeRoute(no)
 	//MENGISI BAGIAN RUNDOWN			
 	kode = $("input[type='hidden'][name='route_"+no+"']").val();
 	rute = $("#route_"+no+" option[value='"+kode+"']").text();	
-	$("#runday_"+no).html("D"+no+": "+rute);
-	
-	//BAGIAN SET BATASAN HOTEL
-	//1. dapatkan kode rute transport yang dipilih
-	//-dapatkan LI yang aktif
-	//-dapatkan LI ke berapa
-	//-dapatkan name dari OPTION yang ke LI
+  
+	$("#runday_"+no).html("D"+no+": "+rute);	
 	
 	urutan = no - 1;
-	LIke = $("#formInsertTransport").children().eq(urutan).find("ul > li.active").index();
-	pathRoute = $("#formInsertTransport").children().eq(urutan).find("select").children().eq(LIke).attr("name").split(";");		
-	
-	//2. update pilihan HOTEL, ENTRANCE, MEAL pada hari ybs
-	//-buat semua LI jadi display: none
-	//-for tiap elemen comboboxnya
-	//-kalau nemu OPTION yang namenya sesuai, maka 
-	//-LI pada urutan tersebut di display: inline
-	
+	LIke = $("#formInsertTransport").children().eq(urutan).find("select > option[value='"+kode+"']").index();
+	pathRoute = $("#formInsertTransport").children().eq(urutan).find("select").children().eq(LIke).attr("name").split(";");			    
 	
 	$("#formInsertEntrance").children().eq(urutan).find("select").children("*").hide();
 	$("#formInsertMeal").children().eq(urutan).find("select").children("*").hide();
@@ -203,70 +236,15 @@ function changeRoute(no)
 		$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
 		$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
 	}			
-}
-
-
-
-function changeHotel(tipe, hari)
-{	
-	jumInput = $(".cont-hotel"+tipe).find(".hotel_type"+tipe).length;	
-	jumMalam = parseInt($("#quotation_night").val());
-	
-	c = 1;
-	jumNilai = 0;
-	stopElement = 0
-	$(".cont-hotel"+tipe).find(".hotel_type"+tipe).each(function(){		
-		temp = parseInt($(this).find("#hotel_ed_"+tipe+"_"+c).val());							
-		alert("jumNilai: " + jumNilai);
-		alert("isi: "+temp);
-		alert("c: "+c);
-		if (jumMalam >= jumNilai+temp){			
-			//update DAY satu per satu
-			if (c>1){			
-				x = jumNilai+1;
-				$(this).find("#hotel_lb_"+tipe+"_"+c).html("D"+x);
-			}
-			jumNilai = jumNilai + temp;
-		} else {
-			sisa = jumMalam - jumNilai;
-			jumNilai = sisa;
-			$(this).find("#hotel_ed_"+tipe+"_"+c).val(sisa);
-			if (stopElement<=0 && sisa<=0) stopElement = c;
-		}					
-		c++;
-	});
-	
-	//jika kelebihan	
-	if (stopElement>0){
-		for (i=stopElement; i<=jumInput; i++){		
-			$("div .input-hotel"+tipe+"_"+i).remove();
-		}
-	}	
-	
-	//jika kurang
-	if (jumNilai<jumMalam){		
-		nomor = jumInput + 1;
-		hari = jumNilai + 1;
-		
-		myEl = $(".hotel_type"+tipe).first().clone(false);					
-		myEl.removeClass("input-hotel"+tipe+"_1");
-		myEl.addClass("input-hotel"+tipe+"_"+nomor);
-		
-		myEl.find("label").attr("id","hotel_lb_"+tipe+"_"+nomor);
-		myEl.find("label").html("D"+hari);
-		myEl.find(".combobox-container").remove();	
-		myEl.find("select").attr("id","hotel_cb_"+tipe+"_"+nomor);
-		myEl.find("select").combobox();
-		myEl.find("input[type='number']").attr("id","hotel_ed_"+tipe+"_"+nomor);
-		myEl.find("input[type='number']").attr("onchange", "changeHotel('"+tipe+"','"+hari+"')");
-		myEl.find("input[type='number']").val(1);
-		
-		$(".cont-hotel"+tipe).append(myEl);	
-
-		//kalau munculkan baru, maka harus set daftar pilihannya
-		//1. dapatkan hari ke berapa hotel yang baru dibentuk	
-		//2. cek ke transport, dapatkan kode transport
-	}
+  
+  //FILTER route lain
+  nextChild = urutan + 1; 
+  endRoute = $("#formInsertTransport").children().eq(urutan).find("select").children().eq(LIke).attr("en");
+  
+  $("#formInsertTransport").children().eq(nextChild).find("select").children("*").hide();
+  $("#formInsertTransport").children().eq(nextChild).find("select").children("[st*='"+endRoute+"']").show();
+  
+  
 }
 
 function copyElement(id,newname) {

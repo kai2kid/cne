@@ -1,9 +1,12 @@
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>jquery-2.0.2.min.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>basicScript.js"></script>
 
+<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>jquery.tokeninput.js"></script>
+
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/bootstrap.js"></script>  
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/jquery.dataTables.min.js"></script>  
 <script src="<?php echo _PATH_BOOTSTRAP; ?>js/dataTables.bootstrap.js"></script>  
+  
 
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>bootstrap-select.js"></script>
 
@@ -56,7 +59,8 @@
 </script>
 -->
 
-<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script.js"></script>
+<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script-quotation.js"></script>
+<script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script-route.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script_master.js"></script>
 
 <script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.js'></script>

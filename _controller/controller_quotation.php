@@ -12,7 +12,7 @@ class controller_quotation extends basicController {
   }
   
   public function formInsert() {
-    $param['model'] = new model_quotation($this->id);
+    $param['model'] = new model_quotation();
     $param['location'] = new model_location();
     $param['route'] = new model_route();
     $param['hotel'] = new model_hotel();
@@ -101,7 +101,7 @@ class controller_quotation extends basicController {
   public function insertMeal() {    
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
-    if ($q->modifyHotel($_REQUEST)) {
+    if ($q->modifyMeal($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);
@@ -109,10 +109,14 @@ class controller_quotation extends basicController {
   public function insertRundown() {    
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
-    if ($q->modifyHotel($_REQUEST)) {
+    if ($q->modifyRundown($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);
+  }
+  public function deleteme() {
+    $param["model"] = new model_route();
+    $this->loadView("deleteme",$param);
   }
 }
 ?>

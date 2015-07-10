@@ -127,5 +127,8 @@ echo "<script>document.location = '$URL'</script>";
     header('Content-type: application/x-json');
     echo json_encode($o);    
   }
+  protected function output_jsonstring($o) {
+    echo json_encode($o);    
+  }
 }
 ?>

@@ -48,7 +48,7 @@ class model_route extends basicModel {
   }
   public function _combobox($name,$selected = "") {
     $qry = "
-      SELECT route_code, route_title, route_path
+      SELECT route_code, route_title, route_path, route_start, route_end
       FROM route
       ORDER BY route_title ASC
     ";
@@ -56,7 +56,7 @@ class model_route extends basicModel {
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
-      $ret .= "<option name='".$row['route_path']."' value='".$row['route_code']."' $s>".$row['route_title']."</option>";
+      $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."' $s>".$row['route_title']."</option>";
     }
     $ret .= "</select>";
     return $ret;

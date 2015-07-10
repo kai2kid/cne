@@ -42,7 +42,7 @@
 							    <label for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
 							    <div class="col-md-5">
 								  <!--<input name="qtransport_start" type="text" class="form-control" id="qtransport_start">-->
-                  <?php echo $route->_combobox('route_'.$day,$model->days[$day]['route_code']); ?>
+                  <?php echo $route->_combobox('route_'.$day,(isset($model->days[$day]['route_code']) && $model->days[$day]['route_code'] != "" ? $model->days[$day]['route_code'] : "")); ?>
 							    </div>
 							  </div>
                 <?php } ?>
@@ -86,16 +86,12 @@
 									</div>
 									<!-- list per night -->
 									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-										<?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][5]["hotel_code"] != $model->detail['hotel'][$day-1][5]["hotel_code"])) {?>
+										<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]["hotel_code"] != $model->detail['hotel'][$day-1][5]["hotel_code"])) {?>
 										<div class="form-group hotel_type1 input-hotel1_<?php echo $day;?>">
 											<label id="hotel_lb_1_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 											<div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-												<?php echo $hotel->_combobox('hotel_cb_1_'.$day,$model->detail['hotel'][$day][5]['hotel_code']); ?>
+												<?php echo $hotel->_combobox('hotel_cb_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : "")); ?>
 											</div>
-											<div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-												<input name="hotel_ed_1_<?php echo $day; ?>" type="number" class="form-control" id="hotel_ed_1_<?php echo $day; ?>" placeholder="Night" onchange="changeHotel(1,<?php echo $day;?>)" value="<?php echo $model->detail['hotel'][$day][5]["qday_hotel_night"]; ?>">
-											</div>
-											
 										</div>
 										<?php } ?>
 									<?php } ?>
@@ -111,16 +107,12 @@
 									</div>
 									<!-- list per night -->
 									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-									<?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][4]["hotel_code"] != $model->detail['hotel'][$day-1][4]["hotel_code"])) {?>
+									<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][4]["hotel_code"]) && $model->detail['hotel'][$day][4]["hotel_code"] != $model->detail['hotel'][$day-1][4]["hotel_code"])) {?>
 									<div class="form-group hotel_type2 input-hotel2_<?php echo $day;?>">
 									  <label id="hotel_lb_2_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_2_'.$day,$model->detail['hotel'][$day][4]['hotel_code']); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : "")); ?>
 									  </div>
-									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_2_<?php echo $day; ?>" type="number" class="form-control" id="hotel_ed_2_<?php echo $day; ?>" placeholder="Night" onchange="changeHotel(2,<?php echo $day;?>)" value="<?php echo $model->detail['hotel'][$day][4]["qday_hotel_night"]; ?>">
-									  </div>
-									  
 									</div>
 									<?php } ?>
 									<?php } ?>
@@ -131,21 +123,16 @@
 									<div class="form-group">
 									  <label for="hotel_type3" class="control-label col-md-4" style="text-align:left; margin-left: 50px;"><?php echo text_hotelLevel(3); ?></label>
 									  <div class="col-md-5">
-									  
 									  </div>
 									</div>
 									<!-- list per night -->
 									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-									<?php if ($day == 1 || ($day > 1 && $model->detail['hotel'][$day][3]["hotel_code"] != $model->detail['hotel'][$day-1][3]["hotel_code"])) {?>
+									<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][3]["hotel_code"]) && $model->detail['hotel'][$day][3]["hotel_code"] != $model->detail['hotel'][$day-1][3]["hotel_code"])) {?>
 									<div class="form-group hotel_type3 input-hotel3_<?php echo $day;?>">
 									  <label id="hotel_lb_3_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_3_'.$day,$model->detail['hotel'][$day][3]['hotel_code']); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : "")); ?>
 									  </div>
-									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_3_<?php echo $day; ?>" type="number" class="form-control" id="hotel_ed_3_<?php echo $day; ?>" placeholder="Night" onchange="changeHotel(3,<?php echo $day;?>)" value="<?php echo $model->detail['hotel'][$day][3]["qday_hotel_night"]; ?>">
-									  </div>
-									  
 									</div>
 									<?php } ?>
 									<?php } ?>
@@ -181,7 +168,7 @@
 							<?php foreach ($model->detail['entrance'][$day] as $detail) { ?>
 								<label for="entrance_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
 								<div class="col-md-8">
-								<?php echo $entrance->_combobox('entrance_'.$day,$detail['entrance_code']); ?>
+								<?php echo $entrance->_combobox('entrance_'.$day,(isset($detail['entrance_code']) && $detail['entrance_code'] != "" ? $detail['entrance_code'] : "")); ?>
 							<?php } ?>
 								</div>
 						</div>
@@ -232,9 +219,9 @@
 								  <td align='right'>
 									<label class='control-label'>D<?php echo $day; ?></label>
 								  </td>
-								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_1",$model->detail['restaurant'][$day][1]['menu_code']); ?></td>
-								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_2",$model->detail['restaurant'][$day][2]['menu_code']); ?></td>
-								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_3",$model->detail['restaurant'][$day][3]['menu_code']); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_1",(isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : "")); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_2",(isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : "")); ?></td>
+								  <td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_3",(isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : "")); ?></td>
 								</tr>                    
 							  <?php } ?>
 							  </tbody>
@@ -300,19 +287,19 @@
 								  <div id='wrapperTime<?php echo $i; ?>'>
 									<div class='form-group'>
 									  <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>
-										<input name='qtimeStart_<?php echo $day;?>1' type='time' class='form-control' id='qtimeStart_<?php echo $day;?>1' value="<?php echo $detail["qdetail_time_start"]; ?>">
+										<input name='qtimeStart_<?php echo $day.$i;?>' type='time' class='form-control' id='qtimeStart_<?php echo $day.$i;?>' value="<?php echo $detail["qdetail_time_start"]; ?>">
 									  </div>
 									  <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
 									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-										<input name='qtimeEnd_<?php echo $day;?>1' type='time' class='form-control' id='qtimeEnd_<?php echo $day;?>1'  value="<?php echo $detail["qdetail_time_end"]; ?>">
+										<input name='qtimeEnd_<?php echo $day.$i;?>' type='time' class='form-control' id='qtimeEnd_<?php echo $day.$i;?>'  value="<?php echo $detail["qdetail_time_end"]; ?>">
 									  </div>
 									  <div class='col-md-4 no-pad-l'>
-										<input name='qremark_<?php echo $day;?>1' type='text' class='form-control' id='qremark_<?php echo $day;?>1' value="<?php echo $detail["qdetail_title"]; ?>">
+										<input name='qremark_<?php echo $day.$i;?>' type='text' class='form-control' id='qremark_<?php echo $day.$i;?>' value="<?php echo $detail["qdetail_title"]; ?>">
 									  </div>
 								  
 									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>
 										<?php if ($i==1) { ?>
-										<button id='btnAddTime<?php echo $day;?>1' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addTime(this,<?php echo $day . ",";?> 2)'0>
+										<button id='btnAddTime<?php echo $day.$i;?>' type='button' class='btn btn-success' style='margin-right:5px;' onclick='addTime(this,<?php echo $day . ",";?> 2)'0>
 										<span class='glyphicon glyphicon-plus'></span>
 										<?php } else { ?>
 										<button type='button' class='btn btn-danger' onclick='removeTime("+induk+", "+nomor+")'>

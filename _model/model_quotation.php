@@ -63,7 +63,7 @@ class model_quotation extends basicModel {
       
       //Restaurant
       $qry = "
-        SELECT d.*, q.*, r.restaurant_name, m.*
+        SELECT d.*, q.*, r.restaurant_code, r.restaurant_name, r.restaurant_location, m.menu_code, m.menu_name
         FROM quotation_day d
         LEFT JOIN qday_restaurant q ON d.qday_code = q.qday_code
         LEFT JOIN restaurant_menu m ON m.menu_code = q.menu_code
@@ -145,57 +145,122 @@ class model_quotation extends basicModel {
   }
   public function modifyHeader($data) {
     $ret = 1;
-    $update["quotation_name"] = $data["quotation_name"];
-    $update["quotation_days"] = $data["quotation_day"];
-    if (!$this->update("quotation",$update,"quotation_code = '".$data['quotation_code']."'")) $ret = 0;
+    $code = $data["quotation_code"];
+    $table = "quotation";
+    $where = "quotation_code = '".$code."'";
+    if ($this->delete($table,$where)) {
+      $insert["quotation_code"] = $code;
+      $insert["quotation_name"] = $data["quotation_name"];
+      $insert["quotation_days"] = $data["quotation_day"];
+      $insert["quotation_status"] = $data["quotation_day"];
+      $insert["staff_code"] = $_SESSION[_SESSION_USER];
+      if (!$this->insert($table,$insert)) $ret = 0;
+    } else {
+      $ret = 0;
+    }
     return $ret;
   }
   public function modifyTransport($data) {
     $ret = 1;
+    $table = "quotation_day";
     for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-      $update["route_code"] = $data["route_$day"];
-      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      $insert["quotation_code"] = $data['quotation_code'];
+      $insert["qday_code"] = $code;
+      if ($this->delete($table,$where)) {
+        $insert["route_code"] = $data["route_$day"];
+        $insert["qday_day"] = $day;
+        $insert["qday_location_start"] = "";
+        $insert["qday_location_end"] = "";
+        $insert["qday_route"] = "";
+        if (!$this->insert($table,$insert)) $ret = 0;
+      } else {
+        $ret = 0;
+      }
     }
     return $ret;
   }
   public function modifyHotel($data) {
     $ret = 1;
-    for ($type = 1 ; $type <= 3 ; $type++) {
-      for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-        $update["route_code"] = $data["hotel_cb_".$type."_".$day];
-        if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+    $table = "qday_hotel";
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      $insert["qday_code"] = $code;
+      if ($this->delete($table,$where)) {
+        for ($type = 1 ; $type <= 3 ; $type++) {
+          $insert["hotel_code"] = $data["hotel_cb_".$type."_".$day];
+          $insert["room_code"] = "";
+          $insert["qday_hotel_night"] = "1";
+          $insert["qday_room_level"] = ($type+2);
+          if (!$this->insert($table,$insert)) $ret = 0;
+        }
+      } else {
+        $ret = 0;
       }
-    }
+    } 
     return $ret;
   }
   public function modifyEntrance($data) {
     $ret = 1;
-    /*/
+    $table = "qday_entrance";
     for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-      $update["route_code"] = $data["route_$day"];
-      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      $insert["qday_code"] = $code;
+      if ($this->delete($table,$where)) {
+        $insert["entrance_code"] = $data["entrance_".$day];
+        if (!$this->insert($table,$insert)) $ret = 0;
+      } else {
+        $ret = 0;
+      }
     }
-    /*/
     return $ret;
   }
   public function modifyMeal($data) {
     $ret = 1;
-    /*/
+    $table = "qday_restaurant";    
     for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-      $update["route_code"] = $data["route_$day"];
-      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
-    }
-    /*/
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      if ($this->delete($table,$where)) {
+        $insert["qday_code"] = $code;
+        for ($type = 1 ; $type <= 3 ; $type++) {
+          $insert["menu_code"] = $data["restaurant_".$day."_".$type];
+          $insert["restaurant_code"] = "";
+          $insert["qday_rest_type"] = $type;
+          if (!$this->insert($table,$insert)) $ret = 0;
+        }
+      } else {
+        $ret = 0;
+      }
+    } 
     return $ret;
   }
   public function modifyRundown($data) {
     $ret = 1;
-    /*/
+    $table = "quotation_detail";    
     for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
-      $update["route_code"] = $data["route_$day"];
-      if (!$this->update("quotation_day",$update,"quotation_code = '".$data['quotation_code']."' AND qday_day = '$day'")) $ret = 0;
-    }
-    /*/
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      if ($this->delete($table,$where)) {
+        $insert["qday_code"] = $code;
+        for ($ctr = 1 ; $ctr <= 9 ; $ctr++) {          
+          $prefix = $day.$ctr;
+          if (isset($data["qremark_".$prefix])) {
+            $insert["qdetail_code"] = $code . str_pad($ctr,2,"0",STR_PAD_LEFT);            
+            $insert["qdetail_time_start"] = $data["qtimeStart_".$prefix];
+            $insert["qdetail_time_end"] = $data["qtimeEnd_".$prefix];
+            $insert["qdetail_title"] = $data["qremark_".$prefix];
+            $insert["qdetail_status"] = "1";            
+            if (!$this->insert($table,$insert)) $ret = 0;
+          }
+        }
+      } else {
+        $ret = 0;
+      }
+    } 
     return $ret;
   }
 }

@@ -45,5 +45,11 @@ class controller_location extends basicController {
     $model->deleting();
     $this->forward("location");
   }
+  
+ public function selecting() {
+    $model = new model_location();     
+    $o = $model->selecting();
+    $this->output_jsonstring($o);
+  }
 }
 ?>

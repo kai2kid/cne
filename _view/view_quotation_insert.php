@@ -3,8 +3,9 @@
     <label class="title">Add Quotation</label>
 	
 <!-- INI START FORM -->	
+  <input type="hidden" id="quotation_code" name="quotation_code" value="<?php echo $model->autogenerate(); ?>">
 	
-	<form class="form-horizontal" action="quotation_insertHeader" method="post">
+  <form class="form-horizontal" id="formInsertHeader" action="quotation_insertHeader" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 		<div class="form-group">
 		  <label for="quotation_name" class="control-label col-md-1 no-pad-r">Title</label>
 		  <div class="col-md-4">
@@ -35,7 +36,7 @@
 						<span class="pull-right clickable panel-collapsed"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post">              
+            <form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-transport">
 							  <label for="route_1" class="control-label col-md-1 no-pad-r">Day 1</label>
 							  <div class="col-md-5">								
@@ -66,7 +67,7 @@
 					</div>
 					<div class="panel-body quotation-body">
 						<div class="panel-body quotation-body">
-							<form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post">
+              <form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<!------------JENIS 1 : TIPE_DAY--------------->	
 								<div class="cont-hotel1">
 									<div class="form-group">
@@ -81,9 +82,6 @@
 											<label id="hotel_lb_1_1" class="control-label col-md-1 no-pad-r">D1</label>
 											<div class="col-md-4 no-pad-r" style="margin-right: 5px;">
 												<?php echo $hotel->_combobox('hotel_cb_1_1'); ?>
-											</div>
-											<div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-												<input name="hotel_ed_1_1" type="number" class="form-control" id="hotel_ed_1_1" placeholder="Night" onchange="changeHotel(1,1)" value="1">
 											</div>
 											
 										</div>										
@@ -104,9 +102,6 @@
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
 									  <?php echo $hotel->_combobox('hotel_cb_2_1'); ?>
 									  </div>
-									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_2_1" type="number" class="form-control" id="hotel_ed_2_1" placeholder="Night" onchange="changeHotel(2,1)" value="1">
-									  </div>
 									  
 									</div>									
 								</div>
@@ -124,9 +119,6 @@
 									  <label id="hotel_lb_3_1" class="control-label col-md-1 no-pad-r">D1</label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
 									  <?php echo $hotel->_combobox('hotel_cb_3_1'); ?>
-									  </div>
-									  <div class="col-md-1 no-pad-l no-pad-r" style="margin-right:5px;">
-										<input name="hotel_ed_3_1" type="number" class="form-control" id="hotel_ed_3_1" placeholder="Night" onchange="changeHotel(3,1)" value="1">
 									  </div>
 									  
 									</div>									
@@ -157,7 +149,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post">						
+            <form name="formInsertEntrance" id="formInsertEntrance" class="form-horizontal" action="quotation_insertEntrance" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-entrance">							
 								<label for="entrance_1" class="control-label col-md-1 no-pad-r">Day 1</label>
 								<div class="col-md-8">
@@ -188,7 +180,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post">
+            <form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 						  <div class="form-group input-meal">
 							<div id='meal'>
 							<table class='table borderless table-font' cellspacing='0' width='100%' id="table-meal">
@@ -234,7 +226,7 @@
 						<span class="pull-right clickable"><i class="glyphicon glyphicon-chevron-down"></i></span>
 					</div>
 					<div class="panel-body quotation-body">
-						<form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post">							
+            <form name="formInsertRundown" id="formInsertRundown" class="form-horizontal" action="quotation_insertRundown" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 								  <div class='panel' id='run_1'>
 								  <div class='form-group'>
 									<label id="runday_1" class='control-label col-md-5 no-pad-l' style='text-align: left; margin-left: 5px;'>D1 : </label>
