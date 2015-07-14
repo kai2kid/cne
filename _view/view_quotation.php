@@ -15,7 +15,7 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th class="no-sort" width="200px">&nbsp;</th>
+        <th class="no-sort" width="75px">&nbsp;</th>
         <th>Code</th>
         <th>Name</th>
         <th>Days</th>        
@@ -27,9 +27,11 @@
       <tr>
           <td>
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="navigate('quotation~<?php echo $data["quotation_code"]; ?>_formUpdate')" /> &nbsp;
-            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('staff','delete','<?php echo $data["quotation_code"]; ?>')" />
-            <button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_preview');">Preview</button>
-            <button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_proposal');">Proposal</button>
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('quotation','delete','<?php echo $data["quotation_code"]; ?>')" />
+			<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_view.png" onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_preview');" />
+			<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_proposal.png" onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_proposal');" />
+            <!--<button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_preview');">Preview</button>
+            <button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_proposal');">Proposal</button>-->
           </td>
           <td><?php echo $data["quotation_code"]; ?></td>
           <td><?php echo $data["quotation_name"]; ?></td>

@@ -78,14 +78,17 @@ class model_hotel extends basicModel {
     $this->period["peak"]["start"] = "12-24"; $this->period["peak"]["end"] = "12-26";
     $this->period["peak"]["start"] = "12-31"; $this->period["peak"]["end"] = "01-02";
   }                                           
-  public function _combobox($name,$selected = "") {
+  public function _combobox($name,$selected = "",$type = "") {
+    $qry_type = ($type != "" ? "WHERE hotel_type = '$type'" : "");
     $qry = "
       SELECT hotel_code, hotel_name, hotel_location
       FROM hotel
+      $qry_type
       ORDER BY hotel_name ASC
     ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    $ret .= "<option name='-' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['hotel_code'] ? "selected" : "");
       $ret .= "<option name='".$row['hotel_location']."' value='".$row['hotel_code']."' $s>".$row['hotel_name']."</option>";

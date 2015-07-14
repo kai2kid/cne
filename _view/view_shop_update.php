@@ -49,15 +49,12 @@
               <input name="shop_postal" type="text" class="form-control" id="shop_postal" placeholder="Postal" value="<?php echo $data['shop_postal']; ?>">
             </div>  
           </div>
-		  <div class="form-group">
-			  <label for="shop_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
-			  <div class="col-md-4 no-pad-r" style="padding-right:5px;">
-				<input name="shop_country" type="text" class="form-control" id="shop_country" placeholder="Country" value="<?php echo $data['shop_country']; ?>">
-			  </div> 
-			  <div class="col-md-4 no-pad-l">
-				<input name="shop_city" type="text" class="form-control" id="shop_city" placeholder="City" value="<?php echo $data['shop_city']; ?>">
-			  </div>  	  
-			</div> 		  
+        <div class="form-group">
+          <label for="hotel_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+          <div class="col-md-4 no-pad-r" style="padding-right:5px;">
+            <?php echo $cb_location; ?>
+          </div>
+        </div>   
 		  <div class="form-group">
 			  <label for="shop_items" class="control-label col-md-3 no-pad-r">Item</label>
 			  <div class="col-md-8">

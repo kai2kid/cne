@@ -11,15 +11,17 @@ class model_shop extends basicModel {
   public function initdata() {
     if ($this->id != "") {
       $qry = "
-        SELECT *
+        SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE shop_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
     } else {
       $qry = "
-        SELECT *
+        SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE shop_status = 1
         ";
       $this->data = $this->query($qry);

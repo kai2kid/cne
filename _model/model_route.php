@@ -54,6 +54,7 @@ class model_route extends basicModel {
     ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    $ret .= "<option name='*' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
       $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."' $s>".$row['route_title']."</option>";

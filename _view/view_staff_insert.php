@@ -4,39 +4,50 @@
 </div>
 <div class="panel-body">
   <form class="form-horizontal" action="staff_inserting" method="post">
-    <div class="form-group">
-      <label for="staff_name" class="control-label col-md-3 no-pad-r">Name</label>
-      <div class="col-md-5">
-        <input name="staff_name" type="text" class="form-control" id="staff_name" placeholder="Name">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="staff_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
-      <div class="col-md-5">
-        <input name="staff_name_korean" type="text" class="form-control" id="staff_name_korean" placeholder="이름">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="staff_position" class="control-label col-md-3 no-pad-r">Position</label>
-      <div class="col-md-4">
-        <select name="staff_position" class="form-control min-padding" id="staff_position">
-          <option selected="selected">Marketing</option>
-          <option>Marketing</option>
-        </select>
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="staff_id_no" class="control-label col-md-3 no-pad-r">ID Number</label>
-      <div class="col-md-5">
-        <input name="staff_id_no" type="text" class="form-control" id="staff_id_no" placeholder="ID Number">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="staff_hp" class="control-label col-md-3 no-pad-r">Contact Number</label>
-      <div class="col-md-3">
-        <input name="staff_hp" type="text" class="form-control" id="staff_hp" placeholder="Handphone">
-      </div>            
-    </div>
+    <div class="row">
+		<div class="col-md-8" style="margin-left: 13px;">
+			<div class="form-group">
+			  <label for="staff_name" class="control-label col-md-4 no-pad-r">Name</label>
+			  <div class="col-md-6">
+				<input name="staff_name" type="text" class="form-control" id="staff_name" placeholder="Name">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="staff_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
+			  <div class="col-md-6">
+				<input name="staff_name_korean" type="text" class="form-control" id="staff_name_korean" placeholder="이름">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="staff_position" class="control-label col-md-4 no-pad-r">Position</label>
+			  <div class="col-md-5">
+				<select name="staff_position" class="form-control min-padding" id="staff_position">
+				  <option selected="selected">Marketing</option>
+				  <option>Marketing</option>
+				</select>
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="staff_id_no" class="control-label col-md-4 no-pad-r">ID Number</label>
+			  <div class="col-md-6">
+				<input name="staff_id_no" type="text" class="form-control" id="staff_id_no" placeholder="ID Number">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="staff_hp" class="control-label col-md-4 no-pad-r">Contact Number</label>
+			  <div class="col-md-4">
+				<input name="staff_hp" type="text" class="form-control" id="staff_hp" placeholder="Handphone">
+			  </div>            
+			</div>
+		</div>
+		<div class="col-md-3">
+			<img class="img-photo" src="<?php echo _PATH_IMAGE?>dummy-user.png" height="150px" >
+			<span class="btn btn-default btn-file">
+				Browse <input type="file">
+			</span>
+		</div>
+	</div>
+    
     <div class="form-group">
       <label for="staff_phone" class="control-label col-md-3">&nbsp;</label>
       <div class="col-md-3">

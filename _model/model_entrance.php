@@ -13,7 +13,7 @@ class model_entrance extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE entrance_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
@@ -21,7 +21,7 @@ class model_entrance extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE entrance_status = 1
         ";
       $this->data = $this->query($qry);
@@ -65,6 +65,7 @@ class model_entrance extends basicModel {
     ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    $ret .= "<option name='-' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['entrance_code'] ? "selected" : "");
       $ret .= "<option name='".$row['entrance_location']."' value='".$row['entrance_code']."' $s>".$row['entrance_name']."</option>";

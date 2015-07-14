@@ -85,15 +85,13 @@
 									  </div>
 									</div>
 									<!-- list per night -->
-									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-										<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]["hotel_code"] != $model->detail['hotel'][$day-1][5]["hotel_code"])) {?>
+									<?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
 										<div class="form-group hotel_type1 input-hotel1_<?php echo $day;?>">
 											<label id="hotel_lb_1_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 											<div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-												<?php echo $hotel->_combobox('hotel_cb_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : "")); ?>
+												<?php echo $hotel->_combobox('hotel_cb_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""),"SD"); ?>
 											</div>
 										</div>
-										<?php } ?>
 									<?php } ?>
 								</div>								
 							<hr>
@@ -106,15 +104,13 @@
 									  </div>
 									</div>
 									<!-- list per night -->
-									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-									<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][4]["hotel_code"]) && $model->detail['hotel'][$day][4]["hotel_code"] != $model->detail['hotel'][$day-1][4]["hotel_code"])) {?>
+									<?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
 									<div class="form-group hotel_type2 input-hotel2_<?php echo $day;?>">
 									  <label id="hotel_lb_2_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : "")); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""),"DX"); ?>
 									  </div>
 									</div>
-									<?php } ?>
 									<?php } ?>
 								</div>
 							<hr>
@@ -126,15 +122,13 @@
 									  </div>
 									</div>
 									<!-- list per night -->
-									<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-									<?php if ($day == 1 || ($day > 1 && isset($model->detail['hotel'][$day][3]["hotel_code"]) && $model->detail['hotel'][$day][3]["hotel_code"] != $model->detail['hotel'][$day-1][3]["hotel_code"])) {?>
+									<?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
 									<div class="form-group hotel_type3 input-hotel3_<?php echo $day;?>">
 									  <label id="hotel_lb_3_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">D<?php echo $day; ?></label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : "")); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""),"BD"); ?>
 									  </div>
 									</div>
-									<?php } ?>
 									<?php } ?>
 								</div>
 							<!------------BUTTON------------>
@@ -324,3 +318,9 @@
 		</div>
 	</div>
 </div>
+
+<script>
+  <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+    changeRoute('<?php echo $day; ?>');
+  <?php } ?>
+</script>

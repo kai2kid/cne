@@ -44,10 +44,8 @@ class controller_quotation extends basicController {
   }
   
   public function deleteAjaxForm($id) {
-    //$model = new model_quotation($id);
-    //$param['data'] = $model->data();
-	
-	  $param['data'] = "";
+    $model = new model_quotation($id);
+    $param['data'] = $model->data();	
     $o['html'] = $this->bufferView("quotation_delete",$param);
     $this->output_json($o);
   }
@@ -114,9 +112,10 @@ class controller_quotation extends basicController {
     }
     $this->output_json($o);
   }
-  public function deleteme() {
-    $param["model"] = new model_route();
-    $this->loadView("deleteme",$param);
+  public function deleting() {
+    $model = new model_quotation($_POST['quotation_code']);
+    $model->deleting();
+    $this->forward("quotation");
   }
 }
 ?>

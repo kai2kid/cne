@@ -40,11 +40,11 @@ class model_location extends basicModel {
     $ret = $this->update($this->tb_name,$param,"location_code = '" . $this->id . "'");
     return $ret;
   }
-  /*public function deleting() {
-    $ret = $this->update($this->tb_name,array("location_status"=>"0"),"location_code = '" . $this->id."'");
+  public function deleting() {
+//    $ret = $this->update($this->tb_name,array("location_show"=>"0"),"location_code = '" . $this->id."'");
+    $ret = $this->delete($this->tb_name,"location_code = '" . $this->id."'");
     return $ret;
   }
-  */
   public function _combobox($name,$selected = "") {
     return HTML::combobox(fetchDataset($this->data,"location_code","location_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
   }

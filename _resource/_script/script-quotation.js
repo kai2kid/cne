@@ -1,7 +1,7 @@
 $(document).ready( function () {					
 	//starting quotation
 	$("#quotation_day").change();	
-    $('input[type=date]').datepicker();
+  $('input[type=date]').datepicker();
 	$('table.datatable').dataTable();  
 	$('.combobox').combobox();  
 	
@@ -125,6 +125,7 @@ $(document).ready( function () {
     $("#quotation_night").val(parseInt($("#quotation_day").val())-1);
     changeNight();
 	});	
+  
 } );
 
 function changeNight(){
@@ -231,10 +232,14 @@ function changeRoute(no)
 	
 	for (i=0; i<pathRoute.length; i++){
 		$("#formInsertEntrance").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
-		$("#formInsertMeal").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
 		$("#formInsertHotel > div.cont-hotel1").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
 		$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
 		$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
+    
+    $("#formInsertMeal").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
+//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_1").children("[name*='"+pathRoute[i]+"']").show();
+//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_2").children("[name*='"+pathRoute[i]+"']").show();
+//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_3").children("[name*='"+pathRoute[i]+"']").show();
 	}			
   
   //FILTER route lain
@@ -253,3 +258,10 @@ function copyElement(id,newname) {
   o.attr("id",newname);
   return o;
 }
+
+$(document).ready( function () {          
+  //trigger change route
+  for (day = 1 ; day <= parseInt($("#quotation_day").val()); day++) {
+    changeRoute(day.toString());
+  }
+});

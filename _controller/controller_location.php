@@ -2,6 +2,7 @@
 class controller_location extends basicController {
   public function __construct() {
     parent::__construct();
+    $_SESSION[_SESSION_MENU_ACTIVE] = "master";
   }
   public function index() {
     $param['model'] = new model_location();

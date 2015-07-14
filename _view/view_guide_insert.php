@@ -4,36 +4,46 @@
 </div>
 <div class="panel-body">
   <form class="form-horizontal" action="guide_inserting" method="post">
-    <div class="form-group">
-      <label for="guide_name" class="control-label col-md-3 no-pad-r">Name</label>
-      <div class="col-md-5">
-        <input name="guide_name" type="text" class="form-control" id="guide_name" placeholder="Name">
-      </div>
-    </div>    
-    <div class="form-group">
-      <label for="guide_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
-      <div class="col-md-5">
-        <input name="guide_name_korean" type="text" class="form-control" id="guide_name_korean" placeholder="이름">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="guide_nickname" class="control-label col-md-3 no-pad-r">Nickname</label>
-      <div class="col-md-5">
-        <input name="guide_nickname" type="text" class="form-control" id="guide_nickname" placeholder="Nickname">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="guide_language" class="control-label col-md-3 no-pad-r">Language</label>
-      <div class="col-md-5">
-        <input name="guide_language" type="text" class="form-control" id="guide_language" placeholder="Language">
-      </div>
-    </div>
-    <div class="form-group">
-      <label for="guide_id_no" class="control-label col-md-3 no-pad-r">ID Number</label>
-      <div class="col-md-5">
-        <input name="guide_id_no" type="text" class="form-control" id="guide_id_no" placeholder="ID Number">
-      </div>
-    </div>
+	<div class="row">
+		<div class="col-md-8" style="margin-left: 14px;">		
+			<div class="form-group">
+			  <label for="guide_name" class="control-label col-md-4 no-pad-r">Name</label>
+			  <div class="col-md-6">
+				<input name="guide_name" type="text" class="form-control" id="guide_name" placeholder="Name">
+			  </div>
+			</div>    
+			<div class="form-group">
+			  <label for="guide_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
+			  <div class="col-md-6">
+				<input name="guide_name_korean" type="text" class="form-control" id="guide_name_korean" placeholder="이름">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="guide_nickname" class="control-label col-md-4 no-pad-r">Nickname</label>
+			  <div class="col-md-6">
+				<input name="guide_nickname" type="text" class="form-control" id="guide_nickname" placeholder="Nickname">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="guide_language" class="control-label col-md-4 no-pad-r">Language</label>
+			  <div class="col-md-6">
+				<input name="guide_language" type="text" class="form-control" id="guide_language" placeholder="Language">
+			  </div>
+			</div>
+			<div class="form-group">
+			  <label for="guide_id_no" class="control-label col-md-4 no-pad-r">ID Number</label>
+			  <div class="col-md-6">
+				<input name="guide_id_no" type="text" class="form-control" id="guide_id_no" placeholder="ID Number">
+			  </div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<img class="img-photo" src="<?php echo _PATH_IMAGE?>dummy-user.png" height="150px" >
+			<span class="btn btn-default btn-file">
+				Browse <input type="file">
+			</span>
+		</div>
+	</div>
     <div class="form-group">
       <label for="guide_hp" class="control-label col-md-3 no-pad-r">Contact Number</label>
       <div class="col-md-3">

@@ -3,11 +3,11 @@
   <h3 class="panel-title">Delete Quotation</h3>
 </div>
 <div class="panel-body">
-  <form class="form-horizontal" action="staff_deleting" method="post">
+  <form class="form-horizontal" action="quotation_deleting" method="post">
     <div class="form-group">
       <label for="quotation_code" class="control-label col-md-6 no-pad-r">Do you really want to delete </label>
       <div class="col-md-3">
-        <input name="quotation_code" type="text" class="form-control" id="edCode" value="QT001U19052015<?php //echo $data['quotation_code']; ?>" readonly>
+        <input name="quotation_code" type="text" class="form-control" id="edCode" value="<?php echo $data['quotation_code']; ?>" readonly>
       </div>
     </div>          
     <div class="form-group">

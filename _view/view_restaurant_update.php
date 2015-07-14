@@ -47,20 +47,13 @@
             </div>  
           </div>
           <div class="form-group">
-            <label for="restaurant_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+            <label for="hotel_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
             <div class="col-md-4 no-pad-r" style="padding-right:5px;">
-              <input name="restaurant_country" type="text" class="form-control" id="restaurant_country" placeholder="Country" value="<?php echo $data['restaurant_country']; ?>">
-            </div>    
-			<div class="col-md-4 no-pad-l">
-              <input name="restaurant_city" type="text" class="form-control" id="restaurant_city" placeholder="City" value="<?php echo $data['restaurant_city']; ?>">
-            </div> 
-          </div> 
-		  <div class="form-group">
-			  <label for="restaurant_location" class="control-label col-md-3 no-pad-r">Location</label>
-			  <div class="col-md-3">
-				<input name="restaurant_location" type="text" class="form-control" id="restaurant_location" placeholder="Location" value="<?php echo $data['restaurant_location']; ?>">        
-			  </div>            
-			</div>			  	  
+              <!--<input name="restaurant_country" type="text" class="form-control" id="restaurant_country" placeholder="Country">-->
+              <input name="restaurant_country" type="hidden" class="form-control" id="restaurant_country" placeholder="Country" value="Korea">
+              <?php echo $cb_location; ?>
+            </div>
+          </div>   
 			<div class="form-group">
 			  <label for="restaurant_currency" class="control-label col-md-3 no-pad-r">Currency</label>
 			  <div class="col-md-2">

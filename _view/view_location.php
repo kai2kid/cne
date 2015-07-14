@@ -15,8 +15,8 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th class="no-sort" width="25px">&nbsp;</th>
-        <th>Code</th>        0
+        <th class="no-sort" width="30px">&nbsp;</th>
+        <th>Code</th>
         <th>Name</th>       
         <th>Korean Name</th>       
       </tr>
@@ -68,15 +68,13 @@
   </div>  
 
   <!-- Modal -->	
-  <!--
   <div class="modal fade" id="formDelete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="pop-up">  
         <div class="panel panel-danger" id="deleteFormContent">
-          <?php //include (_PATH_VIEW . "view_location_delete.php"); ?>
+          <?php include (_PATH_VIEW . "view_location_delete.php"); ?>
         </div>    
       </div>
     </div>
   </div>
-  -->
 </div>

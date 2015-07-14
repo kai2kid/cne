@@ -8,6 +8,7 @@ class controller_drestaurant extends basicController {
   public $p_pk = "restaurant_code";
   public function __construct($code="") {
     parent::__construct();
+    $_SESSION[_SESSION_MENU_ACTIVE] = "master";
     if ($code != "") $this->p_code = $code;
   }
   public function index() {

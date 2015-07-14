@@ -41,20 +41,12 @@
       </div>  
     </div>
     <div class="form-group">
-      <label for="entrance_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
+      <label for="hotel_country" class="control-label col-md-3 no-pad-r">&nbsp;</label>
       <div class="col-md-4 no-pad-r" style="padding-right:5px;">
-        <input name="entrance_country" type="text" class="form-control" id="entrance_country" placeholder="Country">
-      </div>  
-      <div class="col-md-4 no-pad-l">
-        <input name="entrance_city" type="text" class="form-control" id="entrance_city" placeholder="City">
-      </div> 	  
+        <input name="entrance_country" type="hidden" class="form-control" id="entrance_country" placeholder="Country" value="Korea">
+        <?php echo $cb_location; ?>
+      </div>
     </div>   
-	<div class="form-group">
-      <label for="entrance_location" class="control-label col-md-3 no-pad-r">Location</label>
-      <div class="col-md-3">
-        <input name="entrance_location" type="text" class="form-control" id="entrance_location" placeholder="Location">        
-      </div>            
-    </div>
 	<div class="form-group">
       <label for="entrance_hour_open" class="control-label col-md-3 no-pad-r">Opening Time</label>
       <div class="col-md-1 no-pad-r" style="padding-right: 5px;">

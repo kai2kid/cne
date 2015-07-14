@@ -81,7 +81,7 @@
 										<div class="form-group hotel_type1 input-hotel1_1">
 											<label id="hotel_lb_1_1" class="control-label col-md-1 no-pad-r">D1</label>
 											<div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-												<?php echo $hotel->_combobox('hotel_cb_1_1'); ?>
+												<?php echo $hotel->_combobox('hotel_cb_1_1',"","SD"); ?>
 											</div>
 											
 										</div>										
@@ -100,7 +100,7 @@
 									<div class="form-group hotel_type2 input-hotel2_1">
 									  <label id="hotel_lb_2_1" class="control-label col-md-1 no-pad-r">D1</label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_2_1'); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_2_1',"","DX"); ?>
 									  </div>
 									  
 									</div>									
@@ -118,7 +118,7 @@
 									<div class="form-group hotel_type3 input-hotel3_1">
 									  <label id="hotel_lb_3_1" class="control-label col-md-1 no-pad-r">D1</label>
 									  <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
-									  <?php echo $hotel->_combobox('hotel_cb_3_1'); ?>
+									  <?php echo $hotel->_combobox('hotel_cb_3_1',"","BD"); ?>
 									  </div>
 									  
 									</div>									

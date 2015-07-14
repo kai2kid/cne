@@ -15,7 +15,7 @@
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th class="no-sort" width="25px">&nbsp;</th>
+        <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>
         <th>ID Number</th>
         <th>Handphone</th>

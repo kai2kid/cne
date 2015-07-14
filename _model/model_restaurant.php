@@ -13,7 +13,7 @@ class model_restaurant extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE restaurant_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
@@ -21,7 +21,7 @@ class model_restaurant extends basicModel {
       $qry = "
         SELECT ".$this->tb_name.".*, l.location_name
         FROM ".$this->tb_name."
-        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_name
+        LEFT JOIN location l ON ".$this->tb_name."_location = l.location_code
         WHERE restaurant_status = 1
         ";
       $this->data = $this->query($qry);
@@ -69,6 +69,7 @@ class model_restaurant extends basicModel {
       ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' class='form-control min-padding combobox'>";
+    $ret .= "<option name='-' value=''></option>";
     foreach($rows as $row) {
       $ret .= "<option name='".$row['restaurant_location']."' value='".$row['menu_code']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['restaurant_name'] . " - " . $row['menu_name']."</option>";
     }

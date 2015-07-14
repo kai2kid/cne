@@ -4,45 +4,57 @@
       </div>
       <div class="panel-body">
         <form class="form-horizontal" action="buyer_updating" method="post">
-          <div class="form-group">
-            <label for="buyer_code" class="control-label col-md-3 no-pad-r">Code</label>
-            <div class="col-md-5">
-              <input name="buyer_code" type="text" class="form-control" id="buyer_code" value="<?php echo $data['buyer_code']; ?>" readonly>
-            </div>
-          </div>
-          <div class="form-group">
-            <label for="buyer_name" class="control-label col-md-3 no-pad-r">Name</label>
-            <div class="col-md-5">
-              <input name="buyer_name" type="text" class="form-control" id="buyer_name" placeholder="Name" value="<?php echo $data['buyer_name']; ?>">
-            </div>
-          </div>     
-		<div class="form-group">
-		  <label for="buyer_type" class="control-label col-md-3 no-pad-r">Type</label>
-		  <div class="col-md-4">
-			<select name="buyer_type" class="form-control min-padding" id="buyer_type">
-			  <option value="1" selected="selected">Company</option>
-			  <option value="2">Personal</option>
-			</select>
-		  </div>
-		</div>   	        
-          <div class="form-group">
-            <label for="buyer_phone" class="control-label col-md-3 no-pad-r">Contact Number</label>
-            <div class="col-md-3">
-              <input name="buyer_phone" type="text" class="form-control" id="buyer_phone" placeholder="Handphone" value="<?php echo $data['buyer_phone']; ?>">
-            </div>            
-          </div>          
-          <div class="form-group">
-            <label for="buyer_fax" class="control-label col-md-3">&nbsp;</label>
-            <div class="col-md-3">
-              <input name="buyer_fax" type="text" class="form-control" id="buyer_fax" placeholder="Fax" value="<?php echo $data['buyer_fax']; ?>">
-            </div>            
-          </div>
-          <div class="form-group">
-			  <label for="buyer_website" class="control-label col-md-3 no-pad-r">Website</label>
-			  <div class="col-md-5">
-				<input name="buyer_website" type="text" class="form-control" id="buyer_website" placeholder="Website" value="<?php echo $data['buyer_website']; ?>">
+			<div class="row">
+				<div class="col-md-8" style="margin-left: 10px;">			  					 
+					  <div class="form-group">
+						<label for="buyer_code" class="control-label col-md-4 no-pad-r">Code</label>
+						<div class="col-md-5">
+						  <input name="buyer_code" type="text" class="form-control" id="buyer_code" value="<?php echo $data['buyer_code']; ?>" readonly>
+						</div>
+					  </div>
+					  <div class="form-group">
+						<label for="buyer_name" class="control-label col-md-4 no-pad-r">Name</label>
+						<div class="col-md-5">
+						  <input name="buyer_name" type="text" class="form-control" id="buyer_name" placeholder="Name" value="<?php echo $data['buyer_name']; ?>">
+						</div>
+					  </div>     
+					<div class="form-group">
+					  <label for="buyer_type" class="control-label col-md-4 no-pad-r">Type</label>
+					  <div class="col-md-4">
+						<select name="buyer_type" class="form-control min-padding" id="buyer_type">
+						  <option value="1" selected="selected">Company</option>
+						  <option value="2">Personal</option>
+						</select>
+					  </div>
+					</div>   	        
+					  <div class="form-group">
+						<label for="buyer_phone" class="control-label col-md-4 no-pad-r">Contact Number</label>
+						<div class="col-md-4">
+						  <input name="buyer_phone" type="text" class="form-control" id="buyer_phone" placeholder="Handphone" value="<?php echo $data['buyer_phone']; ?>">
+						</div>            
+					  </div>          
+					  <div class="form-group">
+						<label for="buyer_fax" class="control-label col-md-4">&nbsp;</label>
+						<div class="col-md-4">
+						  <input name="buyer_fax" type="text" class="form-control" id="buyer_fax" placeholder="Fax" value="<?php echo $data['buyer_fax']; ?>">
+						</div>            
+					  </div>
+					  <div class="form-group">
+						  <label for="buyer_website" class="control-label col-md-4 no-pad-r">Website</label>
+						  <div class="col-md-5">
+							<input name="buyer_website" type="text" class="form-control" id="buyer_website" placeholder="Website" value="<?php echo $data['buyer_website']; ?>">
+						  </div>
+					  </div>  
+				</div>
+				<div class="col-md-3">
+					<img class="img-photo" src="<?php echo _PATH_IMAGE?>dummy-user.png" height="150px" >
+					<span class="btn btn-default btn-file">
+						Browse <input type="file">
+					</span>
+				</div>
 			  </div>
-		  </div>             
+						
+						
           <div class="form-group">
             <label for="buyer_email" class="control-label col-md-3 no-pad-r">Email</label>
             <div class="col-md-5">

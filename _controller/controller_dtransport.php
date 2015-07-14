@@ -10,6 +10,7 @@ class controller_dtransport extends basicController {
   public function __construct($code="") {
     parent::__construct();
     if ($code != "") $this->p_code = $code;
+    $_SESSION[_SESSION_MENU_ACTIVE] = "master";
     $this->location = new model_location();
   }
   public function index() {

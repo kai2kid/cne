@@ -18,7 +18,6 @@ class model_quotation extends basicModel {
       ";
       $this->data = $this->query_one($qry);
       
-      
       $qry = "
         SELECT *
         FROM quotation_day d
@@ -63,7 +62,7 @@ class model_quotation extends basicModel {
       
       //Restaurant
       $qry = "
-        SELECT d.*, q.*, r.restaurant_code, r.restaurant_name, r.restaurant_location, m.menu_code, m.menu_name
+        SELECT d.*, q.*, r.restaurant_code, r.restaurant_name, r.restaurant_location, m.menu_code, m.menu_name, m.menu_price_lunch, m.menu_price_dinner
         FROM quotation_day d
         LEFT JOIN qday_restaurant q ON d.qday_code = q.qday_code
         LEFT JOIN restaurant_menu m ON m.menu_code = q.menu_code
@@ -113,6 +112,7 @@ class model_quotation extends basicModel {
       $qry = "
         SELECT *
         FROM ".$this->tb_name."        
+        WHERE quotation_status > 0
         ";
       $this->data = $this->query($qry);
     }
@@ -140,7 +140,7 @@ class model_quotation extends basicModel {
     return $ret;
   }
   public function deleting() {
-    $ret = $this->update($this->tb_name,array("pic_status"=>"0"),"pic_type_code = '" . $this->id."'");
+    $ret = $this->update($this->tb_name,array("quotation_status"=>"0"),"quotation_code = '" . $this->id."'");
     return $ret;
   }
   public function modifyHeader($data) {
@@ -184,16 +184,16 @@ class model_quotation extends basicModel {
   public function modifyHotel($data) {
     $ret = 1;
     $table = "qday_hotel";
-    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+    for ($day = 1 ; $day < $this->quotation_days ; $day++) {
       $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
       $where = "qday_code = '".$code."'";
-      $insert["qday_code"] = $code;
       if ($this->delete($table,$where)) {
+        $insert["qday_code"] = $code;
         for ($type = 1 ; $type <= 3 ; $type++) {
           $insert["hotel_code"] = $data["hotel_cb_".$type."_".$day];
           $insert["room_code"] = "";
           $insert["qday_hotel_night"] = "1";
-          $insert["qday_room_level"] = ($type+2);
+          $insert["qday_room_level"] = (6-$type);
           if (!$this->insert($table,$insert)) $ret = 0;
         }
       } else {

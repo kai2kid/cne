@@ -2,9 +2,12 @@
 class controller_shop extends basicController {
   public function __construct() {
     parent::__construct();
+    $_SESSION[_SESSION_MENU_ACTIVE] = "master";
   }
   public function index() {
     $param['model'] = new model_shop();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("shop_location");
     $this->loadView("shop",$param);
   }
   public function insertAjaxForm() {
@@ -14,6 +17,8 @@ class controller_shop extends basicController {
   public function updateAjaxForm($id) {
     $model = new model_shop($id);
     $param['data'] = $model->data();
+    $l = new model_location();
+    $param['cb_location'] = $l->_combobox("shop_location",$param['data']['shop_location']);
     $o['html'] = $this->bufferView("shop_update",$param);
     $this->output_json($o);
   }
