@@ -212,10 +212,7 @@ function changeRoute(no)
 	urutan = no - 1;
 	LIke = $("#formInsertTransport").children().eq(urutan).find("select > option[value='"+kode+"']").index();
 	pathRoute = $("#formInsertTransport").children().eq(urutan).find("select").children().eq(LIke).attr("name").split(";");			    
-	
-	$("#formInsertEntrance").children().eq(urutan).find("select").children("*").hide();
-	$("#formInsertMeal").children().eq(urutan).find("select").children("*").hide();
-	
+		
 	//temukan index D yang ke LIke
 	idx = 0;
 	c = 0;
@@ -226,9 +223,14 @@ function changeRoute(no)
 		c++;
 	});
 	
+	nomor = urutan + 1;
 	$("#formInsertHotel > div.cont-hotel1").children().eq(idx).find("select").children("*").hide();
 	$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("*").hide();
 	$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("*").hide();
+	$("#formInsertEntrance").children().eq(urutan).find("select").children("*").hide();
+	$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_1']").children("*").hide();
+	$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_2']").children("*").hide();
+	$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_3']").children("*").hide();
 	
 	for (i=0; i<pathRoute.length; i++){
 		$("#formInsertEntrance").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
@@ -236,10 +238,9 @@ function changeRoute(no)
 		$("#formInsertHotel > div.cont-hotel2").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
 		$("#formInsertHotel > div.cont-hotel3").children().eq(idx).find("select").children("[name*='"+pathRoute[i]+"']").show();
     
-    $("#formInsertMeal").children().eq(urutan).find("select").children("[name*='"+pathRoute[i]+"']").show();
-//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_1").children("[name*='"+pathRoute[i]+"']").show();
-//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_2").children("[name*='"+pathRoute[i]+"']").show();
-//    $("#formInsertMeal").find("#restaurant_"+(i+1).toString()+"_3").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_1']").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_2']").children("[name*='"+pathRoute[i]+"']").show();
+		$("#formInsertMeal").find("select[id='restaurant_"+nomor+"_3']").children("[name*='"+pathRoute[i]+"']").show();  
 	}			
   
   //FILTER route lain

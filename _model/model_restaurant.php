@@ -68,7 +68,7 @@ class model_restaurant extends basicModel {
       ORDER BY restaurant_name ASC
       ";
     $rows = $this->query($qry);
-    $ret = "<select name='$name' class='form-control min-padding combobox'>";
+    $ret = "<select id='$name' name='$name' class='form-control min-padding combobox'>";
     $ret .= "<option name='-' value=''></option>";
     foreach($rows as $row) {
       $ret .= "<option name='".$row['restaurant_location']."' value='".$row['menu_code']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['restaurant_name'] . " - " . $row['menu_name']."</option>";

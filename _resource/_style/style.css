@@ -1,3 +1,8 @@
+img.img_button {  
+  border: 1px solid white;
+}
+
 img.img_button:hover {
   cursor: pointer;
+  border: 1px solid grey;
 }
