@@ -13,7 +13,7 @@
         <th>Schedule</th>
         <th width="250px">Hotel</th>
         <th width="200px">Meal</th>
-        <th width="200px">Transport</th>
+<!--        <th width="200px">Transport</th>-->
         <th width="250px">Entrance</th>
       </tr>
     </thead>
@@ -37,11 +37,11 @@
               <?php echo text_mealLevel($detail["qday_rest_type"],0) . ": " . $detail["restaurant_name"] . " <br> " . $detail["menu_name"]; ?><br>
             <?php } ?>
           </td>
-          <td>
+<!--          <td>
             <?php foreach ($model->detail['transport'][$day] as $detail) { ?>
               <?php echo $detail["transport_name"]; ?><br>
             <?php } ?>
-          </td>
+          </td>   -->
           <td>
             <?php foreach ($model->detail['entrance'][$day] as $detail) { ?>
               <?php echo $detail["entrance_name"]; ?><br>
@@ -77,7 +77,7 @@
     </thead>
     <tbody>
       <?php foreach ($pax_estimated as $title=>$pax) { $subt[$pax][$level] = 0;} ?>
-      <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+      <?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
       <tr>
           <td><?php echo $day; ?></td>
           <td><?php echo $model->detail['hotel'][$day][$level]['hotel_name']; ?></td>
@@ -89,7 +89,7 @@
               $sub = ($amt * ceil($pax / 2)); 
               echo number_format($sub); 
               $subt[$pax][$level] += $sub; 
-              $gtot[$pax][$level] += $subt[$pax][$level]; 
+              $gtot[$pax][$level] += $sub; 
             ?>
           </td>
           <?php } ?>
@@ -123,7 +123,7 @@
     </thead>
     <tbody>
       <?php foreach ($pax_estimated as $title=>$pax) { $subt[$pax][$level] = 0;} ?>
-      <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+      <?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
       <tr>
           <td><?php echo $day; ?></td>
           <td><?php echo $model->detail['hotel'][$day][$level]['hotel_name']; ?></td>
@@ -135,7 +135,7 @@
               $sub = ($amt * $pax); 
               echo number_format($sub); 
               $subt[$pax][$level] += $sub; 
-              $gtot[$pax][$level] += $subt[$pax][$level]; 
+              $gtot[$pax][$level] += $sub; 
             ?>
           </td>
           <?php } ?>
@@ -170,7 +170,7 @@
     </thead>
     <tbody>
       <?php foreach ($pax_estimated as $title=>$pax) { $subt[$pax] = 0;} ?>
-      <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+      <?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>
       <tr>
           <td><?php echo $day; ?></td>
           <td><?php echo $model->detail['restaurant'][$day][$type]['restaurant_name'].": ".$model->detail['restaurant'][$day][$type]['menu_name']; ?></td>
@@ -182,7 +182,7 @@
               $sub = ($amt * $pax);
               echo number_format($sub); 
               $subt[$pax] += $sub; 
-              $gtot[$pax]['*'] += $subt[$pax]; 
+              $gtot[$pax]['*'] += $sub; 
             ?>
           </td>
           <?php } ?>
@@ -227,7 +227,8 @@
             $sub = ($amt * $pax); 
             echo number_format($sub); 
             $subt[$pax] += $sub; 
-            $gtot[$pax]['*'] += $subt[$pax]; 
+//            $gtot[$pax]['*'] += $subt[$pax]; 
+            $gtot[$pax]['*'] += $sub; 
           ?>
         </td>
         <?php } ?>
@@ -270,7 +271,7 @@
               $sub = ($amt * ceil($pax / 2)); 
               echo number_format($sub); 
               $subt[$pax] += $sub; 
-              $gtot[$pax]['*'] += $subt[$pax]; 
+              $gtot[$pax]['*'] += $sub; 
             ?>
           </td>
           <?php } ?>

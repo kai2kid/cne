@@ -101,11 +101,11 @@ $(document).ready( function () {
 				isi += "</div>";
 				isi += "<div class='form-group'>";
 				isi += "<div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>";
-				isi += "<input name='qtimeStart_"+i+"1' type='time' class='form-control' id='qtimeStart_"+i+"1'>";
+				isi += "<input name='qtimeStart_"+i+"1' type='text' class='form-control' id='qtimeStart_"+i+"1'>";
 				isi += "</div>";
 				isi += "<label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>";
 				isi += "<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>";
-				isi += "<input name='qtimeEnd_"+i+"1' type='time' class='form-control' id='qtimeEnd_"+i+"1'>";
+				isi += "<input name='qtimeEnd_"+i+"1' type='text' class='form-control' id='qtimeEnd_"+i+"1'>";
 				isi += "</div>";
 				isi += "<div class='col-md-4 no-pad-l'>";
 				isi += "<input name='qremark_"+i+"1' type='text' class='form-control' id='qremark_"+i+"1'>";

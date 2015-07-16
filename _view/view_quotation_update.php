@@ -281,11 +281,11 @@
 								  <div id='wrapperTime<?php echo $i; ?>'>
 									<div class='form-group'>
 									  <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>
-										<input name='qtimeStart_<?php echo $day.$i;?>' type='time' class='form-control' id='qtimeStart_<?php echo $day.$i;?>' value="<?php echo $detail["qdetail_time_start"]; ?>">
+										<input name='qtimeStart_<?php echo $day.$i;?>' type='text' class='form-control' id='qtimeStart_<?php echo $day.$i;?>' value="<?php echo $detail["qdetail_time_start"]; ?>">
 									  </div>
 									  <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
 									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-										<input name='qtimeEnd_<?php echo $day.$i;?>' type='time' class='form-control' id='qtimeEnd_<?php echo $day.$i;?>'  value="<?php echo $detail["qdetail_time_end"]; ?>">
+										<input name='qtimeEnd_<?php echo $day.$i;?>' type='text' class='form-control' id='qtimeEnd_<?php echo $day.$i;?>'  value="<?php echo $detail["qdetail_time_end"]; ?>">
 									  </div>
 									  <div class='col-md-4 no-pad-l'>
 										<input name='qremark_<?php echo $day.$i;?>' type='text' class='form-control' id='qremark_<?php echo $day.$i;?>' value="<?php echo $detail["qdetail_title"]; ?>">

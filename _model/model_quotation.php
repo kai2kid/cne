@@ -48,7 +48,7 @@ class model_quotation extends basicModel {
         SELECT *
         FROM quotation_day d
         LEFT JOIN qday_hotel q ON d.qday_code = q.qday_code
-        LEFT JOIN hotel_room r ON r.room_code = q.room_code
+        LEFT JOIN hotel_room r ON r.hotel_code = q.hotel_code
         LEFT JOIN hotel h ON q.hotel_code = h.hotel_code
         WHERE d.quotation_code = '".$this->id."'
         ORDER BY d.qday_day ASC, h.hotel_level DESC

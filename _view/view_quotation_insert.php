@@ -235,11 +235,11 @@
 								  <div id='wrapperTime1'>
 									<div class='form-group'>
 									  <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 5px;'>
-										<input name='qtimeStart_11' type='time' class='form-control' id='qtimeStart_11'>
+										<input name='qtimeStart_11' type='text' class='form-control' id='qtimeStart_11'>
 									  </div>
 									  <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
 									  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-										<input name='qtimeEnd_11' type='time' class='form-control' id='qtimeEnd_11'>
+										<input name='qtimeEnd_11' type='text' class='form-control' id='qtimeEnd_11'>
 									  </div>
 									  <div class='col-md-4 no-pad-l'>
 										<input name='qremark_11' type='text' class='form-control' id='qremark_11'>
