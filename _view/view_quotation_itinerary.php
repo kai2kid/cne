@@ -9,13 +9,12 @@
   <table class="table table-striped table-bordered table-font" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
-        <th width="25px">Day</th>
-        <th>Schedule</th>
-        <th width="250px">Hotel</th>
-        <th width="200px">Meal</th>
-<!--        <th width="200px">Transport</th>-->
-        <th width="250px">Entrance</th>
-      </tr>
+        <th>Code</th>
+        <th>Title</th>
+        <th>Buyer</th>
+        <th>Date</th>
+        <th>Days</th>
+     </tr>
     </thead>
     <tbody>
       <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>

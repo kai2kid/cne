@@ -34,6 +34,21 @@ class controller_staff extends basicController {
     $insert['staff_updated_name'] = $_SESSION[_SESSION_USER];
     $model->inserting($insert);
     $this->forward("staff");
+    
+    if (isset($_FILES['photo']) && $_FILES['photo'] != "") {
+      $photo = new Upload($_FILES['photo']); 
+      if ($photo->uploaded) {
+        $photo->file_new_name_body = $insert['staff_code'];
+        $photo->image_convert = "png";
+        $photo->image_resize = true;
+        $photo->image_x = 150;
+        $photo->image_y = 150;
+        $photo->image_ratio_no_zoom_in = true;
+        $photo->image_ratio_fill = true;
+        $photo->file_overwrite = true;
+        $photo->Process(_PATH_IMAGE."/staff/");
+      }
+    }
   }
   public function updating() {
     $model = new model_staff($_POST['staff_code']);
@@ -41,6 +56,22 @@ class controller_staff extends basicController {
     $update['staff_updated'] = date("Y-m-d H:i:s");
     $update['staff_updated_name'] = $_SESSION[_SESSION_USER];
     $model->updating($update);
+    
+    if (isset($_FILES['photo']) && $_FILES['photo'] != "") {
+      $photo = new Upload($_FILES['photo']); 
+      if ($photo->uploaded) {
+        $photo->file_new_name_body = $_POST['staff_code'];
+        $photo->image_convert = "png";
+        $photo->image_resize = true;
+        $photo->image_x = 150;
+        $photo->image_y = 150;
+        $photo->image_ratio_no_zoom_in = true;
+        $photo->image_ratio_fill = true;
+        $photo->file_overwrite = true;
+        $photo->Process(_PATH_IMAGE."/staff/");
+      }
+    }
+    
     $this->forward("staff");
   }
   public function deleting() {

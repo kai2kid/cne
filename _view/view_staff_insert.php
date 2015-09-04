@@ -3,7 +3,7 @@
   <h3 class="panel-title">Add Staff</h3>
 </div>
 <div class="panel-body">
-  <form class="form-horizontal" action="staff_inserting" method="post">
+  <form class="form-horizontal" action="staff_inserting" method="post" enctype="multipart/form-data">
     <div class="row">
 		<div class="col-md-8" style="margin-left: 13px;">
 			<div class="form-group">
@@ -41,9 +41,9 @@
 			</div>
 		</div>
 		<div class="col-md-3">
-			<img class="img-photo" src="<?php echo _PATH_IMAGE?>dummy-user.png" height="150px" >
+			<img class="img-photo" src="<?php echo _PATH_IMAGE?>user.png" height="150px" >
 			<span class="btn btn-default btn-file">
-				Browse <input type="file">
+				Browse <input type="file" name="photo">
 			</span>
 		</div>
 	</div>

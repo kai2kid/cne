@@ -93,6 +93,20 @@
   $_menu["quotation"] = $tmp;
 
   $tmp = new configMenu();
+  $tmp->text = "Manage";
+  $tmp->role = "admin";
+  $tmp->url = "quotation";
+  $tmp->onclick = "";
+  $_menu["quotation"]->submenu["Manage"] = $tmp;
+
+  $tmp = new configMenu();
+  $tmp->text = "Proposal";
+  $tmp->role = "admin";
+  $tmp->url = "quotation_proposal";
+  $tmp->onclick = "";
+  $_menu["quotation"]->submenu["Proposal"] = $tmp;
+
+  $tmp = new configMenu();
   $tmp->text = "Booking";
   $tmp->role = "admin";
   $tmp->url = "booking";
