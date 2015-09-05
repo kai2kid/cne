@@ -149,7 +149,7 @@
 }
 
 .quotation-body{
-	display:none;
+	
 }
 
 .s-h-quotation{
@@ -169,3 +169,14 @@ input[type="number"]{
     border: none !important;    
 }
 
+.not-show{
+	display: none;
+}
+
+.template-route{
+	display: none;
+}
+
+.num{
+	text-align: right;
+}
