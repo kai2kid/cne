@@ -17,10 +17,10 @@
       <tr>
         <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>
-        <th>ID Number</th>
+        <th>Korean</th>
+        <th>Nickname</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>Country</th>
         <th>City</th>
       </tr>
     </thead>
@@ -28,10 +28,10 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>
-        <th>ID Number</th>
+        <th>Korean</th>
+        <th>Nickname</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>Country</th>
         <th>City</th>
       </tr>
     </tfoot>
@@ -44,10 +44,10 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('guide','delete','<?php echo $data["guide_code"]; ?>')" />
           </td>
           <td><?php echo $data["guide_name"]; ?></td>
-          <td><?php echo $data["guide_id_no"]; ?></td>
+          <td><?php echo $data["guide_name_korean"]; ?></td>
+          <td><?php echo $data["guide_nickname"]; ?></td>
           <td><?php echo $data["guide_hp"]; ?></td>
           <td><?php echo $data["guide_email"]; ?></td>
-		      <td><?php echo $data["guide_country"]; ?></td>
           <td><?php echo $data["guide_city"]; ?></td>          
       </tr>
       <?php } ?>      

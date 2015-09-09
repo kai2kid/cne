@@ -21,4 +21,5 @@ global $q;
 
 
 date_default_timezone_set("asia/jakarta"); // set timezone
+header('Content-type: text/html; charset=UTF-8;');
 ?>

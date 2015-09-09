@@ -13,7 +13,7 @@
     <div class="form-group">
       <label for="location_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
       <div class="col-md-5">
-        <input name="location_name_korean" type="text" class="form-control" id="location_name_korean" placeholder="이름">
+        <input name="location_name_korean" type="text" class="form-control" id="location_name_korean" placeholder="&#51060;&#47492;">
       </div>
     </div>    	
     <div class="form-group">

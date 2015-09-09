@@ -21,7 +21,7 @@
 				  <div class="form-group">
 					<label for="guide_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
 					<div class="col-md-6">
-					  <input name="guide_name_korean" type="text" class="form-control" id="guide_name_korean" placeholder="이름" value="<?php echo $data['guide_name_korean']; ?>">
+					  <input name="guide_name_korean" type="text" class="form-control" id="guide_name_korean" placeholder="&#51060;&#47492;" value="<?php echo $data['guide_name_korean']; ?>">
 					</div>
 				  </div>
 				  <div class="form-group">

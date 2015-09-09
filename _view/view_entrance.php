@@ -1,6 +1,6 @@
 <div class="bs-callout bs-callout-info">
   <div class="collapse navbar-collapse" style="padding-left:0px;">
-    <label class="title">Master entrance</label>
+    <label class="title">Master Entrance</label>
     <ul class="nav navbar-nav navbar-right">
           <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('entrance','insert')">Add</button></li>
           <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('entrance','update')" disabled>Update</button></li>-->
@@ -18,18 +18,18 @@
       <tr>
         <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>        
+        <th>Korean</th>        
         <th>Location</th>
         <th>Phone</th>
-        <th>Email</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
+        <th>Korean</th>        
         <th>Location</th>
         <th>Phone</th>
-        <th>Email</th>
       </tr>
     </tfoot>
     
@@ -41,9 +41,9 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('entrance','delete','<?php echo $data["entrance_code"]; ?>')" />
           </td>
           <td><?php echo $data["entrance_name"]; ?></td>          
+          <td><?php echo $data["entrance_name_korean"]; ?></td>          
           <td><?php echo $data["location_name"]; ?></td>
           <td><?php echo $data["entrance_phone"]; ?></td>
-          <td><?php echo $data["entrance_email"]; ?></td>          
       </tr>
       <?php } ?>      
     </tbody>    

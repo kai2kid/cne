@@ -10,7 +10,7 @@
         <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name">
       </div>
 	  <div class="col-md-4 no-pad-l">
-        <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="이름">
+        <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="&#51060;&#47492;">
       </div>
     </div>         
 	<div class="form-group">

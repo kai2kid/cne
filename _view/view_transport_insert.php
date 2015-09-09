@@ -11,6 +11,12 @@
       </div>
     </div>    		
     <div class="form-group">
+      <label for="transport_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+      <div class="col-md-5">
+        <input name="transport_name_korean" type="text" class="form-control" id="transport_name_korean" placeholder="&#51060;&#47492;">
+      </div>
+    </div>              
+    <div class="form-group">
       <label for="transport_phone" class="control-label col-md-3 no-pad-r">Contact Number</label>
       <div class="col-md-3 no-pad-r" style="padding-right:5px;">
         <input name="transport_phone" type="text" class="form-control" id="transport_phone" placeholder="Handphone">

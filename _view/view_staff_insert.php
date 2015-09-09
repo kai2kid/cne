@@ -15,7 +15,7 @@
 			<div class="form-group">
 			  <label for="staff_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
 			  <div class="col-md-6">
-				<input name="staff_name_korean" type="text" class="form-control" id="staff_name_korean" placeholder="이름">
+				<input name="staff_name_korean" type="text" class="form-control" id="staff_name_korean" placeholder="&#51060;&#47492;">
 			  </div>
 			</div>
 			<div class="form-group">

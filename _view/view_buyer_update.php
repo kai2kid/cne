@@ -12,12 +12,18 @@
 						  <input name="buyer_code" type="text" class="form-control" id="buyer_code" value="<?php echo $data['buyer_code']; ?>" readonly>
 						</div>
 					  </div>
-					  <div class="form-group">
-						<label for="buyer_name" class="control-label col-md-4 no-pad-r">Name</label>
-						<div class="col-md-5">
-						  <input name="buyer_name" type="text" class="form-control" id="buyer_name" placeholder="Name" value="<?php echo $data['buyer_name']; ?>">
-						</div>
-					  </div>     
+				<div class="form-group">
+				  <label for="buyer_name" class="control-label col-md-4 no-pad-r">Name</label>
+				  <div class="col-md-5">
+					  <input name="buyer_name" type="text" class="form-control" id="buyer_name" placeholder="Name" value="<?php echo $data['buyer_name']; ?>">
+				  </div>
+				</div>     
+        <div class="form-group">
+          <label for="buyer_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
+          <div class="col-md-5">
+            <input name="buyer_name_korean" type="text" class="form-control" id="buyer_name_korean" placeholder="&#51060;&#47492;" value="<?php echo $data['buyer_name_korean']; ?>">
+          </div>
+        </div>    
 					<div class="form-group">
 					  <label for="buyer_type" class="control-label col-md-4 no-pad-r">Type</label>
 					  <div class="col-md-4">

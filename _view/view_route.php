@@ -20,9 +20,9 @@
         <!--<th>Path</th>-->
         <th>1-4 Pax</th>       
         <th>5-9 Pax</th>       
-        <th>10-14 Pax</th>       
-        <th>15-19 Pax</th>       
-        <th>20-42 Pax</th>       
+        <th>10-13 Pax</th>       
+        <th>14-17 Pax</th>       
+        <th>18-42 Pax</th>       
       </tr>
     </thead>
     <tfoot>
@@ -32,9 +32,9 @@
         <!--<th>Path</th>       -->
         <th>1-4 Pax</th>       
         <th>5-9 Pax</th>       
-        <th>10-14 Pax</th>       
-        <th>15-19 Pax</th>       
-        <th>20-42 Pax</th>       
+        <th>10-13 Pax</th>       
+        <th>14-17 Pax</th>       
+        <th>18-42 Pax</th>       
       </tr>
     </tfoot>
     

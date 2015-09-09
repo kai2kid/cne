@@ -17,6 +17,7 @@
       <tr>
         <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>
+        <th>Korean</th>
         <th>Type</th>
         <th>Phone</th>
         <th>Email</th>
@@ -28,6 +29,7 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>
+        <th>Korean</th>
         <th>Type</th>
         <th>Phone</th>
         <th>Email</th>
@@ -44,6 +46,7 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('buyer','delete','<?php echo $data["buyer_code"]; ?>')" />
           </td>
           <td><?php echo $data["buyer_name"]; ?></td>
+          <td><?php echo $data["buyer_name_korean"]; ?></td>
           <td><?php echo $data["buyer_type"]; ?></td>
           <td><?php echo $data["buyer_phone"]; ?></td>
           <td><?php echo $data["buyer_email"]; ?></td>          

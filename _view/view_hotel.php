@@ -12,12 +12,16 @@
         
   <div class="vs-s"></div>    
 
+  <?php
+    
+  ?>
 <!--  <table class="tableList">-->
   <table class="table table-striped table-bordered table-font datatable" cellspacing="0" width="100%" id="table_master">
     <thead>
       <tr>
         <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>        
+        <th>Korean</th>        
         <th>Location</th>
         <th>Phone</th>
         <th>Email</th>
@@ -28,6 +32,7 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>        
+        <th>Korean</th>        
         <th>Location</th>
         <th>Phone</th>
         <th>Email</th>
@@ -43,6 +48,7 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('hotel','delete','<?php echo $data["hotel_code"]; ?>')" />
           </td>
           <td><?php echo $data["hotel_name"]; ?></td>          
+          <td><?php echo $data["hotel_name_korean"]; ?></td>          
           <td><?php echo $data["location_name"]; ?></td>
           <td><?php echo $data["hotel_phone"]; ?></td>
           <td><?php echo $data["hotel_email"]; ?></td>          

@@ -62,19 +62,19 @@
       </div>
     </div>      
     <div class="form-group">
-      <label for="route_cost3" class="control-label col-md-3 no-pad-r">10-14 Pax</label>
+      <label for="route_cost3" class="control-label col-md-3 no-pad-r">10-13 Pax</label>
       <div class="col-md-5">
         <input name="route_cost3" type="number" class="form-control" id="route_cost3" placeholder="Price">
       </div>
     </div>      
     <div class="form-group">
-      <label for="route_cost4" class="control-label col-md-3 no-pad-r">15-19 Pax</label>
+      <label for="route_cost4" class="control-label col-md-3 no-pad-r">14-17 Pax</label>
       <div class="col-md-5">
         <input name="route_cost4" type="number" class="form-control" id="route_cost4" placeholder="Price">
       </div>
     </div>      
     <div class="form-group">
-      <label for="route_cost5" class="control-label col-md-3 no-pad-r">20-42 Pax</label>
+      <label for="route_cost5" class="control-label col-md-3 no-pad-r">18-42 Pax</label>
       <div class="col-md-5">
         <input name="route_cost5" type="number" class="form-control" id="route_cost5" placeholder="Price">
       </div>

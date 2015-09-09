@@ -12,6 +12,12 @@
 					<input name="buyer_name" type="text" class="form-control" id="buyer_name" placeholder="Name">
 				  </div>
 				</div>    
+        <div class="form-group">
+          <label for="buyer_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
+          <div class="col-md-5">
+            <input name="buyer_name_korean" type="text" class="form-control" id="buyer_name_korean" placeholder="&#51060;&#47492;">
+          </div>
+        </div>    
 				<div class="form-group">
 				  <label for="buyer_type" class="control-label col-md-4 no-pad-r">Type</label>
 				  <div class="col-md-4">

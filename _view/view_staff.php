@@ -17,10 +17,10 @@
       <tr>
         <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>
+        <th>Korean</th>
         <th>Position</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>City</th>
         <th>Country</th>
       </tr>
     </thead>
@@ -28,10 +28,10 @@
       <tr>
         <th class="no-sort" width="25px">&nbsp;</th>
         <th>Name</th>
+        <th>Korean</th>
         <th>Position</th>
         <th>Handphone</th>
         <th>Email</th>
-        <th>City</th>
         <th>Country</th>
       </tr>
     </tfoot>
@@ -44,10 +44,10 @@
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('staff','delete','<?php echo $data["staff_code"]; ?>')" />
           </td>
           <td><?php echo $data["staff_name"]; ?></td>
+          <td><?php echo $data["staff_name_korean"]; ?></td>
           <td><?php echo $data["staff_position"]; ?></td>
           <td><?php echo $data["staff_hp"]; ?></td>
           <td><?php echo $data["staff_email"]; ?></td>
-          <td><?php echo $data["staff_city"]; ?></td>
           <td><?php echo $data["staff_country"]; ?></td>
       </tr>
       <?php } ?>      

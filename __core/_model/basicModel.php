@@ -17,6 +17,7 @@ class basicModel extends model_iquery {
     if (is_null($this->db_pass)) $this->db_pass = _DB_PASS;
     if (is_null($this->db_name)) $this->db_name = _DB_NAME;
     $this->link = mysqli_connect($this->db_host,$this->db_user,$this->db_pass,$this->db_name) or die ("<p style='background-color:red;color:white;font-size:14pt;padding:5px 0;text-align:center;font-weight:bold;'>Failed trying to connect to <u>" . $this->db_host . "</u>!</p>");
+    $this->link->set_charset("EUC");
   }
   static public function staticInit() {
     $qry = "SHOW FULL COLUMNS FROM ".self::$tb_name.";";
