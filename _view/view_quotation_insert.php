@@ -160,7 +160,7 @@
 												<td align='right'>
 													<label class='control-label'>D1</label>
 												</td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_1'); ?></td>
+												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_1',"",1); ?></td>
 												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_2'); ?></td>
 												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_3'); ?></td>
 											</tr>                    							  
@@ -202,12 +202,18 @@
 										<input name='other_1_2' id='other_1_2' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
 									</div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_1_3' id='other_1_3' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
+                  </div>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-										<input name='other_1_3' id='other_1_3' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
+										<input name='other_1_31' id='other_1_31' type='text' class='form-control' value="PAX">
 									</div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_1_4' id='other_1_4' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
+                  </div>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-										<input name='other_1_4' id='other_1_4' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
+                    <input name='other_1_41' id='other_1_41' type='text' class='form-control' value="DAY">
 									</div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
@@ -227,10 +233,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_2_3' id='other_2_3' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_2_31' id='other_2_31' type='text' class='form-control' value="PAX">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_2_4' id='other_2_4' type='number' class='form-control num' value="0" onchange="calculateOther(2)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_2_41' id='other_2_41' type='text' class='form-control' value="DAY">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_2_5' id='other_2_5' type='number' class='form-control num' value="0" readonly>
@@ -249,10 +261,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_3_3' id='other_3_3' type='number' class='form-control num' value="0" onchange="calculateOther(3)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_3_31' id='other_3_31' type='text' class='form-control' value="PAX">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_3_4' id='other_3_4' type='number' class='form-control num' value="0" onchange="calculateOther(3)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_3_41' id='other_3_41' type='text' class='form-control' value="TIME">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_3_5' id='other_3_5' type='number' class='form-control num' value="0" readonly>
@@ -271,10 +289,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_4_3' id='other_4_3' type='number' class='form-control num' value="0" onchange="calculateOther(4)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_4_31' id='other_4_31' type='text' class='form-control' value="RM">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_4_4' id='other_4_4' type='number' class='form-control num' value="0" onchange="calculateOther(4)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_4_41' id='other_4_41' type='text' class='form-control' value="NTS">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_4_5' id='other_4_5' type='number' class='form-control num' value="0" readonly>
@@ -293,10 +317,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_5_3' id='other_5_3' type='number' class='form-control num' value="0" onchange="calculateOther(5)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_5_31' id='other_5_31' type='text' class='form-control' value="PAX">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_5_4' id='other_5_4' type='number' class='form-control num' value="0" onchange="calculateOther(5)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_5_41' id='other_5_41' type='text' class='form-control' value="TIME">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_5_5' id='other_5_5' type='number' class='form-control num' value="0" readonly>
@@ -315,18 +345,22 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_6_3' id='other_6_3' type='number' class='form-control num' value="0" onchange="calculateOther(6)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_6_31' id='other_6_31' type='text' class='form-control' value="COACH">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_6_4' id='other_6_4' type='number' class='form-control num' value="0" onchange="calculateOther(6)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_6_41' id='other_6_41' type='text' class='form-control' value="TIME">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_6_5' id='other_6_5' type='number' class='form-control num' value="0" readonly>
 									</div>						  									
 								</div>
-								
-								<br><br>
-								
+								       
 								<div class='form-group'>									
 									<div class='col-md-2 no-pad-r' >
 										<input name='other_7_1' id='other_7_1' type='text' class='form-control'>
@@ -339,10 +373,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_7_3' id='other_7_3' type='number' class='form-control num' value="0" onchange="calculateOther(7)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_7_31' id='other_7_31' type='text' class='form-control' value="">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_7_4' id='other_7_4' type='number' class='form-control num' value="0" onchange="calculateOther(7)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_7_41' id='other_7_41' type='text' class='form-control' value="">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_7_5' id='other_7_5' type='number' class='form-control num' value="0" readonly>
@@ -361,10 +401,16 @@
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_8_3' id='other_8_3' type='number' class='form-control num' value="0" onchange="calculateOther(8)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_8_31' id='other_8_31' type='text' class='form-control' value="">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
 									<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
 										<input name='other_8_4' id='other_8_4' type='number' class='form-control num' value="0" onchange="calculateOther(8)">
 									</div>
+                  <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                    <input name='other_8_41' id='other_8_41' type='text' class='form-control' value="">
+                  </div>
 									<label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
 									<div class='col-md-2 no-pad-l'>
 										<input name='other_8_5' id='other_8_5' type='number' class='form-control num' value="0" readonly>

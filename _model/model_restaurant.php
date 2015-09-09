@@ -60,7 +60,7 @@ class model_restaurant extends basicModel {
   public function _combobox($name,$selected = "") {
     return HTML::combobox(fetchDataset($this->data,"restaurant_code","restaurant_name"),["name"=>$name,"class"=>"form-control min-padding combobox"],$selected);
   }
-  public function _comboboxMeal($name,$selected = "") {
+  public function _comboboxMeal($name,$selected = "",$isbreakfast = 0) {
     $qry = "
       SELECT r.restaurant_code, r.restaurant_location, r.restaurant_name, m.menu_code, m.menu_name
       FROM restaurant r
@@ -70,6 +70,9 @@ class model_restaurant extends basicModel {
     $rows = $this->query($qry);
     $ret = "<select id='$name' name='$name' class='form-control min-padding combobox'>";
     $ret .= "<option name='-' value=''></option>";
+    if ($isbreakfast) {
+      $ret .= "<option name='*' value='ABF'>Hotel ABF</option>";
+    }
     foreach($rows as $row) {
       $ret .= "<option name='".$row['restaurant_location']."' value='".$row['menu_code']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['menu_name'] . " - " . $row['restaurant_name'] ."</option>";
     }

@@ -200,6 +200,7 @@ class model_quotation extends basicModel {
         $ret = 0;
       }
     } 
+    $ret = 1;
     return $ret;
   }
   public function modifyEntrance($data) {

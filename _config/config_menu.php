@@ -86,12 +86,19 @@
   $_menu["master"]->submenu["route"] = $tmp;
   
   $tmp = new configMenu();
+  $tmp->text = "Config";
+  $tmp->role = "admin";
+  $tmp->url = "config";
+  $tmp->onclick = "";
+  $_menu["master"]->submenu["config"] = $tmp;
+  
+  $tmp = new configMenu();
   $tmp->text = "Quotation";
   $tmp->role = "admin";
   $tmp->url = "quotation";
   $tmp->onclick = "";
   $_menu["quotation"] = $tmp;
-
+/*/
   $tmp = new configMenu();
   $tmp->text = "Manage";
   $tmp->role = "admin";
@@ -105,6 +112,7 @@
   $tmp->url = "quotation_proposal";
   $tmp->onclick = "";
   $_menu["quotation"]->submenu["Proposal"] = $tmp;
+/*/
 
   $tmp = new configMenu();
   $tmp->text = "Booking";

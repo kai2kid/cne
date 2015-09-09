@@ -75,7 +75,7 @@ class controller_quotation extends basicController {
   public function insertTransport() {    
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
-    if ($q->modifyTransport($_REQUEST)) {
+    if ($q->modifyTransport($_REQUEST) && $q->modifyRundown($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);

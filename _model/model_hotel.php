@@ -81,7 +81,7 @@ class model_hotel extends basicModel {
   public function _combobox($name,$selected = "",$type = "") {
     $qry_type = ($type != "" ? "WHERE hotel_type = '$type'" : "");
     $qry = "
-      SELECT hotel_code, hotel_name, hotel_location
+      SELECT hotel_code, hotel_name, hotel_location, hotel_level
       FROM hotel
       $qry_type
       ORDER BY hotel_name ASC
@@ -91,7 +91,7 @@ class model_hotel extends basicModel {
     $ret .= "<option name='-' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['hotel_code'] ? "selected" : "");
-      $ret .= "<option name='".$row['hotel_location']."' value='".$row['hotel_code']."' $s>".$row['hotel_name']."</option>";
+      $ret .= "<option name='".$row['hotel_location']."' value='".$row['hotel_code']."' $s>[".$row['hotel_level']." Star] ".$row['hotel_name']."</option>";
     }
     $ret .= "</select>";
     return $ret;
