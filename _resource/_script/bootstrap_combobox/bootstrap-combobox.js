@@ -40,6 +40,7 @@
     this.refresh();
     this.transferAttributes();
     this.listen();
+	this.myVar = false;
   };
 
   Combobox.prototype = {
@@ -98,6 +99,7 @@
         this.$container.addClass('combobox-selected');
         this.selected = true;
       }
+	  
       return source;
     }
 
@@ -117,13 +119,13 @@
       this.disable();
   }
 
-  , select: function () {
+  , select: function () {	  
       var val = this.$menu.find('.active').attr('data-value');
       this.$element.val(this.updater(val)).trigger('change');
       this.$target.val(this.map[val]).trigger('change');
       this.$source.val(this.map[val]).trigger('change');
       this.$container.addClass('combobox-selected');
-      this.selected = true;
+      this.selected = true;	  
       return this.hide();
     }
 
@@ -372,8 +374,8 @@
 
         case 9: // tab
         case 13: // enter
-          if (!this.shown) {return;}
-          this.select();
+          if (!this.shown) {return;}		  
+          this.select();		  
           break;
 
         case 27: // escape
@@ -394,17 +396,18 @@
       this.focused = true;
     }
 
-  , blur: function (e) {
+  , blur: function (e) {		
       var that = this;
       this.focused = false;
-      var val = this.$element.val();
-	  this.$target.val(val);
-      /*if (!this.selected && val !== '' ) {
-        this.$element.val('');
-        this.$source.val('').trigger('change');
-        this.$target.val('').trigger('change');
-      }*/
-      //if (!this.mousedover && this.shown) {setTimeout(function () { that.hide(); }, 200);}
+      var val = this.$element.val();	  
+      
+	  var temp = this.$menu.find('.active').attr('data-value');	 
+	  
+	  if (temp!=val){
+		this.$target.val(val);
+	  }
+  	  
+      that.hide();
     }
 
   , click: function (e) {
@@ -420,8 +423,8 @@
       $(e.currentTarget).addClass('active');
     }
 
-  , mouseleave: function (e) {
-      this.mousedover = false;
+  , mouseleave: function (e) {      
+	  this.mousedover = false;
     }
   };
 
