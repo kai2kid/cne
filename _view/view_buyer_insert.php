@@ -47,10 +47,17 @@
 				</div>      
 			</div>
 			<div class="col-md-3">
-				<img class="img-photo" src="<?php echo _PATH_IMAGE?>user.png" height="150px" >
-				<span class="btn btn-default btn-file">
-					Browse <input type="file" name="photo">
-				</span>
+				<div class="row">
+					<div class="col-md-12"><img class="img-photo" src="<?php echo _PATH_IMAGE?>user.png" height="150px" ></div>
+				</div>
+				<div class="row" style="margin-top:10px;">
+					<div class="col-md-3">						
+						<input type="file" class="btn btn-default btn-file" name="photo" id="photo" value="Browse" style="visibility: hidden">
+					</div>					
+					<div class="col-md-4">
+						<input type="button" class="btn btn-default btn-file" value="Browse" onclick="$('#photo').click();">						
+					</div>
+				</div>													
 			</div>
 		  </div>
 			
