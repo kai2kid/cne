@@ -398,12 +398,13 @@
       var that = this;
       this.focused = false;
       var val = this.$element.val();
-      if (!this.selected && val !== '' ) {
+	  this.$target.val(val);
+      /*if (!this.selected && val !== '' ) {
         this.$element.val('');
         this.$source.val('').trigger('change');
         this.$target.val('').trigger('change');
-      }
-      if (!this.mousedover && this.shown) {setTimeout(function () { that.hide(); }, 200);}
+      }*/
+      //if (!this.mousedover && this.shown) {setTimeout(function () { that.hide(); }, 200);}
     }
 
   , click: function (e) {
