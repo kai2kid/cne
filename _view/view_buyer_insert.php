@@ -1,9 +1,8 @@
 <div class="bs-callout bs-callout-info">
-  <div class="collapse navbar-collapse" style="padding-left:0px;">
-    <label class="title">Add Buyer</label>
-	
+  <div class="collapse navbar-collapse" style="padding-left:0px;">    	
 	<div class="row">
 		<div class="col-md-6">
+			<label class="title">Add Buyer</label>
 			<form class="form-horizontal" action="buyer_inserting" method="post">
 				<div class="form-group">
 				  <label for="buyer_name" class="control-label col-md-2 no-pad-r">Name</label>
