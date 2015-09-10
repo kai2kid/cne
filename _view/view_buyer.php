@@ -2,7 +2,8 @@
   <div class="collapse navbar-collapse" style="padding-left:0px;">
     <label class="title">Master Buyer</label>
     <ul class="nav navbar-nav navbar-right">
-          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('buyer','insert')">Add</button></li>
+          <!--<li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('buyer','insert')">Add</button></li>-->
+		  <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="navigate('buyer_formInsert')">Add</button></li>
           <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('buyer','update')" disabled>Update</button></li>-->
           <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('buyer','delete')" disabled>Delete</button></li>-->
     </ul>

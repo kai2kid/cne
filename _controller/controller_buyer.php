@@ -2,11 +2,18 @@
 class controller_buyer extends basicController {
   public function __construct() {
     parent::__construct();
+	$_SESSION[_SESSION_MENU_ACTIVE] = "master";   
   }
   public function index() {
     $param['model'] = new model_buyer();
     $this->loadView("buyer",$param);
   }
+  
+  public function formInsert() {
+    $param['model'] = new model_buyer();    
+	$this->loadView("buyer_insert",$param);
+  }
+  
   public function insertAjaxForm() {
     $o['html'] = $this->bufferView("buyer_insert");
     $this->output_json($o);
