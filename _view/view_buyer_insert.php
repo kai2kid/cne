@@ -92,31 +92,31 @@
 						<div class="col-md-8">						
 								<form name="formInsertPIC" id="formInsertPIC" class="form-horizontal" action="buyer_insertPIC" method="post" onsubmit="buyerSubmitForm(this.id);return false;">
 									<div class="form-group">
-									  <label for="pic_name" class="control-label col-md-3 no-pad-r">Name</label>
+									  <label for="pic_name" class="control-label col-md-4 no-pad-r">Name</label>
 									  <div class="col-md-8">
 										<input name="pic_name" type="text" class="form-control" id="pic_name" placeholder="PIC Name">
 									  </div>            
 									</div>	 
 									<div class="form-group">
-									  <label for="pic_name_korean" class="control-label col-md-3 no-pad-r">Korean Name</label>
+									  <label for="pic_name_korean" class="control-label col-md-4 no-pad-r">Korean Name</label>
 									  <div class="col-md-8">
 										<input name="pic_name_korean" type="text" class="form-control" id="pic_name_korean" placeholder="&#51060;&#47492;">
 									  </div>            
 									</div>	  
 									<div class="form-group">
-									  <label for="pic_email" class="control-label col-md-3 no-pad-r">Email</label>
+									  <label for="pic_email" class="control-label col-md-4 no-pad-r">Email</label>
 									  <div class="col-md-8">
 										<input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email">
 									  </div>            
 									</div>	  
 									<div class="form-group">
-									  <label for="pic_phone" class="control-label col-md-3 no-pad-r">Phone</label>
+									  <label for="pic_phone" class="control-label col-md-4 no-pad-r">Phone</label>
 									  <div class="col-md-6">
 										<input name="pic_phone" type="email" class="form-control" id="pic_phone" placeholder="Phone">
 									  </div>            
 									</div>
 									<div class="form-group">
-									  <label for="pic_fax" class="control-label col-md-3 no-pad-r">Fax.</label>
+									  <label for="pic_fax" class="control-label col-md-4 no-pad-r">Fax.</label>
 									  <div class="col-md-6">
 										<input name="pic_fax" type="email" class="form-control" id="pic_fax" placeholder="Fax.">
 									  </div>            
