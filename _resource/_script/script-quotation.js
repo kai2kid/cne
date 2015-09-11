@@ -99,7 +99,8 @@ function addDayRoute(induk, nomor){
 	elBaru.find("label[id='lbl_INDUK']").attr("id" , "lbl_"+induk);
 		
 	elBaru.find(".input-transport").find(".combobox-container").remove();
-	elBaru.find(".input-transport").find("select").attr('id', "route_"+induk);	
+  elBaru.find(".input-transport").find("select").attr('id', "route_"+induk);  
+	elBaru.find(".input-transport").find("select").attr('name', "route_"+induk);	
 	elBaru.find(".input-transport").find("select").combobox();
 	elBaru.find(".input-transport").find("input[type='hidden']").attr("name", "route_"+induk);	
 	elBaru.find(".input-transport").find("input[type='hidden']").attr("onchange", "changeRoute('"+induk+"')");
@@ -174,7 +175,7 @@ function removeTime(induk, nomor)
 
 function calculateOther(idx){
 	hasil = parseInt($("#other_"+idx+"_2").val())*parseInt($("#other_"+idx+"_3").val())*parseInt($("#other_"+idx+"_4").val());
-	$("#other_"+idx+"_5").val(hasil);
+	$("#other_"+idx+"_5").val(addCommas(hasil));
 }
 
 function changeRoute(no)
@@ -217,4 +218,3 @@ function changeRoute(no)
 	
 	//FILTER ENTRANCE EVERY PATH
 }
-

@@ -11,7 +11,7 @@ class controller_buyer extends basicController {
   
   public function formInsert() {
     $param['model'] = new model_buyer();    
-	$this->loadView("buyer_insert",$param);
+	  $this->loadView("buyer_insert",$param);
   }
   
   public function insertAjaxForm() {

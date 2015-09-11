@@ -2,8 +2,8 @@
   <div class="collapse navbar-collapse" style="padding-left:0px;">
     <label class="title">Master Buyer</label>
     <ul class="nav navbar-nav navbar-right">
-          <!--<li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('buyer','insert')">Add</button></li>-->
-		  <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="navigate('buyer_formInsert')">Add</button></li>
+          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('buyer','insert')">Add</button></li>
+<!--		  <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="navigate('buyer_formInsert')">Add</button></li>-->
           <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('buyer','update')" disabled>Update</button></li>-->
           <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('buyer','delete')" disabled>Delete</button></li>-->
     </ul>
@@ -22,20 +22,18 @@
         <th>Type</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Country</th>
-        <th>City</th>
+        <th>Location</th>
       </tr>
     </thead>
     <tfoot>
       <tr>
-        <th class="no-sort" width="25px">&nbsp;</th>
+        <th class="no-sort" width="30px">&nbsp;</th>
         <th>Name</th>
         <th>Korean</th>
         <th>Type</th>
         <th>Phone</th>
         <th>Email</th>
-        <th>Country</th>
-        <th>City</th>
+        <th>Location</th>
       </tr>
     </tfoot>
     
@@ -48,11 +46,10 @@
           </td>
           <td><?php echo $data["buyer_name"]; ?></td>
           <td><?php echo $data["buyer_name_korean"]; ?></td>
-          <td><?php echo $data["buyer_type"]; ?></td>
+          <td><?php echo ($data["buyer_type"] == 1 ? "Company" : "Personal"); ?></td>
           <td><?php echo $data["buyer_phone"]; ?></td>
           <td><?php echo $data["buyer_email"]; ?></td>          
-          <td><?php echo $data["buyer_country"]; ?></td>
-		  <td><?php echo $data["buyer_city"]; ?></td>
+          <td><?php echo $data["buyer_country"] . "-" . $data["buyer_city"]; ?></td>
       </tr>
       <?php } ?>      
     </tbody>    

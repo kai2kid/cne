@@ -28,7 +28,7 @@
           <td>
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="navigate('quotation~<?php echo $data["quotation_code"]; ?>_formUpdate')" /> &nbsp;
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('quotation','delete','<?php echo $data["quotation_code"]; ?>')" />
-			<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_view.png" onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_preview');" />
+			<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_view.png" onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_calculation');" />
 			<img class='img_button' src="<?php echo _PATH_IMAGE?>icon_proposal.png" onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_proposal');" />
             <!--<button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_preview');">Preview</button>
             <button onclick="window.open('quotation~<?php echo $data["quotation_code"]; ?>_proposal');">Proposal</button>-->

@@ -128,3 +128,49 @@ function quotationFilterCombobox(name,location) {
   $("#"+nama).children("*").hide();
   $("#"+nama).children("."+location).show();
 }
+
+function saveasnew() {
+  if (confirm("Are you sure want to save as new quotation with title:\n"+$("#quotation_name").val())) {
+    var newcode = $("#quotation_code2").val();
+    var key;
+    var formid= [];
+    formid["header"] = "formInsertHeader";
+    //formid["transport"] = "formInsertTransport";
+    formid["hotel"] = "formInsertHotel";
+    formid["meal"] = "formInsertMeal";
+    formid["other"] = "formInsertOther";
+    
+    for (key in formid) {
+      f = $("#"+formid[key]);
+      alert(f.attr("action"));
+      $.ajax({
+        type : "POST",
+        url: f.attr("action"),
+        data: f.serialize() + "&quotation_code=" + newcode,
+        success: function(data){
+          alert("buyar");
+          if(data.result == 1) {
+            alert("Data has been saved.");
+          } else {
+            alert("Data cannot be saved.");
+            alert(f.serialize() + "&quotation_code=" + newcode);
+          }
+        },
+        async:false
+      });      
+    }
+    //window.location = "quotation~"+newcode+"_formUpdate";
+  }
+}
+
+function addCommas(nStr) {
+    nStr += '';
+    var x = nStr.split('.');
+    var x1 = x[0];
+    var x2 = x.length > 1 ? '.' + x[1] : '';
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(x1)) {
+        x1 = x1.replace(rgx, '$1' + ',' + '$2');
+    }
+    return x1 + x2;
+}
