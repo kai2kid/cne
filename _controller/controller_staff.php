@@ -57,7 +57,7 @@ class controller_staff extends basicController {
     $update['staff_updated_name'] = $_SESSION[_SESSION_USER];
     $model->updating($update);
     
-    if (isset($_FILES['photo']) && $_FILES['photo'] != "") {
+    if (isset($_FILES['photo']) && $_FILES['photo'] != "") {  
       $photo = new Upload($_FILES['photo']); 
       if ($photo->uploaded) {
         $photo->file_new_name_body = $_POST['staff_code'];

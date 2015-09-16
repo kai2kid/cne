@@ -2,8 +2,7 @@
   <div class="collapse navbar-collapse" style="padding-left:0px;">
     <label class="title">Master Buyer</label>
     <ul class="nav navbar-nav navbar-right">
-          <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="loadForm('buyer','insert')">Add</button></li>
-<!--		  <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="navigate('buyer_formInsert')">Add</button></li>-->
+		  <li><button id="btnInsert" class="btn-sm btn-primary hs-s" data-toggle="modal" data-target="#formInsert" onclick="navigate('buyer_formInsert')">Add</button></li>
           <!--<li><button id="btnUpdate" class="btn-sm btn-success hs-s" data-toggle="modal" data-target="#formUpdate" onclick="loadForm('buyer','update')" disabled>Update</button></li>-->
           <!--<li><button id="btnDelete" class="btn-sm btn-danger hs-s" data-toggle="modal" data-target="#formDelete" onclick="loadForm('buyer','delete')" disabled>Delete</button></li>-->
     </ul>
@@ -41,7 +40,7 @@
       <?php foreach($model->directory() as $data) { ?>
       <tr onclick="setID('<?php echo $data["buyer_code"]; ?>')">
           <td>
-            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="openForm('buyer','update','<?php echo $data["buyer_code"]; ?>')" /> &nbsp;
+            <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_edit.png" data-toggle="modal" data-target="#formUpdate" onclick="navigate('buyer_formUpdate~<?php echo $data["buyer_code"]; ?>')" /> &nbsp;
             <img class='img_button' src="<?php echo _PATH_IMAGE?>icon_delete.png" data-toggle="modal" data-target="#formDelete" onclick="openForm('buyer','delete','<?php echo $data["buyer_code"]; ?>')" />
           </td>
           <td><?php echo $data["buyer_name"]; ?></td>

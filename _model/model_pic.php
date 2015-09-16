@@ -13,14 +13,15 @@ class model_pic extends basicModel {
       $qry = "
         SELECT *
         FROM ".$this->tb_name."
-        WHERE pic_type_code = '".$this->id."'
+        WHERE pic_code = '".$this->id."'
+          AND pic_status > 0
       ";
       $this->data = $this->query_one($qry);
     } else {
       $qry = "
         SELECT *
         FROM ".$this->tb_name."
-        WHERE pic_type_code = '".$this->id."'
+        WHERE pic_status > 0
         ";
       $this->data = $this->query($qry);
     }
@@ -34,6 +35,10 @@ class model_pic extends basicModel {
   public function directory($param="") {
     return $this->data;
   }
+  public function directory2($code) {
+    $qry = "SELECT * FROM pic WHERE pic_status > 0 AND pic_type_code = '$code' ORDER BY pic_name";
+    return $this->query($qry);
+  }
   public function inserting($param) {
     $param['pic_code'] = $this->autogenerate();
     $param['pic_updated'] = date("Y-m-d H:i:s");
@@ -44,11 +49,11 @@ class model_pic extends basicModel {
   public function updating($param) {
     $param['pic_updated'] = date("Y-m-d H:i:s");
     $param['pic_updated_name'] = date("Y-m-d");
-    $ret = $this->update($this->tb_name,$param,"pic_type_code = '" . $this->id . "'");
+    $ret = $this->update($this->tb_name,$param,"pic_code = '" . $this->id . "'");
     return $ret;
   }
   public function deleting() {
-    $ret = $this->update($this->tb_name,array("pic_status"=>"0"),"pic_type_code = '" . $this->id."'");
+    $ret = $this->update($this->tb_name,array("pic_status"=>"0"),"pic_code = '" . $this->id."'");
     return $ret;
   }
 }

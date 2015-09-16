@@ -174,3 +174,32 @@ function addCommas(nStr) {
     }
     return x1 + x2;
 }
+
+function selectPIC(code) {
+  if (code != null) {
+    $("#pic_code").val(code);
+    $("#pic_name").val($("#picname_"+code).val());
+    $("#pic_name_korean").val($("#pickname_"+code).val());
+    $("#pic_phone").val($("#picphone_"+code).val());
+    $("#pic_email").val($("#picemail_"+code).val());
+    $("#pic_photo").attr("src","./_resource/_image/pic/"+code+".png?"+Math.random(9));
+    $("#pic_form_insert").hide();
+    $("#pic_form_update").show();
+  } else {
+    $("#pic_code").val("");
+    $("#pic_name").val("");
+    $("#pic_name_korean").val("");
+    $("#pic_phone").val("");
+    $("#pic_email").val("");
+    $("#pic_form_insert").show();
+    $("#pic_form_update").hide();
+    $("#pic_photo").attr("src","./_resource/_image/user.png");
+  }
+}
+function deletePIC(code) {
+  if (code != null) {
+    if (confirm("Are you sure want to delete this data?")) {
+      document.location = "buyer_deletePIC~"+code;
+    }
+  }
+}
