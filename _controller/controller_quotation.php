@@ -49,12 +49,12 @@ class controller_quotation extends basicController {
     $o['html'] = $this->bufferView("quotation_delete",$param);
     $this->output_json($o);
   }
-  public function preview() {
+  public function calculation() {
     $param['model'] = new model_quotation($this->id);    
-    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];
-    $param['rate'] = 0.0009;
+    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];    
+    $param['rate'] = (1 / $param['model']->detail["rate_USD"]);
     $param['data'] = "";
-    $this->loadView("quotation_preview",$param);
+    $this->loadView("quotation_calculation",$param);
   }
   public function proposal() {
     $param['model'] = new model_quotation($this->id);    
@@ -108,6 +108,14 @@ class controller_quotation extends basicController {
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
     if ($q->modifyRundown($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
+  public function insertOther() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyOther($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);

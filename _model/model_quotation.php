@@ -17,6 +17,8 @@ class model_quotation extends basicModel {
         WHERE quotation_code = '".$this->id."'
       ";
       $this->data = $this->query_one($qry);
+      $this->detail["rate_USD"] = $this->data['quotation_rate'];
+      
       
       $qry = "
         SELECT *
@@ -74,18 +76,19 @@ class model_quotation extends basicModel {
       foreach ($rows as $row) {
         $this->detail['restaurant'][$row['qday_day']][$row['qday_rest_type']] = $row;
       }
-      $this->detail['restaurant']['restaurant_price_low'] = 5000;
-      $this->detail['restaurant']['restaurant_price_standard'] = 10000;
-      $this->detail['restaurant']['restaurant_price_upgrade'] = 15000;
       
-      //Transport
+//      $this->detail['restaurant']['restaurant_price_low'] = 5000;
+//      $this->detail['restaurant']['restaurant_price_standard'] = 10000;
+//      $this->detail['restaurant']['restaurant_price_upgrade'] = 15000;
+      
+      //Route
       $qry = "
         SELECT *
         FROM quotation_day d
         LEFT JOIN qday_transport q ON d.qday_code = q.qday_code
-        LEFT JOIN transport t ON t.transport_code = q.transport_code
+        LEFT JOIN route r ON r.route_code = d.route_code
         WHERE d.quotation_code = '".$this->id."'
-        ORDER BY d.qday_day ASC, t.transport_name ASC
+        ORDER BY d.qday_day ASC
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
@@ -105,9 +108,20 @@ class model_quotation extends basicModel {
       foreach ($rows as $row) {
         $this->detail['entrance'][$row['qday_day']][] = $row;
       }
-      
-      
-      
+      //Other
+      $qry = "
+        SELECT *
+        FROM qday_other d
+        WHERE d.quotation_code = '".$this->id."'
+      ";
+      $rows = $this->query($qry);
+      $ctr = 0;
+      foreach ($rows as $row) {
+        $this->detail['other'][] = $row;
+        $ctr++;
+      }
+      $this->detail['other_count'] = $ctr;
+            
     } else {
       $qry = "
         SELECT *
@@ -115,7 +129,7 @@ class model_quotation extends basicModel {
         WHERE quotation_status > 0
         ";
       $this->data = $this->query($qry);
-    }
+    } 
   }
   public function autogenerate() {
     $qry = "SELECT MAX(RIGHT(quotation_code,4)) max_id FROM quotation WHERE quotation_code LIKE 'Q%'";
@@ -253,7 +267,7 @@ class model_quotation extends basicModel {
             $insert["qdetail_code"] = $code . str_pad($ctr,2,"0",STR_PAD_LEFT);            
             $insert["qdetail_time_start"] = $data["qtimeStart_".$prefix];
             $insert["qdetail_time_end"] = $data["qtimeEnd_".$prefix];
-            $insert["qdetail_title"] = $data["qremark_".$prefix];
+//            $insert["qdetail_title"] = $data["qremark_".$prefix];
             $insert["qdetail_status"] = "1";            
             if (!$this->insert($table,$insert)) $ret = 0;
           }
@@ -262,6 +276,31 @@ class model_quotation extends basicModel {
         $ret = 0;
       }
     } 
+    return $ret;
+  }
+  public function modifyOther($data) {
+    $ret = 1;
+    $table = "qday_other";    
+    $code = $data['quotation_code'];
+    $where = "quotation_code = '".$code."'";
+    if ($this->delete($table,$where)) {
+      $insert["quotation_code"] = $code;
+      for ($i=1 ; $i <= $data['other_count'] ; $i++) {
+        $prefix = "other_".$i."_";
+        if (isset($data[$prefix."1"])) {
+          $insert["other_text"] = $data[$prefix."1"];
+          $insert["other_price"] = $data[$prefix."2"];
+          $insert["other_satuan"] = $data[$prefix."3"];
+          $insert["other_satuan_text"] = $data[$prefix."31"];
+          $insert["other_times"] = $data[$prefix."4"];
+          $insert["other_times_text"] = $data[$prefix."41"];
+          $insert["other_subtotal"] = $insert["other_price"] * $insert["other_satuan"] * $insert["other_times"];
+          if (!$this->insert($table,$insert)) $ret = 0;
+        }
+      }
+    } else {
+      $ret = 0;
+    }
     return $ret;
   }
 }

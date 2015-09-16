@@ -166,7 +166,7 @@ function addDayRoute(induk, nomor){
 	elBaru.find("label[id='lbl_INDUK']").html("Day "+induk);
 	elBaru.find("label[id='lbl_INDUK']").attr("for" , "route_"+induk);
 	elBaru.find("label[id='lbl_INDUK']").attr("id" , "lbl_"+induk);
-			
+
 	elBaru.find(".input-transport").find("select").attr('id', "cbroute_"+induk);	
 	elBaru.find(".input-transport").find("select").attr('name', "cbroute_"+induk);
 	
@@ -178,7 +178,7 @@ function addDayRoute(induk, nomor){
 	
 	elBaru.find(".input-transport").find("input[type='hidden'][name='path_INDUK']").attr('name', "path_"+induk);
 	elBaru.find(".input-transport").find("input[type='hidden'][id='path_INDUK']").attr('id', "path_"+induk);		
-	
+
 	//change number entrance			
 	elBaru.find("#wrapperTime_INDUK_NO").attr("id", "wrapperTime_"+induk+"_"+nomor);
 	elBaru.find("input[type='text'][name='qtimeStart_INDUK_NO']").attr("name", "qtimeStart_"+induk+"_"+nomor);	
@@ -288,7 +288,7 @@ function removeTime(induk, nomor)
 
 function calculateOther(idx){
 	hasil = parseInt($("#other_"+idx+"_2").val())*parseInt($("#other_"+idx+"_3").val())*parseInt($("#other_"+idx+"_4").val());
-	$("#other_"+idx+"_5").val(hasil);
+	$("#other_"+idx+"_5").val(addCommas(hasil));
 }
 
 function changeRoute(no)
@@ -340,4 +340,3 @@ function changeRoute(no)
 function filterRoute(){
 	alert("oye");
 }
-
