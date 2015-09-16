@@ -1,50 +1,10 @@
 $(document).ready( function () {					
+	initCombobox();
+	
 	//starting quotation		
 	addDayRoute(1,1);	
 	$('input[type=date]').datepicker();
-	$('table.datatable').dataTable();  		 	
-	
-	//persiapkan hotel, meal untuk comboboxnya==========================
-	Tdays = parseInt($("#quotation_day").val());
-	for (i=1; i<=Tdays; i++){
-		//HOTEL================================
-		$("#cbhotel_1_"+i).combobox({
-			select: function( event, ui ) {											
-				$("#hotel_cb_1_"+i).val(ui.item.value);					
-			}
-		});
-		$("#cbhotel_2_"+i).combobox({
-			select: function( event, ui ) {											
-				$("#hotel_cb_1_"+i).val(ui.item.value);					
-			}
-		});
-		$("#cbhotel_3_"+i).combobox({
-			select: function( event, ui ) {											
-				$("#hotel_cb_1_"+i).val(ui.item.value);					
-			}
-		});
-				
-		//MEAL==================================
-		$("#cbrestaurant_"+i+"_1").combobox({
-			select: function( event, ui ) {				
-				$("#restaurant_"+i+"_1").val(ui.item.value);				
-			}
-		});		
-		$("#cbrestaurant_"+i+"_2").combobox({
-			select: function( event, ui ) {				
-				$("#restaurant_"+i+"_2").val(ui.item.value);				
-			}
-		});
-		$("#cbrestaurant_"+i+"_3").combobox({
-			select: function( event, ui ) {				
-				$("#restaurant_"+i+"_3").val(ui.item.value);				
-			}
-		});
-	}
-	
-	
-	
-	
+	$('table.datatable').dataTable();  		 			
 	
 	//CHANGE DAY===============================
 	$("#quotation_day").change(function(){		    
@@ -81,6 +41,44 @@ $(document).ready( function () {
   
 } );
 
+function initCombobox(){
+	
+	//HOTEL================================
+	$("#cbhotel_1_1").combobox({
+		select: function( event, ui ) {											
+			$("#hotel_cb_1_1").val(ui.item.value);					
+		}
+	});
+	$("#cbhotel_2_1").combobox({
+		select: function( event, ui ) {											
+			$("#hotel_cb_2_1").val(ui.item.value);					
+		}
+	});
+	$("#cbhotel_3_1").combobox({
+		select: function( event, ui ) {											
+			$("#hotel_cb_3_1").val(ui.item.value);					
+		}
+	});
+			
+	//MEAL==================================
+	$("#cbrestaurant_1_1").combobox({
+		select: function( event, ui ) {				
+			$("#restaurant_1_1").val(ui.item.value);				
+		}
+	});		
+	$("#cbrestaurant_1_2").combobox({
+		select: function( event, ui ) {				
+			$("#restaurant_1_2").val(ui.item.value);				
+		}
+	});
+	$("#cbrestaurant_1_3").combobox({
+		select: function( event, ui ) {				
+			$("#restaurant_1_3").val(ui.item.value);				
+		}
+	});
+	
+}
+
 function addMeal(i){
 	myEl = $("tr.list-of-meal").first().clone(false);					
 	myEl.find("label").html("D"+i);								
@@ -99,19 +97,19 @@ function addMeal(i){
 		c++;
 	});	
 	
-	myEl.find("select[id='cbrestaurant_"+i+"_1']").combobox({
+	$("#cbrestaurant_"+i+"_1").combobox({
 		select: function( event, ui ) {				
 			$("#restaurant_"+i+"_1").val(ui.item.value);				
 		}
 	});
 	
-	myEl.find("select[id='cbrestaurant_"+i+"_2']").combobox({
+	$("#cbrestaurant_"+i+"_2").combobox({
 		select: function( event, ui ) {				
 			$("#restaurant_"+i+"_2").val(ui.item.value);				
 		}
 	});
 	
-	myEl.find("select[id='cbrestaurant_"+i+"_3']").combobox({
+	$("#cbrestaurant_"+i+"_3").combobox({
 		select: function( event, ui ) {				
 			$("#restaurant_"+i+"_3").val(ui.item.value);				
 		}
@@ -138,17 +136,17 @@ function addHotel(i){
 		c++;
 	});		
 
-	myEl.find("select[id='cbhotel_1_"+i+"']").combobox({
+	$("#cbhotel_1_"+i).combobox({
 		select: function( event, ui ) {											
 			$("#hotel_cb_1_"+i).val(ui.item.value);				
 		}
 	});
-	myEl.find("select[id='cbhotel_2_"+i+"']").combobox({
+	$("#cbhotel_2_"+i).combobox({
 		select: function( event, ui ) {											
 			$("#hotel_cb_2_"+i).val(ui.item.value);					
 		}
 	});
-	myEl.find("select[id='cbhotel_3_"+i+"']").combobox({
+	$("#cbhotel_3_"+i).combobox({
 		select: function( event, ui ) {											
 			$("#hotel_cb_3_"+i).val(ui.item.value);		
 		}
