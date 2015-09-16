@@ -401,7 +401,7 @@
       this.focused = false;
       var val = this.$element.val();	  
       
-	  var temp = this.$menu.find('.active').attr('data-value');	 
+	  var temp = this.$menu.find('.active').attr('data-value');	  
 	  
 	  if (temp!=val){
 		this.$target.val(val);
@@ -410,14 +410,15 @@
       that.hide();
     }
 
-  , click: function (e) {
+  , click: function (e) {	 
       e.stopPropagation();
       e.preventDefault();
       this.select();
-      this.$element.focus();
+      this.$element.focus();	  	  	  	 
     }
 
   , mouseenter: function (e) {
+		
       this.mousedover = true;
       this.$menu.find('.active').removeClass('active');
       $(e.currentTarget).addClass('active');

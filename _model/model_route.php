@@ -57,7 +57,7 @@ class model_route extends basicModel {
     $ret .= "<option name='*' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
-      $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."' $s>".$row['route_title']."</option>";
+      $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."|".$row['route_path']."' $s>".$row['route_title']."</option>";
     }
     $ret .= "</select>";
     return $ret;

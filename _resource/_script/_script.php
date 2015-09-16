@@ -10,8 +10,8 @@
 
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>bootstrap-select.js"></script>
 
-<!--<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>DataTables/js/jquery.dataTables.min.js'></script>-->
-<!--<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>DataTables/css/jquery.dataTables.css' type='text/css' />-->
+<!--<script type='text/javascript' src='<?php //echo _PATH_SCRIPT; ?>DataTables/js/jquery.dataTables.min.js'></script>-->
+<!--<link rel='stylesheet' href='<?php //echo _PATH_SCRIPT; ?>DataTables/css/jquery.dataTables.css' type='text/css' />-->
 <script type="text/javascript">
   //Default class for odd and even rows
   $.fn.dataTableExt.oStdClasses.sStripeOdd = '';
@@ -30,6 +30,9 @@
 <!--<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.8.21.custom/css/ui-lightness/jquery-ui-1.8.21.custom.css' type='text/css' />-->
 <script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.11.4/jquery-ui.js'></script>
 <link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>jquery-ui-1.11.4/jquery-ui.css' type='text/css' />
+
+<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>combobox-ui.js'></script>
+<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>combobox-ui.css' type='text/css' />
 <script type="text/javascript">
   $.datepicker.setDefaults({
     //USA setting
@@ -63,8 +66,8 @@
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script-route.js"></script>
 <script type="text/javascript" src="<?php echo _PATH_SCRIPT; ?>script_master.js"></script>
 
-<script type='text/javascript' src='<?php echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.js'></script>
-<link rel='stylesheet' href='<?php echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.css' type='text/css' />
+<!--<script type='text/javascript' src='<?php //echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.js'></script>
+<link rel='stylesheet' href='<?php //echo _PATH_SCRIPT; ?>bootstrap_combobox/bootstrap-combobox.css' type='text/css' />-->
 
 <script type="text/javascript">
   console.log("_script.php loaded");

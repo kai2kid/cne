@@ -76,6 +76,10 @@
 	padding-left: 0px;	
 }
 
+.pad-l{
+	padding-left: 10px;
+}
+
 .pop-up{
 	width: 700px;
 	margin-left: auto;

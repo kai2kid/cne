@@ -39,8 +39,10 @@
 								<div class="wrapper_route template-route">
 									<div class="form-group input-transport">
 									  <label id="lbl_INDUK" for="route_INDUK" class="control-label col-md-1 no-pad-r">Day INDUK</label>
-									  <div class="col-md-5">								
-										<?php echo $route->_combobox('route_INDUK'); ?>
+									  <div class="col-md-5">	
+										<input type="hidden" name="route_INDUK" id="route_INDUK" class="filter">
+										<input type="hidden" name="path_INDUK" id="path_INDUK">
+										<?php echo $route->_combobox('cbroute_INDUK'); ?>
 									  </div>
 									</div>
 									
@@ -58,7 +60,8 @@
 													<input name='qtimeEnd_INDUK_NO' type='text' class='form-control' id='qtimeEnd_INDUK_NO'>
 												</div>
 												<div class='col-md-5 no-pad-l'>
-													<?php echo $entrance->_combobox('entrance_INDUK_NO'); ?>	
+													<input type="hidden" name="entrance_INDUK_NO" id="entrance_INDUK_NO">
+													<?php echo $entrance->_combobox('cbentrance_INDUK_NO'); ?>	
 												</div>
 									  
 												<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>										
@@ -102,21 +105,21 @@
 						<form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-hotel">
 								<div id='hotel'>
-									<table class='table borderless table-font' cellspacing='0' width='100%' id="table-hotel">
+									<table class='table borderless table-font' cellspacing='0' style="width:98%;" id="table-hotel">
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-												<td align='center'><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
-												<td align='center'><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
-												<td align='center'><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
+												<td align='center' width="32%"><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
+												<td align='center' width="32%"><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
+												<td align='center' width="32%"><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
 											</tr>							  
 											<tr class="list-of-hotel">
 												<td align='right'>
 													<label class='control-label'>D1</label>
 												</td>
-												<td><?php echo $hotel->_combobox('hotel_cb_1_1',"","SD"); ?></td>
-												<td><?php echo $hotel->_combobox('hotel_cb_2_1',"","DX"); ?></td>
-												<td><?php echo $hotel->_combobox('hotel_cb_3_1',"","BD"); ?></td>
+												<td><input type="hidden" name="hotel_cb_1_1" id="hotel_cb_1_1"><?php echo $hotel->_combobox('cbhotel_1_1',"","SD"); ?></td>
+												<td><input type="hidden" name="hotel_cb_2_1" id="hotel_cb_2_1"><?php echo $hotel->_combobox('cbhotel_2_1',"","DX"); ?></td>
+												<td><input type="hidden" name="hotel_cb_3_1" id="hotel_cb_3_1"><?php echo $hotel->_combobox('cbhotel_3_1',"","BD"); ?></td>
 											</tr>                    							  
 										</tbody>
 									</table>
@@ -148,21 +151,21 @@
 						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-meal">
 								<div id='meal'>
-									<table class='table borderless table-font' cellspacing='0' width='100%' id="table-meal">
+									<table class='table borderless table-font' cellspacing='0' style="width:98%;" id="table-meal">
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-												<td align='center'>Breakfast</td>
-												<td align='center'>Lunch</td>
-												<td align='center'>Dinner</td>
+												<td align='center' width="32%">Breakfast</td>
+												<td align='center' width="32%">Lunch</td>
+												<td align='center' width="32%">Dinner</td>
 											</tr>							  
 											<tr class="list-of-meal">
 												<td align='right'>
 													<label class='control-label'>D1</label>
 												</td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_1',"",1); ?></td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_2'); ?></td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_1_3'); ?></td>
+												<td><input type="hidden" name="restaurant_1_1" id="restaurant_1_1"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_1',"",1); ?></td>
+												<td><input type="hidden" name="restaurant_1_2" id="restaurant_1_2"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_2'); ?></td>
+												<td><input type="hidden" name="restaurant_1_3" id="restaurant_1_3"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_3'); ?></td>
 											</tr>                    							  
 										</tbody>
 									</table>

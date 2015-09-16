@@ -2930,7 +2930,7 @@ $.widget( "ui.autocomplete", {
 				this.selectedItem = null;
 				this.previous = this._value();
 			},
-			blur: function( event ) {				
+			blur: function( event ) {
 				if ( this.cancelBlur ) {
 					delete this.cancelBlur;
 					return;
@@ -3004,7 +3004,7 @@ $.widget( "ui.autocomplete", {
 				if ( false !== this._trigger( "focus", event, { item: item } ) ) {
 					// use value to match what will end up in the input, if it was a key event
 					if ( event.originalEvent && /^key/.test( event.originalEvent.type ) ) {
-						this._value( item.label );						
+						this._value( item.value );
 					}
 				}
 
@@ -3033,7 +3033,7 @@ $.widget( "ui.autocomplete", {
 				}
 
 				if ( false !== this._trigger( "select", event, { item: item } ) ) {
-					this._value( item.label );
+					this._value( item.value );
 				}
 				// reset the term after the select event
 				// this allows custom select handling to work properly
@@ -13156,7 +13156,7 @@ var slider = $.widget( "ui.slider", $.ui.mouse, {
 			this._change( null, 0 );
 			return;
 		}
-		
+
 		return this._value();
 	},
 

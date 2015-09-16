@@ -64,7 +64,7 @@ class model_entrance extends basicModel {
       ORDER BY entrance_name ASC
     ";
     $rows = $this->query($qry);
-    $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
+    $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox' at='fentrance'>";
     $ret .= "<option name='-' value=''></option>";
     foreach ($rows as $row) {
       $s = ($selected != "" && $selected == $row['entrance_code'] ? "selected" : "");
