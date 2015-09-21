@@ -35,7 +35,7 @@
 							<h3 class="panel-title">ROUTE</h3>						
 						</div>
 						<div class="panel-body quotation-body">
-							<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
+							<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertRoute" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 								<div class="wrapper_route template-route">
 									<div class="form-group input-transport">
 									  <label id="lbl_INDUK" for="route_INDUK" class="control-label col-md-1 no-pad-r">Day INDUK</label>

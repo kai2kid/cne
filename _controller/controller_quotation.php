@@ -72,13 +72,24 @@ class controller_quotation extends basicController {
     }
     $this->output_json($o);
   }
+  public function insertRoute() {    
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->modifyRoute($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
+  }
   public function insertTransport() {    
+    $this->insertRoute();
+    /*/
     $o['result'] = "0";
     $q = new model_quotation($_REQUEST['quotation_code']);    
     if ($q->modifyTransport($_REQUEST) && $q->modifyRundown($_REQUEST)) {
       $o['result'] = "1";
     }
     $this->output_json($o);
+    /*/
   }
   public function insertHotel() {    
     $o['result'] = "0";

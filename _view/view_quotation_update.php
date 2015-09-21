@@ -31,114 +31,119 @@
 	  </form>		
     </div>
     <!--------------------ROUTE--------------------->
-		<div class="container">
-			<div class="row">
-				<div class="col-md-10 s-h-quotation">
-					<div class="panel panel-default quotation-panel">
-						<div class="panel-heading">
-							<h3 class="panel-title">ROUTE</h3>						
-						</div>
-						<div class="panel-body quotation-body">
-							<form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertTransport" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
-<!--
-								<div class="wrapper_route template-route">
-									<div class="form-group input-transport">
-									  <label id="lbl_INDUK" for="route_INDUK" class="control-label col-md-1 no-pad-r">Day INDUK</label>
-									  <div class="col-md-5">								
-										<?php echo $route->_combobox('route_INDUK'); ?>
-									  </div>
-									</div>		-->																			
-									<!--RUNDOWN-------------->
-<!--									
-									<div class="wrapperTime">	
-										<div id='wrapperTime_INDUK_NO' class="wrapp_entrance">
-											<div class='form-group'>
-												<div class='col-md-1' style='margin-left: 5px;'>&nbsp;</div>
-												<div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 10px;'>
-													<input name='qtimeStart_INDUK_NO' type='text' class='form-control' id='qtimeStart_INDUK_NO'>
-												</div>
-												<label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
-												<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-													<input name='qtimeEnd_INDUK_NO' type='text' class='form-control' id='qtimeEnd_INDUK_NO'>
-												</div>
-												<div class='col-md-5 no-pad-l'>
-													<?php echo $entrance->_combobox('entrance_INDUK_NO'); ?>	
-												</div>
-									  
-												<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>										
-													<button type='button' class='btn btn-success' name="btnAddTime_INDUK_NO" id='btnAddTime_INDUK_NO' style='margin-right:5px;' onclick='addTime(this,1,2)'>												
-														<span class='glyphicon glyphicon-plus'></span>		
-													</button>		
-													<button type='button' class='btn btn-danger not-show' id='btnRemoveTime_INDUK_NO' onclick='removeTime(1,1)'>
-														<span class='glyphicon glyphicon-remove'></span>
-													</button>
-												</div>
-											</div>
-										</div> 
-									</div> <!--END OF RUNDOWN------>
-<!--									
-									<div class="batasRoute_INDUK"></div>
-								</div> 
--->                
-                <!--END OF DIV TRANSPORT--> 
-								  
-								<?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
-									<!--ISI DATABASE--->
-									<div class="wrapper_route">
-										<div class="form-group input-transport">
-										  <label id="lbl_<?php echo $day;?>" for="route_<?php echo $day;?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day;?></label>
-										  <div class="col-md-5">								
-											<?php echo $route->_combobox('route_'.$day,(isset($model->days[$day]['route_code']) && $model->days[$day]['route_code'] != "" ? $model->days[$day]['route_code'] : "")); ?>
-										  </div>
-										</div>					
+    <div class="container">
+      <div class="row">
+        <div class="col-md-10 s-h-quotation">
+          <div class="panel panel-default quotation-panel">
+            <div class="panel-heading">
+              <h3 class="panel-title">ROUTE</h3>            
+            </div>
+            <div class="panel-body quotation-body">
+              <form name="formInsertTransport" id="formInsertTransport" class="form-horizontal" action="quotation_insertRoute" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
+                <div class="wrapper_route template-route">                               
+                  <div class="form-group input-transport">
+                    <label id="lbl_INDUK" for="route_INDUK" class="control-label col-md-1 no-pad-r">Day INDUK</label>
+                    <div class="col-md-5">  
+                    <input type="hidden" name="route_INDUK" id="route_INDUK" class="filter">
+                    <input type="hidden" name="path_INDUK" id="path_INDUK">
+                    <?php echo $route->_combobox('cbroute_INDUK'); ?>
+                    </div>
+                  </div>
+                  
+                  <!--RUNDOWN-------------->
+                  
+                  <div class="wrapperTime">  
+                    <div id='wrapperTime_INDUK_NO' class="wrapp_entrance">
+                      <div class='form-group'>
+                        <div class='col-md-1' style='margin-left: 5px;'>&nbsp;</div>
+                        <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 10px;'>
+                          <input name='qtimeStart_INDUK_NO' type='text' class='form-control' id='qtimeStart_INDUK_NO'>
+                        </div>
+                        <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
+                        <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                          <input name='qtimeEnd_INDUK_NO' type='text' class='form-control' id='qtimeEnd_INDUK_NO'>
+                        </div>
+                        <div class='col-md-5 no-pad-l'>
+                          <input type="hidden" name="entrance_INDUK_NO" id="entrance_INDUK_NO">
+                          <?php echo $entrance->_combobox('cbentrance_INDUK_NO'); ?>  
+                        </div>
+                    
+                        <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>                    
+                          <button type='button' class='btn btn-success' name="btnAddTime_INDUK_NO" id='btnAddTime_INDUK_NO' style='margin-right:5px;' onclick='addTime(this,1,2)'>                        
+                            <span class='glyphicon glyphicon-plus'></span>    
+                          </button>    
+                          <button type='button' class='btn btn-danger not-show' id='btnRemoveTime_INDUK_NO' onclick='removeTime(1,1)'>
+                            <span class='glyphicon glyphicon-remove'></span>
+                          </button>
+                        </div>
+                      </div>
+                    </div> 
+                  </div> 
+                  <!--END OF RUNDOWN------>
+                  
+                </div> 
+                
+                <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>  
+                <div class="wrapper_route">
+                  <div class="form-group input-transport">
+                    <label id="lbl_<?php echo $day; ?>" for="route_<?php echo $day; ?>" class="control-label col-md-1 no-pad-r">Day <?php echo $day; ?></label>
+                    <div class="col-md-5">  
+                    <input type="hidden" name="route_<?php echo $day; ?>" id="route_<?php echo $day; ?>" class="filter" value="<?php echo $model->days[$day]["route_code"]; ?>">
+                    <input type="hidden" name="path_<?php echo $day; ?>" id="path_<?php echo $day; ?>" value="<?php echo $model->days[$day]["route_path"]; ?>">
+                    <?php echo $route->_combobox('cbroute_'.$day,$model->days[$day]["route_code"]); ?>
+                    </div>
+                  </div>
 
-										<!----YANG RUNDOWN BELUM LOAD DBASE --->		
-										<!--RUNDOWN-------------->
-										
-										<div class="wrapperTime">	
-											<div id='wrapperTime_INDUK_NO' class="wrapp_entrance">
-												<div class='form-group'>
-													<div class='col-md-1' style='margin-left: 5px;'>&nbsp;</div>
-													<div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 10px;'>
-														<input name='qtimeStart_INDUK_NO' type='text' class='form-control' id='qtimeStart_INDUK_NO'>
-													</div>
-													<label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
-													<div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-														<input name='qtimeEnd_INDUK_NO' type='text' class='form-control' id='qtimeEnd_INDUK_NO'>
-													</div>
-													<div class='col-md-5 no-pad-l'>
-														<?php echo $entrance->_combobox('entrance_INDUK_NO'); ?>	
-													</div>
-										  
-													<div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>										
-														<button type='button' class='btn btn-success' name="btnAddTime_INDUK_NO" id='btnAddTime_INDUK_NO' style='margin-right:5px;' onclick='addTime(this,1,2)'>												
-															<span class='glyphicon glyphicon-plus'></span>		
-														</button>		
-														<button type='button' class='btn btn-danger not-show' id='btnRemoveTime_INDUK_NO' onclick='removeTime(1,1)'>
-															<span class='glyphicon glyphicon-remove'></span>
-														</button>
-													</div>
-												</div>
-											</div> 
-										</div> <!--END OF RUNDOWN------>
-										
-										<div class="batasRoute_INDUK"></div>
-									</div> <!--END OF DIV TRANSPORT--> 																		
-									
-								<?php } ?>
-								
-								<div class="form-group group-btn-transport">
-									<label class="control-label col-md-10">&nbsp;</label>
-									<div class="col-md-1 no-pad-r" style="margin-right: 5px">
-										<input type="submit" class="btn btn-primary btn-block" value="Save">
-									</div>  
-								</div>	
-							</form>
-						</div>
-					</div>
-				</div>		
-			</div>
-		</div>
+                  <?php for ($ctr=1; $ctr <= count($model->detail['rundown'][$day]) ; $ctr++) { ?>  
+                  <?php $prefix = $day . "_" . $ctr; ?>  
+                  <div class="wrapperTime">  
+                    <div id='wrapperTime_<?php echo $prefix; ?>' class="wrapp_entrance">
+                      <div class='form-group'>
+                        <div class='col-md-1' style='margin-left: 5px;'>&nbsp;</div>
+                        <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 10px;'>
+                          <input name='qtimeStart_<?php echo $prefix; ?>' type='text' class='form-control' id='qtimeStart_<?php echo $prefix; ?>' value="<?php echo $model->detail['rundown'][$day][$ctr-1]["qdetail_time_start"]; ?>">
+                        </div>
+                        <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
+                        <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                          <input name='qtimeEnd_<?php echo $prefix; ?>' type='text' class='form-control' id='qtimeEnd_<?php echo $prefix; ?>' value="<?php echo $model->detail['rundown'][$day][$ctr-1]["qdetail_time_end"]; ?>">
+                        </div>
+                        <div class='col-md-5 no-pad-l'>
+                          <input type="hidden" name="entrance_<?php echo $prefix; ?>" id="entrance_<?php echo $prefix; ?>" value="<?php echo $model->detail['rundown'][$day][$ctr-1]["qdetail_title"]; ?>">
+                          <?php echo $entrance->_combobox("entrance_".$prefix,$model->detail['rundown'][$day][$ctr-1]["qdetail_title"]); ?>  
+                        </div>
+                    
+                        <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>                    
+                          <button type='button' class='btn btn-success' name="btnAddTime_<?php echo $prefix; ?>" id='btnAddTime_<?php echo $prefix; ?>' style='margin-right:5px;' onclick='addTime(this,<?php echo $day; ?>,<?php echo ($ctr+1); ?>)' <?php echo ($ctr == count($model->detail['rundown'][$day]) ? "" : "disabled"); ?>>
+                            <span class='glyphicon glyphicon-plus'></span>    
+                          </button>
+                          <?php if ($ctr > 1) { ?>
+                          <button type='button' class='btn btn-danger' id='btnRemoveTime_<?php echo $prefix; ?>' onclick='removeTime(<?php echo $day; ?>,<?php echo $ctr; ?>)'>
+                            <span class='glyphicon glyphicon-remove'></span>
+                          </button>
+                          <?php } ?>
+                        </div>
+                      </div>
+                    </div> 
+                  </div> 
+                  <?php } ?>
+                  <div class="batasRoute_<?php echo $day; ?>"></div>
+                </div>
+                <?php } ?>
+                <!--END OF DIV TRANSPORT--> 
+                  
+                
+                <div class="form-group group-btn-transport">
+                  <label class="control-label col-md-10">&nbsp;</label>
+                  <div class="col-md-1 no-pad-r" style="margin-right: 5px">
+                    <input type="submit" class="btn btn-primary btn-block" value="Save">
+                  </div>  
+                </div>  
+              </form>
+            </div>
+          </div>
+        </div>    
+      </div>
+    </div>
 
 	<!--------------------HOTEL--------------------->
 	<div class="container">

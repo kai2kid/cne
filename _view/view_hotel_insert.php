@@ -82,12 +82,23 @@
       </div>            
     </div>
   
-	<div class="form-group">
+  <div class="form-group">
       <label for="hotel_memo" class="control-label col-md-3 no-pad-r">Memo</label>
       <div class="col-md-8">
         <textarea name="hotel_memo" class="form-control" id="hotel_memo" placeholder="Memo"></textarea>      
       </div>            
     </div>
+
+	<div class="form-group">
+    <label for="hotel_priority" class="control-label col-md-3 no-pad-r">Priority</label>
+    <div class="col-md-3">
+      <select id="hotel_priority" name="hotel_priority" class='form-control min-padding combobox'>
+        <option value="1">Low</option>
+        <option value="3" selected>Normal</option>
+        <option value="5">High</option>
+      </select>
+    </div>            
+  </div>
 
   <div class="form-group">
     <label class="control-label col-md-3 no-pad-r"><u>Contact Person</u></label>

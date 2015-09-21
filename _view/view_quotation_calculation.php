@@ -92,7 +92,10 @@
       <tr>
           <td><?php echo $day+1-$ctr; ?></td>
           <td><?php echo $model->detail['hotel'][$day][$level]['hotel_name'] . ($ctr > 1 ? " x " . $ctr : ""); ?></td>
-          <td align="right"><?php echo number_format($model->detail['hotel'][$day][$level]['hotel_price_room_standard'] * $ctr); ?></td>
+          <td align="right">
+            <?php echo number_format($model->detail['hotel'][$day][$level]['hotel_price_room_standard'] * $ctr); ?>
+            <input type=hidden id="price_hotel_<?php echo $level; ?>_single" value="<?php echo $model->detail['hotel'][$day][$level]['hotel_price_room_standard'] * $ctr; ?>" />
+          </td>
           <?php foreach ($pax_estimated as $title=>$pax) { ?>
           <td align="right">
             <?php 
@@ -102,6 +105,7 @@
               $subt[$pax][$level] += $sub; 
               $gtot[$pax][$level] += $sub; 
             ?>
+            <input type=hidden id="price_hotel_<?php echo $level; ?>_<?php echo $day+1-$ctr; ?>_<?php echo $pax; ?>" value="<?php echo $sub; ?>" />
           </td>
           <?php } ?>
       </tr>      
@@ -386,15 +390,15 @@
             <table class="table-font" cellspacing="5px" cellpadding="5px" width="100%">
               <tr>
                 <td width="100px"><label class='control-label'>MAX MIN:</label></td>
-                <td><input type=number class="form-control num" value="150"></td>
+                <td><input type=number class="form-control num" value="<?php echo $model->detail['default']['maxmin'][$level]; ?>"></td>
               </tr>
               <tr>
                 <td><label class='control-label'>RANGE:</label></td>
-                <td><input type=number class="form-control num" value="15"></td>
+                <td><input type=number class="form-control num" value="<?php echo $model->detail['default']['range'][$level]; ?>"></td>
               </tr>
               <tr>
                 <td><label class='control-label'>SGL/SPPL:</label></td>
-                <td><input type=number class="form-control num" value="20"></td>
+                <td><input type=number class="form-control num" value="<?php echo $model->detail['default']['sglspl'][$level]; ?>"></td>
               </tr>
             </table>
           </td>
@@ -411,29 +415,68 @@
       </tr>      
       <tr>
           <td>FARE/PP (USD) [Rate = <?php echo number_format($model->detail["rate_USD"]); ?>]</td>
+          <?php $ctr=0; ?>
           <?php foreach ($pax_estimated as $title=>$pax) { ?>
-          <td align="right"><?php echo number_format( $fare[$pax][$level]['usd'] = round(($gtot[$pax]['*'] + $gtot[$pax][$level]) / $pax * $rate)); ?></td>
+          <td align="right">
+            <?php echo number_format( $fare[$pax][$level]['usd'] = round(($gtot[$pax]['*'] + $gtot[$pax][$level]) / $pax * $rate)); ?>
+            <input type=hidden id="price_fare_usd_<?php echo $level; ?>_<?php echo ++$ctr; ?>" value="<?php echo $fare[$pax][$level]['usd']; ?>">
+          </td>
           <?php }?>
       </tr>      
       <tr>
           <td>SGL SPPL</td>
+          <?php //subtotal hotel dalam usd / jumlah kamar / 2 * 1.15 ?>
           <?php foreach ($pax_estimated as $title=>$pax) { ?>
           <td align="right"><?php echo number_format(round(($gtot[$pax][$level] * $rate) / ceil($pax/2) / 2)); ?></td>
           <?php }?>
       </tr>      
       <tr>
           <td>DECIDED PRICE</td>
+          <?php $ctr=0; ?>
           <?php foreach ($pax_estimated as $title=>$pax) { ?>
-          <td align="right"><b><input class="form-control num" type=number value="<?php echo $decided[$pax][$level] = $fare[$pax][$level]['usd']; ?>"></b></td>
+          <?php 
+                ++$ctr; 
+                $decided[$pax][$level] = $fare[$pax][$level]['usd'] - $model->detail['default']['maxmin'][$level];
+                if ($ctr == 2) { $patokan = $decided[$pax][$level]; } 
+          ?>
+          <?php } ?>
+          <?php $ctr=0; ?>
+          <?php foreach ($pax_estimated as $title=>$pax) { ?>
+          <?php ++$ctr; ?>
+          <td align="right">
+            <b>
+              <?php 
+                if ($ctr == 1) { $decided[$pax][$level] = $patokan + 100; } 
+                if ($ctr == 3) { $decided[$pax][$level] = $patokan - 100; } 
+                if ($ctr == 4) { $decided[$pax][$level] = $patokan - 100; } 
+                if ($ctr == 5) { $decided[$pax][$level] = $patokan - 100; } 
+                if ($ctr == 6) { $decided[$pax][$level] = $patokan - 150; } 
+                if ($ctr == 7) { $decided[$pax][$level] = $patokan - 150; } 
+              ?>
+              <input class="form-control num" type=number value="<?php echo $decided[$pax][$level] ?>" id="price_decided_<?php echo $level; ?>_<?php echo $ctr; ?>" onchange="changeDP(<?php echo $level; ?>,<?php echo $ctr; ?>)">
+            </b>
+          </td>
           <?php }?>
       </tr>      
       <tr>
         <td align="right">&nbsp;</td>        
+        <?php $ctr=0; ?>
         <?php foreach ($pax_estimated as $title=>$pax) { ?>
-        <td align="right"><b><?php echo number_format($decided[$pax][$level] - $fare[$pax][$level]['usd']); ?></b></td>
+        <td align="right">
+          <b>
+            <span id="price_minus_<?php echo $level; ?>_<?php echo ++$ctr; ?>" title="<?php echo ($decided[$pax][$level] - $fare[$pax][$level]['usd']); ?>">
+              <?php echo number_format($decided[$pax][$level] - $fare[$pax][$level]['usd']); ?>
+            </span>            
+          </b>
+        </td>
         <?php } ?>
       </tr>
     </tbody>    
   </table>
+  
+  <?php foreach ($pax_estimated as $title=>$pax) { }?>
+
+  
   <?php } ?>
 
+<input type="button" value="Save Calculation" onclick="saveCalc();" />

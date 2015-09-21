@@ -47,17 +47,25 @@ class model_route extends basicModel {
     return $ret;
   }
   public function _combobox($name,$selected = "") {
+    $qry2 = "";
+    if (substr($name,-1,1) == "1") {
+      $qry2 .= " AND route_title LIKE 'ARRIVE%'";
+    }
     $qry = "
       SELECT route_code, route_title, route_path, route_start, route_end
       FROM route
+      WHERE 1=1 
+      $qry2
       ORDER BY route_title ASC
     ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
     $ret .= "<option name='*' value=''></option>";
     foreach ($rows as $row) {
-      $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
-      $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."|".$row['route_path']."' $s>".$row['route_title']."</option>";
+      if ($row['route_title'] != "") {        
+        $s = ($selected != "" && $selected == $row['route_code'] ? "selected" : "");
+        $ret .= "<option name='".$row['route_path']."' st='".$row['route_start']."' en='".$row['route_end']."' value='".$row['route_code']."|".$row['route_path']."' $s>".$row['route_title']."</option>";
+      }
     }
     $ret .= "</select>";
     return $ret;

@@ -121,6 +121,16 @@ class model_quotation extends basicModel {
         $ctr++;
       }
       $this->detail['other_count'] = $ctr;
+      
+      $this->detail['default']['maxmin'][5] = 150;
+      $this->detail['default']['range'][5] = 15;
+      $this->detail['default']['sglspl'][5] = 20;
+      $this->detail['default']['maxmin'][4] = 130;
+      $this->detail['default']['range'][4] = 15;
+      $this->detail['default']['sglspl'][4] = 20;
+      $this->detail['default']['maxmin'][3] = 100;
+      $this->detail['default']['range'][3] = 15;
+      $this->detail['default']['sglspl'][3] = 20;
             
     } else {
       $qry = "
@@ -171,6 +181,47 @@ class model_quotation extends basicModel {
       if (!$this->insert($table,$insert)) $ret = 0;
     } else {
       $ret = 0;
+    }
+    return $ret;
+  }
+  public function modifyRoute($data) {
+    $ret = 1;
+    $table = "quotation_day";
+    $table2 = "quotation_detail";
+    for ($day = 1 ; $day <= $this->quotation_days ; $day++) {
+      $code = $data['quotation_code'].str_pad($day,2,"0",STR_PAD_LEFT);
+      $where = "qday_code = '".$code."'";
+      $insert["quotation_code"] = $data['quotation_code'];
+      $insert["qday_code"] = $code;      
+      if ($this->delete($table,$where)) {
+        $insert["route_code"] = $data["route_$day"];
+        $insert["qday_day"] = $day;
+        $insert["qday_location_start"] = "";
+        $insert["qday_location_end"] = "";
+        $insert["qday_route"] = "";
+        if (!$this->insert($table,$insert)) $ret = 0;                
+      } else {
+        $ret = 0;
+      }
+      unset($insert);
+      $insert["qday_code"] = $code;      
+      if ($this->delete($table2,$where)) {
+        for ($ctr = 1 ; $ctr <= 9 ; $ctr++) {          
+          $prefix = $day."_".$ctr;
+          if (isset($data["qtimeStart_".$prefix]) && $data["qtimeStart_".$prefix] != "") {
+            $insert["qdetail_code"] = $code . str_pad($ctr,2,"0",STR_PAD_LEFT);            
+            $insert["qdetail_time_start"] = $data["qtimeStart_".$prefix];
+            $insert["qdetail_time_end"] = $data["qtimeEnd_".$prefix];
+            $insert["qdetail_title"] = $data["entrance_".$prefix];
+            $insert["qdetail_status"] = "1";            
+            if (!$this->insert($table2,$insert)) $ret = 0;
+          }
+        }
+      } else {
+        $ret = 0;
+      }      
+      unset($insert);
+      
     }
     return $ret;
   }
@@ -302,6 +353,9 @@ class model_quotation extends basicModel {
       $ret = 0;
     }
     return $ret;
+  }
+  public function modifyCalc() {
+    
   }
 }
 ?>

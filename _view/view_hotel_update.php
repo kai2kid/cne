@@ -6,9 +6,18 @@
         <form class="form-horizontal" action="hotel_updating" method="post">
           <div class="form-group">
             <label for="hotel_code" class="control-label col-md-3 no-pad-r">Code</label>
-            <div class="col-md-5">
+            <div class="col-md-3">
               <input name="hotel_code" type="text" class="form-control" id="hotel_code" value="<?php echo $data['hotel_code']; ?>" readonly>
             </div>
+            <label for="hotel_priority" class="control-label col-md-1 no-pad-r">Priority</label>
+            <div class="col-md-3">
+              <select id="hotel_priority" name="hotel_priority" class='form-control min-padding combobox'>
+                <option value="1" <?php echo ($data['hotel_priority'] == 1 ? "selected" : ""); ?>>Low</option>
+                <option value="3" <?php echo ($data['hotel_priority'] == 3 ? "selected" : ""); ?>>Normal</option>
+                <option value="5" <?php echo ($data['hotel_priority'] == 5 ? "selected" : ""); ?>>High</option>
+              </select>
+            </div>            
+            
           </div>
           <div class="form-group">
             <label for="hotel_name" class="control-label col-md-3 no-pad-r">Name</label>
@@ -89,8 +98,10 @@
 		  <div class="form-group">
 			  <label for="hotel_memo" class="control-label col-md-3 no-pad-r">Memo</label>
 			  <div class="col-md-8">
-				<textarea name="hotel_memo" class="form-control" id="hotel_memo" placeholder="Memo"><?php echo $data['hotel_memo']; ?></textarea>      				
-			  </div>            
+				  <textarea name="hotel_memo" class="form-control" id="hotel_memo" placeholder="Memo"><?php echo $data['hotel_memo']; ?></textarea>      				
+			  </div>
+      </div>  
+        
   <div class="form-group">
     <label class="control-label col-md-3 no-pad-r"><u>Contact Person</u></label>
   </div>        

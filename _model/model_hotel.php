@@ -84,7 +84,7 @@ class model_hotel extends basicModel {
       SELECT hotel_code, hotel_name, hotel_location, hotel_level
       FROM hotel
       $qry_type
-      ORDER BY hotel_name ASC
+      ORDER BY hotel_priority DESC, hotel_name ASC
     ";
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox'>";
