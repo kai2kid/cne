@@ -2329,6 +2329,9 @@ var menu = $.widget( "ui.menu", {
 			}
 			break;
 		case $.ui.keyCode.ENTER:
+			//supaya ga add
+			event.preventDefault();
+			break;
 		case $.ui.keyCode.SPACE:
 			this._activate( event );
 			break;

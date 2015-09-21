@@ -216,8 +216,12 @@ function addDayRoute(induk, nomor){
 	$("#cbentrance_"+induk+"_"+nomor).combobox({
 		select: function( event, ui ) {						
 			$("#entrance_"+induk+"_"+nomor).val(ui.item.value);			
-		}
+			$("#cbentrance_"+induk+"_"+nomor).children("*").removeAttr("selected");
+			$("#cbentrance_"+induk+"_"+nomor).children("[value*='"+ui.item.value+"']").attr("selected","selected");	
+		}		
 	});	
+
+	$("#cbentrance_"+induk+"_"+nomor).next().find("input").attr("onblur","addEntrance("+induk+","+nomor+",this.value)");	
 	
 	//FILTER JIKA DIA BUKAN PERTAMA
 	if (induk>1){
@@ -231,9 +235,16 @@ function addDayRoute(induk, nomor){
 		
 		$("#cbroute_"+induk).children("*").attr("disabled","disabled");
 		$("#cbroute_"+induk).children("[st*='"+endRoute+"']").removeAttr("disabled");	
-	}
-	
+	}	
 }
+
+function addEntrance(induk, nomor, val){		
+	teks = $("#cbentrance_"+induk+"_"+nomor).find('option:selected').text();	
+	if (teks!=val) {
+		$("#entrance_"+induk+"_"+nomor).val(val);		
+	}
+}
+
 
 function addTime(el, induk, nomor){			
 	noBaru = parseInt(nomor) + 1;	
@@ -253,10 +264,12 @@ function addTime(el, induk, nomor){
 	elBaru.find("select").attr('id', "cbentrance_"+induk+"_"+nomor);
 	elBaru.find("select").combobox({
 		select: function( event, ui ) {						
-			elBaru.find("#wrapperTime_"+induk+"_"+nomor).find("input[type='hidden'][id='entrance_"+induk+"_"+nomor+"']").val(ui.item.value);			
+			$("#entrance_"+induk+"_"+nomor).val(ui.item.value);			
+			$("#cbentrance_"+induk+"_"+nomor).children("*").removeAttr("selected");
+			$("#cbentrance_"+induk+"_"+nomor).children("[value*='"+ui.item.value+"']").attr("selected","selected");	
 		}
 	});	
-
+	
 	elBaru.find("#btnAddTime_INDUK_NO").attr("name", "btnAddTime_"+induk+"_"+nomor);
 	elBaru.find("#btnAddTime_INDUK_NO").attr("onclick","addTime(this,"+induk+","+noBaru+")");	
 	elBaru.find("#btnAddTime_INDUK_NO").prop('disabled',false);	
@@ -268,6 +281,8 @@ function addTime(el, induk, nomor){
 		
 	elBaru.insertBefore($(".batasRoute_"+induk));	
 	$(el).prop('disabled',true);			
+	
+	$("#cbentrance_"+induk+"_"+nomor).next().find("input").attr("onblur","addEntrance("+induk+","+nomor+",this.value)");	
 }
 
 function removeTime(induk, nomor)
@@ -335,6 +350,3 @@ function changeRoute(no)
 	}
 }
 
-function filterRoute(){
-	alert("oye");
-}

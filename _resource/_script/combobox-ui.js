@@ -30,7 +30,7 @@
  
         this._on( this.input, {
           autocompleteselect: function( event, ui ) {
-            ui.item.option.selected = true;
+            ui.item.option.selected = true;			
             this._trigger( "select", event, {
               item: ui.item.option
             });
@@ -91,13 +91,12 @@
         }) );
       },
  
-      _removeIfInvalid: function( event, ui ) {
- 
+      _removeIfInvalid: function( event, ui ) {		
         // Selected an item, nothing to do
-        if ( ui.item ) {
-          return;
-        }
- 
+        if ( ui.item ) {          
+		  return;
+        }		
+		
         // Search for a match (case-insensitive)
         var value = this.input.val(),
           valueLowerCase = value.toLowerCase(),
@@ -110,22 +109,21 @@
         });
  
         // Found a match, nothing to do
-        //if ( valid ) {
+        if ( valid ) {
           return;
-        //}
- 
-        // Remove invalid value
+        } 
+         
+		// Remove invalid value
 		
-        this.input
+        /*this.input
           .val( "" )
           .attr( "title", value + " didn't match any item" )
-          .tooltip( "open" );
-        this.element.val( "" );
-        this._delay(function() {
+          .tooltip( "open" );*/
+        //this.element.val( "" );
+        /*this._delay(function() {
           this.input.tooltip( "close" ).attr( "title", "" );
-        }, 2500 );
-        this.input.autocomplete( "instance" ).term = "";
-		
+        }, 2500 );*/
+        //this.input.autocomplete( "instance" ).term = "";
 				
 		return {
 		  label: this.input.val(),
