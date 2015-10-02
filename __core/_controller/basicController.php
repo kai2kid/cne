@@ -93,13 +93,13 @@ class basicController {
     if (!isset($page_title)) $page_title = $this->config["app"]["title"];
     $_view = $this->view;
     $this->loadConfig();
+    $this->loadScript();  
     if (isset($_GET['ajax'])) {
       echo $_view;
     } else {
-      include_once(_PATH_LAYOUT . $layoutName . "/index.php");
       $this->loadStyle();
+      include_once(_PATH_LAYOUT . $layoutName . "/index.php");
     }
-    $this->loadScript();  
     $this->alert();
   }  
   protected function forward($URL="./") {

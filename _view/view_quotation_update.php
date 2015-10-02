@@ -3,6 +3,7 @@
     <label class="title">Update Quotation</label>
 	
 <!-- INI START FORM -->	
+    <input type="hidden" id="quotation_mode" value="update">
     <input type="hidden" id="quotation_code" name="quotation_code" value="<?php echo $model->quotation_code; ?>">
     <input type="hidden" id="quotation_code2" name="quotation_code2" value="<?php echo $model->autogenerate(); ?>">
 	
@@ -94,6 +95,8 @@
                     </div>
                   </div>
 
+                  <?php if(isset($model->detail['rundown'][$day])) { ?>
+                  <input type=hidden id="rundown_ctr_<?php echo $day; ?>" value = "<?php echo count($model->detail['rundown'][$day]); ?>">
                   <?php for ($ctr=1; $ctr <= count($model->detail['rundown'][$day]) ; $ctr++) { ?>  
                   <?php $prefix = $day . "_" . $ctr; ?>  
                   <div class="wrapperTime">  
@@ -109,7 +112,7 @@
                         </div>
                         <div class='col-md-5 no-pad-l'>
                           <input type="hidden" name="entrance_<?php echo $prefix; ?>" id="entrance_<?php echo $prefix; ?>" value="<?php echo $model->detail['rundown'][$day][$ctr-1]["qdetail_title"]; ?>">
-                          <?php echo $entrance->_combobox("entrance_".$prefix,$model->detail['rundown'][$day][$ctr-1]["qdetail_title"]); ?>  
+                          <?php echo $entrance->_combobox("cbentrance_".$prefix,$model->detail['rundown'][$day][$ctr-1]["qdetail_title"]); ?>  
                         </div>
                     
                         <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>                    
@@ -126,6 +129,40 @@
                     </div> 
                   </div> 
                   <?php } ?>
+                  <?php } else {?>
+                    <input type=hidden id="rundown_ctr_<?php echo $day; ?>" value = "1">
+                    <?php $ctr = 1; ?>  
+                    <?php $prefix = $day . "_" . $ctr; ?>  
+                    <div class="wrapperTime">  
+                      <div id='wrapperTime_<?php echo $prefix; ?>' class="wrapp_entrance">
+                        <div class='form-group'>
+                          <div class='col-md-1' style='margin-left: 5px;'>&nbsp;</div>
+                          <div class='col-md-1 no-pad-r no-pad-l' style='margin-left: 10px;'>
+                            <input name='qtimeStart_<?php echo $prefix; ?>' type='text' class='form-control' id='qtimeStart_<?php echo $prefix; ?>' value="">
+                          </div>
+                          <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:5px; width: 10px;'>-</label>
+                          <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                            <input name='qtimeEnd_<?php echo $prefix; ?>' type='text' class='form-control' id='qtimeEnd_<?php echo $prefix; ?>' value="">
+                          </div>
+                          <div class='col-md-5 no-pad-l'>
+                            <input type="hidden" name="entrance_<?php echo $prefix; ?>" id="entrance_<?php echo $prefix; ?>" value="">
+                            <?php echo $entrance->_combobox("cbentrance_".$prefix); ?>  
+                          </div>
+                      
+                          <div class='col-md-1 no-pad-l no-pad-r' style='margin-right:5px;'>                    
+                            <button type='button' class='btn btn-success' name="btnAddTime_<?php echo $prefix; ?>" id='btnAddTime_<?php echo $prefix; ?>' style='margin-right:5px;' onclick='addTime(this,<?php echo $day; ?>,<?php echo ($ctr+1); ?>)'>
+                              <span class='glyphicon glyphicon-plus'></span>    
+                            </button>
+                            <?php if ($ctr > 1) { ?>
+                            <button type='button' class='btn btn-danger' id='btnRemoveTime_<?php echo $prefix; ?>' onclick='removeTime(<?php echo $day; ?>,<?php echo $ctr; ?>)'>
+                              <span class='glyphicon glyphicon-remove'></span>
+                            </button>
+                            <?php } ?>
+                          </div>
+                        </div>
+                      </div> 
+                    </div> 
+                  <?php }?>
                   <div class="batasRoute_<?php echo $day; ?>"></div>
                 </div>
                 <?php } ?>
@@ -161,18 +198,27 @@
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-												<td align='center'><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
-												<td align='center'><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
-												<td align='center'><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
+                        <td align='center' width="32%"><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
+                        <td align='center' width="32%"><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
+                        <td align='center' width="32%"><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
 											</tr>		
 											<?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>	
 											<tr class="list-of-hotel">
 												<td align='right'>
 													<label class='control-label'>D<?php echo $day;?></label>
 												</td>
-												<td><?php echo $hotel->_combobox('hotel_cb_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""),"SD"); ?></td>
-												<td><?php echo $hotel->_combobox('hotel_cb_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""),"DX"); ?></td>
-												<td><?php echo $hotel->_combobox('hotel_cb_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""),"BD"); ?></td>
+                        <td>
+                          <input type="hidden" name="hotel_cb_1_<?php echo $day; ?>" id="hotel_cb_1_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""),"SD"); ?>                          
+                        </td>
+                        <td>
+                          <input type="hidden" name="hotel_cb_2_<?php echo $day; ?>" id="hotel_cb_2_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""),"DX"); ?>
+                        </td>
+                        <td>
+                          <input type="hidden" name="hotel_cb_3_<?php echo $day; ?>" id="hotel_cb_3_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""),"BD"); ?>
+                        </td>
 											</tr>                    							  
 											<?php } ?>
 										</tbody>
@@ -213,14 +259,25 @@
 												<td align='center'>Lunch</td>
 												<td align='center'>Dinner</td>
 											</tr>							  
+                      <?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>  
 											<tr class="list-of-meal">
 												<td align='right'>
-													<label class='control-label'>D1</label>
+													<label class='control-label'>D<?php echo $day; ?></label>
 												</td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_1",(isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : "")); ?></td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_2",(isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : "")); ?></td>
-												<td><?php echo $restaurant->_comboboxMeal('restaurant_'.$day."_3",(isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : "")); ?></td>
-											</tr>                    							  
+                        <td>
+                          <input type="hidden" name="restaurant_<?php echo $day; ?>_1" id="restaurant_<?php echo $day; ?>_1" value="<?php echo (isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_1",(isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : "")); ?>
+                        </td>
+                        <td>
+                          <input type="hidden" name="restaurant_<?php echo $day; ?>_2" id="restaurant_<?php echo $day; ?>_2" value="<?php echo (isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_2",(isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : "")); ?>
+                        </td>
+                        <td>
+                          <input type="hidden" name="restaurant_<?php echo $day; ?>_3" id="restaurant_<?php echo $day; ?>_3" value="<?php echo (isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_3",(isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : "")); ?>
+                        </td>
+											</tr> 
+                      <?php } ?>                   							  
 										</tbody>
 									</table>
 								</div>
@@ -249,6 +306,7 @@
 						</div>
 						<div class="panel-body quotation-body">
 							<form name="formInsertOther" id="formInsertOther" class="form-horizontal" action="quotation_insertOther" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
+                <?php if (isset($a)) { ?>
                 <?php $ctr=0; ?>
                 <?php foreach($model->detail['other'] as $data) { $ctr++; ?>
                 <div class='form-group'>                  
@@ -275,9 +333,54 @@
                   </div>
                   <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
                   <div class='col-md-2 no-pad-l'>
-                    <input name='other_<?php echo $ctr; ?>_5' id='other_<?php echo $ctr; ?>_5' type='text' class='form-control' style="text-align: right" value="<?php echo number_format($data['other_subtotal']); ?>" readonly>
+                    <input name='other_<?php echo $ctr; ?>_5' id='other_<?php echo $ctr; ?>_5' type='text' class='form-control' style="text-align: right" value="<?php echo number_format($data['other_subtotal']); ?>">
                   </div>                                
                 </div>                
+                <?php }?>
+                <?php } else {?>
+                  <?php $ctr = 8; ?>
+                  <?php $other= array(
+                    array("","",""),
+                    array("LOCAL GUIDE","PAX","DAY"),
+                    array("DRIVER","PAX","DAY"),
+                    array("TICKET","PAX","TIME"),
+                    array("ACCOMODATION","RM","NTS"),
+                    array("MEAL","PAX","TIME"),
+                    array("TOL/PARKING","COACH","TIME"),
+                    array("","",""),
+                    array("","","")
+                    ); ?>
+                  <?php for ($i=1 ; $i<= 8 ; $i++) { ?>
+                
+                  <div class='form-group'>                  
+                    <div class='col-md-2 no-pad-r' >
+                      <input name='other_<?php echo $i; ?>_1' id='other_<?php echo $i; ?>_1' type='text' class='form-control' value="<?php echo $other[$i][0]; ?>">
+                    </div>
+                    <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:15px; width: 10px;'>:</label>
+                    <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                      <input name='other_<?php echo $i; ?>_2' id='other_<?php echo $i; ?>_2' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    </div>
+                    <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
+                    <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                      <input name='other_<?php echo $i; ?>_3' id='other_<?php echo $i; ?>_3' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    </div>
+                    <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                      <input name='other_<?php echo $i; ?>_31' id='other_<?php echo $i; ?>_31' type='text' class='form-control' value="<?php echo $other[$i][1]; ?>">
+                    </div>
+                    <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
+                    <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                      <input name='other_<?php echo $i; ?>_4' id='other_<?php echo $i; ?>_4' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    </div>
+                    <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
+                      <input name='other_<?php echo $i; ?>_41' id='other_<?php echo $i; ?>_41' type='text' class='form-control' value="<?php echo $other[$i][2]; ?>">
+                    </div>
+                    <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>=</label>
+                    <div class='col-md-2 no-pad-l'>
+                      <input name='other_<?php echo $i; ?>_5' id='other_<?php echo $i; ?>_5' type='text' style="text-align: right" class='form-control' value="0" readonly>
+                    </div>                                
+                  </div>
+                
+                  <?php }?>
 							  <?php }?>
                 <input type="hidden" name="other_count" value="<?php echo $ctr; ?>">
 								

@@ -28,8 +28,9 @@
       </div>			
 		<label for="hotel_type" class="control-label col-md-1 no-pad-r" style="margin-right: 5px;">Type</label>
 		<div class="col-md-3 no-pad-l">		
-			<select name="hotel_type" id="hotel_type" class="form-control">
-				<option value="SD" selected>SUPER DELUXE</option>
+			<select name="hotel_type" id="hotel_type" class="form-control" required>
+        <option value="" selected>CHOOSE ONE</option>
+				<option value="SD">SUPER DELUXE</option>
 				<option value="DX">DELUXE</option>
 				<option value="BS">BUSINESS</option>
 				<option value="BD">BUDGET</option>				

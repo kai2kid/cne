@@ -22,4 +22,16 @@
     }
     return $ret;
   }
+  
+  function total_guide($people) {
+    return 1+floor($people / 30);
+  }
+  function total_pax($people) {
+    $people += total_guide($people);
+    return $people;
+  }
+  function total_pax_text($people) {
+    $people .= "+" . total_guide($people);
+    return $people;
+  }
 ?>

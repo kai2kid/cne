@@ -1,79 +1,137 @@
 $(document).ready( function () {					
-	initCombobox();
-	
-	//starting quotation		
-	addDayRoute(1,1);	
-	$('input[type=date]').datepicker();
-	$('table.datatable').dataTable();  		 			
-	
-	//CHANGE DAY===============================
-	$("#quotation_day").change(function(){		    
-		dayCount = parseInt($("#quotation_day").val());
-		if ($.trim(dayCount) == ""){
-			dayCount = 0
-		}
-		
-		jumElemen = $(".input-transport").length-1;
-		selisih = jumElemen - dayCount;		
-		
-		if (selisih > 0) {					
-			//HAPUS KELEBIHAN
-			for (i=0; i<selisih; i++){				
-				$(".wrapper_route:last").remove();	
-				$("tr.list-of-meal").last().remove();	
-				$("tr.list-of-hotel").last().remove();
-			}
-		} else {
-			//NAMBAH TRANSPORT - ROUTE
-			jumElemen = jumElemen + 1;
-			for (i=jumElemen; i<=dayCount; i++){	
-				//ROUTE
-				addDayRoute(i,1);
-				
-				//MEAL
-				addMeal(i);
-				
-				//HOTEL
-				addHotel(i);
-			}						
-		}			
-	});
+
+  $('input[type=date]').datepicker();
+  $('table.datatable').dataTable();             
+
+  //CHANGE DAY===============================
+  $("#quotation_day").change(function(){        
+    dayCount = parseInt($("#quotation_day").val());
+    if ($.trim(dayCount) == ""){
+      dayCount = 0
+    }
+    
+    jumElemen = $(".input-transport").length-1;
+    selisih = jumElemen - dayCount;    
+    
+    if (selisih > 0) {          
+      //HAPUS KELEBIHAN
+      for (i=0; i<selisih; i++){        
+        $(".wrapper_route:last").remove();  
+        $("tr.list-of-meal").last().remove();  
+        $("tr.list-of-hotel").last().remove();
+      }
+    } else {
+      //NAMBAH TRANSPORT - ROUTE
+      jumElemen = jumElemen + 1;
+      for (i=jumElemen; i<=dayCount; i++){  
+        //ROUTE
+        addDayRoute(i,1);
+        
+        //MEAL
+        addMeal(i);
+        
+        //HOTEL
+        addHotel(i);
+      }            
+    }      
+  });
+
+  
+  if ($('#quotation_mode').val() == "insert") {
+    initCombobox();
+    
+    //starting quotation    
+    addDayRoute(1,1);  
+  } else {
+    day = parseInt($("#quotation_day").val());
+    night = day-1;
+    var d;
+    var no;
+    for (d = 1 ; d <= day ; d++) {
+      dd = d.toString();
+      changeRoute(d);
+      initCombobox(dd);
+      
+      $("#cbroute_"+dd).combobox({
+        select: function( event, ui ) {
+          //alert("ganti"+induk);
+          isi = ui.item.value.split("|");
+          $("#route_"+dd).val(isi[0]);
+          $("#path_"+dd).val(isi[1]);                    
+          changeRoute(dd);
+        }
+      });  
+  
+      for (no = 1 ; no <= parseInt($("#rundown_ctr_"+dd).val()) ; no++) {
+        $("#cbentrance_"+dd+"_"+no).combobox({
+          select: function( event, ui ) {            
+            $("#entrance_"+dd+"_"+no).val(ui.item.value);      
+            $("#cbentrance_"+dd+"_"+no).children("*").removeAttr("selected");
+            $("#cbentrance_"+dd+"_"+no).children("[value*='"+ui.item.value+"']").attr("selected","selected");  
+          }    
+        });  
+        $("#cbentrance_"+dd+"_"+no).next().find("input").attr("onblur","addEntrance("+dd+","+no+",this.value)");  
+      }      
+    }
+    
+  
+  //FILTER JIKA DIA BUKAN PERTAMA
+  /*/
+  if (induk>1){
+    no = induk - 1;
+    kode = $("input[type='hidden'][name='route_"+no+"']").val();    //mendapatkan RO0108
+    rute = $("input[type='hidden'][name='path_"+no+"']").val();      //mendapatkan JEJU - BUSAN - DAEGU
+    
+    pathRoute = rute.split(";");
+    startRoute = pathRoute[0];
+    endRoute = pathRoute[pathRoute.length-1];
+    
+    $("#cbroute_"+induk).children("*").attr("disabled","disabled");
+    $("#cbroute_"+induk).children("[st*='"+endRoute+"']").removeAttr("disabled");  
+  }  
+  /*/
+    
+  }
   
 } );
 
-function initCombobox(){
-	
+function initCombobox(day){
+	if (day == null) {
+    day = "1";
+  } else {
+    day = day.toString();
+  }
 	//HOTEL================================
-	$("#cbhotel_1_1").combobox({
+	$("#cbhotel_1_"+day).combobox({
 		select: function( event, ui ) {											
-			$("#hotel_cb_1_1").val(ui.item.value);					
+			$("#hotel_cb_1_"+day).val(ui.item.value);					
 		}
 	});
-	$("#cbhotel_2_1").combobox({
+	$("#cbhotel_2_"+day).combobox({
 		select: function( event, ui ) {											
-			$("#hotel_cb_2_1").val(ui.item.value);					
+			$("#hotel_cb_2_"+day).val(ui.item.value);					
 		}
 	});
-	$("#cbhotel_3_1").combobox({
+	$("#cbhotel_3_"+day).combobox({
 		select: function( event, ui ) {											
-			$("#hotel_cb_3_1").val(ui.item.value);					
+			$("#hotel_cb_3_"+day).val(ui.item.value);					
 		}
 	});
 			
 	//MEAL==================================
-	$("#cbrestaurant_1_1").combobox({
+	$("#cbrestaurant_"+day+"_1").combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_1_1").val(ui.item.value);				
+			$("#restaurant_"+day+"_1").val(ui.item.value);				
 		}
 	});		
-	$("#cbrestaurant_1_2").combobox({
+	$("#cbrestaurant_"+day+"_2").combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_1_2").val(ui.item.value);				
+			$("#restaurant_"+day+"_2").val(ui.item.value);				
 		}
 	});
-	$("#cbrestaurant_1_3").combobox({
+	$("#cbrestaurant_"+day+"_3").combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_1_3").val(ui.item.value);				
+			$("#restaurant_"+day+"_3").val(ui.item.value);				
 		}
 	});
 	
@@ -82,6 +140,9 @@ function initCombobox(){
 function addMeal(i){
 	myEl = $("tr.list-of-meal").first().clone(false);					
 	myEl.find("label").html("D"+i);								
+  myEl.find("input").each(function() {
+    $(this).val("");
+  });
 	
 	c = 1;
 	myEl.find("input[type='hidden']").each(function(){
@@ -120,12 +181,16 @@ function addMeal(i){
 
 function addHotel(i){
 	myEl = $("tr.list-of-hotel").first().clone(false);					
-	myEl.find("label").html("D"+i);								
+  myEl.find("label").html("D"+i);                
+	myEl.find("input").each(function() {
+    $(this).val("");
+  });
 	
 	c = 1;
 	myEl.find("input[type='hidden']").each(function(){
 		$(this).attr("name", "hotel_cb_"+c+"_"+i);	
-		$(this).attr("id", "hotel_cb_"+c+"_"+i);	
+    $(this).attr("id", "hotel_cb_"+c+"_"+i);  
+		$(this).val("");	
 		c++;
 	});
 	
@@ -135,7 +200,6 @@ function addHotel(i){
 		$(this).attr('name', "cbhotel"+"_"+c+"_"+i);		
 		c++;
 	});		
-
 	$("#cbhotel_1_"+i).combobox({
 		select: function( event, ui ) {											
 			$("#hotel_cb_1_"+i).val(ui.item.value);				

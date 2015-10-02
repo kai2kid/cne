@@ -51,7 +51,8 @@ class controller_quotation extends basicController {
   }
   public function calculation() {
     $param['model'] = new model_quotation($this->id);    
-    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];    
+//    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];
+    $param['pax_estimated'] = ["10+1"=>10,"15+1"=>15,"20+1"=>20,"25+1"=>25,"30+2"=>30,"35+2"=>35,"40+2"=>40];
     $param['rate'] = (1 / $param['model']->detail["rate_USD"]);
     $param['data'] = "";
     $this->loadView("quotation_calculation",$param);

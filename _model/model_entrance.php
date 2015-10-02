@@ -66,9 +66,18 @@ class model_entrance extends basicModel {
     $rows = $this->query($qry);
     $ret = "<select name='$name' id = '$name' class='form-control min-padding combobox' at='fentrance'>";
     $ret .= "<option name='-' value=''></option>";
+    $match = false;
     foreach ($rows as $row) {
-      $s = ($selected != "" && $selected == $row['entrance_code'] ? "selected" : "");
+      if ($selected != "" && $selected == $row['entrance_code']) {
+        $s = "selected";
+        $match = true;
+      } else {
+        $s = "";
+      }
       $ret .= "<option name='".$row['entrance_location']."' value='".$row['entrance_code']."' $s>".$row['entrance_name']."</option>";
+    }
+    if ($selected != "" && !$match) {
+      $ret .= "<option selected>".$selected."</option>";
     }
     $ret .= "</select>";
     return $ret;

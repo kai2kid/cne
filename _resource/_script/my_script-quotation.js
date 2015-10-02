@@ -71,17 +71,19 @@ function addHotel(i){
 	myEl = $("tr.list-of-hotel").first().clone(false);					
 	myEl.find("label").html("D"+i);							
 	myEl.find(".combobox-container").remove();
-	
 	c = 1;
 	myEl.find("select").each(function(){									
-		$(this).attr('id', "hotel_"+i+"_"+c);
+    $(this).attr('id', "hotel_"+i+"_"+c);
+//		$(this).childred().each(function() {
+//      $(this).removeAttr("selected");
+//    });
 		c++;
 	});
 	myEl.find("select").combobox();
-	
 	c = 1;
 	myEl.find("input[type='hidden']").each(function(){
 		$(this).attr("name", "hotel_"+i+"_"+c);	
+//    $(this).val("");
 		c++;
 	});
 	
@@ -169,8 +171,7 @@ function addTime(el, induk, nomor){
 	$(el).prop('disabled',true);			
 }
 
-function removeTime(induk, nomor)
-{
+function removeTime(induk, nomor) {
 	nomorLama = nomor - 1;
 	
 	if ($("#btnAddTime_"+induk+"_"+nomor).prop('disabled')==false){
@@ -188,8 +189,7 @@ function calculateOther(idx){
 	$("#other_"+idx+"_5").val(hasil);
 }
 
-function changeRoute(no)
-{				
+function changeRoute(no) {				
 	//MENGISI BAGIAN RUNDOWN			
 	kode = $("input[type='hidden'][name='route_"+no+"']").val();    //mendapatkan RO0108
 	rute = $("#route_"+no+" option[value='"+kode+"']").text();	    //mendapatkan JEJU - BUSAN - DAEGU

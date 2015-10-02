@@ -34,11 +34,12 @@ class model_quotation extends basicModel {
       
       //rundown
       $qry = "
-        SELECT *
+        SELECT d.route_code, qday_day,r.qdetail_title,r.qdetail_time_start,r.qdetail_time_end,e.entrance_name
         FROM quotation_day d
         LEFT JOIN quotation_detail r ON d.qday_code = r.qday_code
+        LEFT JOIN entrance e ON r.qdetail_title = e.entrance_code
         WHERE d.quotation_code = '".$this->id."'
-        ORDER BY r.qdetail_time_start ASC
+        ORDER BY d.qday_day ASC, r.qdetail_time_start ASC
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
@@ -59,7 +60,7 @@ class model_quotation extends basicModel {
       foreach ($rows as $row) {
         $row['hotel_price_room_standard'] = $row['room_group_weekday_low'];
         $row['hotel_price_breakfast_standard'] = $row['room_group_breakfast'];
-        $this->detail['hotel'][$row['qday_day']][$row['qday_room_level']] = $row;
+        $this->detail['hotel'][$row['qday_room_level']][$row['qday_day']] = $row;
       }
       
       //Restaurant
@@ -74,7 +75,7 @@ class model_quotation extends basicModel {
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
-        $this->detail['restaurant'][$row['qday_day']][$row['qday_rest_type']] = $row;
+        $this->detail['restaurant'][$row['qday_rest_type']][$row['qday_day']] = $row;
       }
       
 //      $this->detail['restaurant']['restaurant_price_low'] = 5000;
@@ -97,17 +98,19 @@ class model_quotation extends basicModel {
       
       //Entrance
       $qry = "
-        SELECT *
+        SELECT d.qday_day,e.*
         FROM quotation_day d
-        LEFT JOIN qday_entrance q ON d.qday_code = q.qday_code
-        LEFT JOIN entrance e ON e.entrance_code = q.entrance_code
-        WHERE d.quotation_code = '".$this->id."'
-        ORDER BY d.qday_day ASC, e.entrance_name ASC
+        LEFT JOIN quotation_detail r ON d.qday_code = r.qday_code
+        LEFT JOIN entrance e ON r.qdetail_title = e.entrance_code
+        WHERE d.quotation_code = '".$this->id."' AND e.entrance_code != ''
+        ORDER BY d.qday_day ASC, r.qdetail_time_start ASC
       ";
+      
       $rows = $this->query($qry);
       foreach ($rows as $row) {
         $this->detail['entrance'][$row['qday_day']][] = $row;
       }
+      
       //Other
       $qry = "
         SELECT *

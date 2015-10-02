@@ -105,7 +105,7 @@ class controller_buyer extends basicController {
       $model->inserting($insert);
     }
     
-    
+                                       
     if (isset($_FILES['photo']) && $_FILES['photo'] != "") {
       $photo = new Upload($_FILES['photo']); 
       if ($photo->uploaded) {

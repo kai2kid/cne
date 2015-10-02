@@ -142,18 +142,18 @@ function saveasnew() {
     
     for (key in formid) {
       f = $("#"+formid[key]);
-      alert(f.attr("action"));
+      //alert(f.attr("action"));
       $.ajax({
         type : "POST",
         url: f.attr("action"),
         data: f.serialize() + "&quotation_code=" + newcode,
         success: function(data){
-          alert("buyar");
+          //alert("buyar");
           if(data.result == 1) {
-            alert("Data has been saved.");
+            alert("Data "+ key +" has been saved.");
           } else {
-            alert("Data cannot be saved.");
-            alert(f.serialize() + "&quotation_code=" + newcode);
+            alert("Data "+ key +" cannot be saved.");
+            //alert(f.serialize() + "&quotation_code=" + newcode);
           }
         },
         async:false
