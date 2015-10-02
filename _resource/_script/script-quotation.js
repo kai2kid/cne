@@ -140,9 +140,9 @@ function initCombobox(day){
 function addMeal(i){
 	myEl = $("tr.list-of-meal").first().clone(false);					
 	myEl.find("label").html("D"+i);								
-  myEl.find("input").each(function() {
-    $(this).val("");
-  });
+	myEl.find("input").each(function() {
+		$(this).val("");
+	});
 	
 	c = 1;
 	myEl.find("input[type='hidden']").each(function(){
@@ -157,6 +157,10 @@ function addMeal(i){
 		$(this).attr('name', "cbrestaurant_"+i+"_"+c);
 		c++;
 	});	
+	
+	myEl.find("span[class='custom-combobox']").remove();
+	
+	$("#table-meal").append(myEl);
 	
 	$("#cbrestaurant_"+i+"_1").combobox({
 		select: function( event, ui ) {				
@@ -174,9 +178,8 @@ function addMeal(i){
 		select: function( event, ui ) {				
 			$("#restaurant_"+i+"_3").val(ui.item.value);				
 		}
-	});
+	});	
 	
-	$("#table-meal").append(myEl);
 }
 
 function addHotel(i){
@@ -199,7 +202,11 @@ function addHotel(i){
 		$(this).attr('id', "cbhotel"+"_"+c+"_"+i);
 		$(this).attr('name', "cbhotel"+"_"+c+"_"+i);		
 		c++;
-	});		
+	});	
+
+	myEl.find("span[class='custom-combobox']").remove();
+	$("#table-hotel").append(myEl);
+	
 	$("#cbhotel_1_"+i).combobox({
 		select: function( event, ui ) {											
 			$("#hotel_cb_1_"+i).val(ui.item.value);				
@@ -216,7 +223,7 @@ function addHotel(i){
 		}
 	});
 	
-	$("#table-hotel").append(myEl);
+	
 }
 
 function addDayRoute(induk, nomor){	
@@ -407,6 +414,7 @@ function changeRoute(no)
 	$("#cbrestaurant_"+no+"_2").children("*").attr("disabled","disabled");			
 	$("#cbrestaurant_"+no+"_3").children("*").attr("disabled","disabled");
 	
+	$("#cbrestaurant_"+no+"_1").children("[name*='*']").removeAttr("disabled");		
 	for (j=0; j<pathRoute.length; j++){
 		$("#cbrestaurant_"+no+"_1").children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
 		$("#cbrestaurant_"+no+"_2").children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
