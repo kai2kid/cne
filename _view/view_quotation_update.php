@@ -194,13 +194,13 @@
 						<form name="formInsertHotel" id="formInsertHotel" class="form-horizontal" action="quotation_insertHotel" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-hotel">
 								<div id='hotel'>
-									<table class='table borderless table-font' cellspacing='0' width='100%' id="table-hotel">
+									<table class='table borderless table-font' cellspacing='0' width='98%' id="table-hotel">
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-                        <td align='center' width="32%"><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
-                        <td align='center' width="32%"><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
-                        <td align='center' width="32%"><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
+                        <td align='center' width="32%"><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="<?php echo $model->quotation_title1; ?>"></td>
+                        <td align='center' width="32%"><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="<?php echo $model->quotation_title2; ?>"></td>
+                        <td align='center' width="32%"><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="<?php echo $model->quotation_title3; ?>"></td>
 											</tr>		
 											<?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>	
 											<tr class="list-of-hotel">
@@ -208,16 +208,16 @@
 													<label class='control-label'>D<?php echo $day;?></label>
 												</td>
                         <td>
-                          <input type="hidden" name="hotel_cb_1_<?php echo $day; ?>" id="hotel_cb_1_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""); ?>">
-                          <?php echo $hotel->_combobox('cbhotel_1_'.$day,(isset($model->detail['hotel'][$day][5]['hotel_code']) && $model->detail['hotel'][$day][5]['hotel_code'] != "" ? $model->detail['hotel'][$day][5]['hotel_code'] : ""),"SD"); ?>                          
+                          <input type="hidden" name="hotel_cb_1_<?php echo $day; ?>" id="hotel_cb_1_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][5][$day]['hotel_code']) && $model->detail['hotel'][5][$day]['hotel_code'] != "" ? $model->detail['hotel'][5][$day]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_1_'.$day,(isset($model->detail['hotel'][5][$day]['hotel_code']) && $model->detail['hotel'][5][$day]['hotel_code'] != "" ? $model->detail['hotel'][5][$day]['hotel_code'] : "")); ?>
                         </td>
                         <td>
-                          <input type="hidden" name="hotel_cb_2_<?php echo $day; ?>" id="hotel_cb_2_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""); ?>">
-                          <?php echo $hotel->_combobox('cbhotel_2_'.$day,(isset($model->detail['hotel'][$day][4]['hotel_code']) && $model->detail['hotel'][$day][4]['hotel_code'] != "" ? $model->detail['hotel'][$day][4]['hotel_code'] : ""),"DX"); ?>
+                          <input type="hidden" name="hotel_cb_2_<?php echo $day; ?>" id="hotel_cb_2_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][4][$day]['hotel_code']) && $model->detail['hotel'][4][$day]['hotel_code'] != "" ? $model->detail['hotel'][4][$day]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_2_'.$day,(isset($model->detail['hotel'][4][$day]['hotel_code']) && $model->detail['hotel'][4][$day]['hotel_code'] != "" ? $model->detail['hotel'][4][$day]['hotel_code'] : "")); ?>
                         </td>
                         <td>
-                          <input type="hidden" name="hotel_cb_3_<?php echo $day; ?>" id="hotel_cb_3_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""); ?>">
-                          <?php echo $hotel->_combobox('cbhotel_3_'.$day,(isset($model->detail['hotel'][$day][3]['hotel_code']) && $model->detail['hotel'][$day][3]['hotel_code'] != "" ? $model->detail['hotel'][$day][3]['hotel_code'] : ""),"BD"); ?>
+                          <input type="hidden" name="hotel_cb_3_<?php echo $day; ?>" id="hotel_cb_3_<?php echo $day; ?>" value="<?php echo (isset($model->detail['hotel'][3][$day]['hotel_code']) && $model->detail['hotel'][3][$day]['hotel_code'] != "" ? $model->detail['hotel'][3][$day]['hotel_code'] : ""); ?>">
+                          <?php echo $hotel->_combobox('cbhotel_3_'.$day,(isset($model->detail['hotel'][3][$day]['hotel_code']) && $model->detail['hotel'][3][$day]['hotel_code'] != "" ? $model->detail['hotel'][3][$day]['hotel_code'] : "")); ?>
                         </td>
 											</tr>                    							  
 											<?php } ?>
@@ -251,30 +251,30 @@
 						<form name="formInsertMeal" id="formInsertMeal" class="form-horizontal" action="quotation_insertMeal" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
 							<div class="form-group input-meal">
 								<div id='meal'>
-									<table class='table borderless table-font' cellspacing='0' width='100%' id="table-meal">
+									<table class='table borderless table-font' cellspacing='0' width='98%' id="table-meal">
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-												<td align='center'>Breakfast</td>
-												<td align='center'>Lunch</td>
-												<td align='center'>Dinner</td>
+												<td align='center' width="32%">Breakfast</td>
+												<td align='center' width="32%">Lunch</td>
+												<td align='center' width="32%">Dinner</td>
 											</tr>							  
-                      <?php for ($day=1; $day < $model->quotation_days ; $day++) { ?>  
+                      <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>  
 											<tr class="list-of-meal">
 												<td align='right'>
 													<label class='control-label'>D<?php echo $day; ?></label>
 												</td>
                         <td>
-                          <input type="hidden" name="restaurant_<?php echo $day; ?>_1" id="restaurant_<?php echo $day; ?>_1" value="<?php echo (isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : ""); ?>">
-                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_1",(isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : "")); ?>
+                          <input type="hidden" name="restaurant_1_<?php echo $day; ?>" id="restaurant_1_<?php echo $day; ?>" value="<?php echo (isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_1_'.$day,(isset($model->detail['restaurant'][$day][1]['menu_code']) && $model->detail['restaurant'][$day][1]['menu_code'] != "" ? $model->detail['restaurant'][$day][1]['menu_code'] : ""),1); ?>
                         </td>
                         <td>
-                          <input type="hidden" name="restaurant_<?php echo $day; ?>_2" id="restaurant_<?php echo $day; ?>_2" value="<?php echo (isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : ""); ?>">
-                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_2",(isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : "")); ?>
+                          <input type="hidden" name="restaurant_2_<?php echo $day; ?>" id="restaurant_2_<?php echo $day; ?>" value="<?php echo (isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_2_'.$day,(isset($model->detail['restaurant'][$day][2]['menu_code']) && $model->detail['restaurant'][$day][2]['menu_code'] != "" ? $model->detail['restaurant'][$day][2]['menu_code'] : "")); ?>
                         </td>
                         <td>
-                          <input type="hidden" name="restaurant_<?php echo $day; ?>_3" id="restaurant_<?php echo $day; ?>_3" value="<?php echo (isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : ""); ?>">
-                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_'.$day."_3",(isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : "")); ?>
+                          <input type="hidden" name="restaurant_3_<?php echo $day; ?>" id="restaurant_3_<?php echo $day; ?>" value="<?php echo (isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : ""); ?>">
+                          <?php echo $restaurant->_comboboxMeal('cbrestaurant_3_'.$day,(isset($model->detail['restaurant'][$day][3]['menu_code']) && $model->detail['restaurant'][$day][3]['menu_code'] != "" ? $model->detail['restaurant'][$day][3]['menu_code'] : "")); ?>
                         </td>
 											</tr> 
                       <?php } ?>                   							  
@@ -306,8 +306,9 @@
 						</div>
 						<div class="panel-body quotation-body">
 							<form name="formInsertOther" id="formInsertOther" class="form-horizontal" action="quotation_insertOther" method="post" onsubmit="quotationSubmitForm(this.id);return false;">
-                <?php if (isset($a)) { ?>
+                <?php if (isset($model->detail['other'])) { ?>
                 <?php $ctr=0; ?>
+                <?php for ($ctr = 1 ; $ctr <= 8 ; $ctr++) ?>
                 <?php foreach($model->detail['other'] as $data) { $ctr++; ?>
                 <div class='form-group'>                  
                   <div class='col-md-2 no-pad-r' >
@@ -358,18 +359,18 @@
                     </div>
                     <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:15px; width: 10px;'>:</label>
                     <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                      <input name='other_<?php echo $i; ?>_2' id='other_<?php echo $i; ?>_2' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                      <input name='other_<?php echo $i; ?>_2' id='other_<?php echo $i; ?>_2' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                     </div>
                     <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
                     <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                      <input name='other_<?php echo $i; ?>_3' id='other_<?php echo $i; ?>_3' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                      <input name='other_<?php echo $i; ?>_3' id='other_<?php echo $i; ?>_3' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                     </div>
                     <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
                       <input name='other_<?php echo $i; ?>_31' id='other_<?php echo $i; ?>_31' type='text' class='form-control' value="<?php echo $other[$i][1]; ?>">
                     </div>
                     <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
                     <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                      <input name='other_<?php echo $i; ?>_4' id='other_<?php echo $i; ?>_4' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                      <input name='other_<?php echo $i; ?>_4' id='other_<?php echo $i; ?>_4' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                     </div>
                     <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
                       <input name='other_<?php echo $i; ?>_41' id='other_<?php echo $i; ?>_41' type='text' class='form-control' value="<?php echo $other[$i][2]; ?>">

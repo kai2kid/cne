@@ -71,7 +71,7 @@ class model_restaurant extends basicModel {
     $ret = "<select id='$name' name='$name' class='form-control min-padding combobox'>";
     $ret .= "<option name='-' value=''></option>";
     if ($isbreakfast) {
-      $ret .= "<option name='*' value='ABF'>Hotel ABF</option>";
+      $ret .= "<option name='*' value='ABF' ".($selected == "ABF" ? "selected" : "").">Hotel ABF</option>";
     }
     foreach($rows as $row) {
       $ret .= "<option name='".$row['restaurant_location']."' value='".$row['menu_code']."' ".($selected == $row['menu_code'] ? "selected" : "").">".$row['menu_name'] . " - " . $row['restaurant_name'] ."</option>";

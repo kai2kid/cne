@@ -16,10 +16,10 @@
 		<div class="form-group">
 		  <label for="quotation_day" class="control-label col-md-1 no-pad-r">Duration</label>
 		  <div class="col-md-1 no-pad-r" style="margin-right: 5px;">
-			<input name="quotation_night" type="text" class="form-control" id="quotation_night" placeholder="Night" value="1">Night
+      <input name="quotation_day" type="text" class="form-control" id="quotation_day" placeholder="Day" value="1">Day
 		  </div>		  
 		  <div class="col-md-1 no-pad-l no-pad-r">			
-			<input name="quotation_day" type="text" class="form-control" id="quotation_day" placeholder="Day" value="1">Day
+      <input name="quotation_night" type="text" class="form-control" id="quotation_night" placeholder="Night" value="1">Night
 		  </div>	
 		  <div class="col-md-1 no-pad-l" style="margin-left: 5px;">
 			<input type="submit" class="btn btn-primary btn-block" value="Save">
@@ -110,17 +110,23 @@
 										<tbody>
 											<tr>
 												<td>&nbsp;</td>
-												<td align='center' width="32%"><input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe"></td>
-												<td align='center' width="32%"><input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe"></td>
-												<td align='center' width="32%"><input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget"></td>
+												<td align='center' width="32%">
+                          <input name="hotel_type1" type="text" style="text-align:center;" class="form-control" id="hotel_type1" value="Super Deluxe">
+                        </td>
+												<td align='center' width="32%">
+                          <input name="hotel_type2" type="text" style="text-align:center;" class="form-control" id="hotel_type2" value="Deluxe">
+                        </td>
+												<td align='center' width="32%">
+                          <input name="hotel_type3" type="text" style="text-align:center;" class="form-control" id="hotel_type3" value="Budget">
+                        </td>
 											</tr>							  
 											<tr class="list-of-hotel">
 												<td align='right'>
 													<label class='control-label'>D1</label>
 												</td>
-												<td><input type="hidden" name="hotel_cb_1_1" id="hotel_cb_1_1"><?php echo $hotel->_combobox('cbhotel_1_1',"","SD"); ?></td>
-												<td><input type="hidden" name="hotel_cb_2_1" id="hotel_cb_2_1"><?php echo $hotel->_combobox('cbhotel_2_1',"","DX"); ?></td>
-												<td><input type="hidden" name="hotel_cb_3_1" id="hotel_cb_3_1"><?php echo $hotel->_combobox('cbhotel_3_1',"","BD"); ?></td>
+												<td><input type="hidden" name="hotel_cb_1_1" id="hotel_cb_1_1"><?php echo $hotel->_combobox('cbhotel_1_1',""); ?></td>
+												<td><input type="hidden" name="hotel_cb_2_1" id="hotel_cb_2_1"><?php echo $hotel->_combobox('cbhotel_2_1',""); ?></td>
+												<td><input type="hidden" name="hotel_cb_3_1" id="hotel_cb_3_1"><?php echo $hotel->_combobox('cbhotel_3_1',""); ?></td>
 											</tr>                    							  
 										</tbody>
 									</table>
@@ -165,8 +171,8 @@
 													<label class='control-label'>D1</label>
 												</td>
 												<td><input type="hidden" name="restaurant_1_1" id="restaurant_1_1"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_1',"",1); ?></td>
-												<td><input type="hidden" name="restaurant_1_2" id="restaurant_1_2"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_2'); ?></td>
-												<td><input type="hidden" name="restaurant_1_3" id="restaurant_1_3"><?php echo $restaurant->_comboboxMeal('cbrestaurant_1_3'); ?></td>
+												<td><input type="hidden" name="restaurant_2_1" id="restaurant_2_1"><?php echo $restaurant->_comboboxMeal('cbrestaurant_2_1'); ?></td>
+												<td><input type="hidden" name="restaurant_3_1" id="restaurant_3_1"><?php echo $restaurant->_comboboxMeal('cbrestaurant_3_1'); ?></td>
 											</tr>                    							  
 										</tbody>
 									</table>
@@ -216,18 +222,18 @@
                   </div>
                   <label class='control-label col-md-1 no-pad-l no-pad-r' style='margin-right:15px; width: 10px;'>:</label>
                   <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                    <input name='other_<?php echo $i; ?>_2' id='other_<?php echo $i; ?>_2' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    <input name='other_<?php echo $i; ?>_2' id='other_<?php echo $i; ?>_2' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                   </div>
                   <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
                   <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                    <input name='other_<?php echo $i; ?>_3' id='other_<?php echo $i; ?>_3' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    <input name='other_<?php echo $i; ?>_3' id='other_<?php echo $i; ?>_3' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                   </div>
                   <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
                     <input name='other_<?php echo $i; ?>_31' id='other_<?php echo $i; ?>_31' type='text' class='form-control' value="<?php echo $other[$i][1]; ?>">
                   </div>
                   <label class='control-label col-md-1 no-pad-l' style='width: 10px;'>x</label>
                   <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
-                    <input name='other_<?php echo $i; ?>_4' id='other_<?php echo $i; ?>_4' type='number' class='form-control num' value="0" onchange="calculateOther($i)">
+                    <input name='other_<?php echo $i; ?>_4' id='other_<?php echo $i; ?>_4' type='number' class='form-control num' value="0" onchange="calculateOther(<?php echo $i; ?>)">
                   </div>
                   <div class='col-md-1 no-pad-l no-pad-r' style='margin-right: 5px;'>
                     <input name='other_<?php echo $i; ?>_41' id='other_<?php echo $i; ?>_41' type='text' class='form-control' value="<?php echo $other[$i][2]; ?>">

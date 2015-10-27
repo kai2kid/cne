@@ -1,3 +1,64 @@
+<div>
+  <div>
+    <table width=100% border="1" style="border-collapse:collapse;" cellspacing="5px" cellpadding="25px" class="table">
+      <thead>
+        <tr>
+          <td></td>
+          <td><?php echo $model->quotation_name; ?></td>
+          <td></td>
+        </tr>
+      </thead>
+      <tbody>
+        <?php for ($day=1; $day <= $model->quotation_days ; $day++) { ?>
+        <tr>
+            <td>Day <?php echo $day; ?></td>
+            <td>
+              <b><?php echo $model->days[$day]["route_title"]; ?></b>
+              <?php if (isset($model->detail['rundown'][$day])) { ?>
+              <?php foreach ($model->detail['rundown'][$day] as $detail) { ?>
+              <br><?php echo $detail["qdetail_time_start"] . "-" . $detail["qdetail_time_end"] . " &nbsp; " . ($detail["entrance_name"] != "" ? $detail["entrance_name"] : $detail["qdetail_title"]); ?>
+              <?php } ?>
+              <?php } ?>
+            </td>
+            <td>
+              <?php foreach([1,2,3] as $level) { ?>
+                <?php echo text_mealLevel($level,0) . ": " . (isset($model->detail['restaurant'][$day][$level]) ? $model->detail['restaurant'][$day][$level]["menu_name"] . " - " . $model->detail['restaurant'][$day][$level]["restaurant_name"] : " - "); ?><br><br>
+              <?php } ?>
+            </td>
+        <?php } ?>      
+      </tbody>
+    </table>
+  </div>
+  
+  <div>
+    <table>
+      <thead>
+        <tr>
+          <td colspan=6>HOTEL / RESORT</td>
+        </tr>
+        <tr>
+          <th>DATE</th>
+          <th>AREA</th>
+          <th>5* - Super Deluxe</th>
+          <th>4* - Deluxe</th>
+          <th>3* - Budget</th>
+          <th>Nights</th>
+        </tr>
+      </thead>
+      <tbody>
+        <?php foreach([5,4,3] as $level) { ?>
+          <tr>
+            <td></td>
+            <?php echo text_hotelLevel($level,0) . ": " . (isset($model->detail['hotel'][$level][$day]["hotel_name"]) ? $model->detail['hotel'][$level][$day]["hotel_name"] : " - "); ?><br>
+          </tr>
+        <?php } ?>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
 <div class="bs-callout bs-callout-info">
   <div class="collapse navbar-collapse" style="padding-left:0px;">
     <label class="title">Preview: <?php echo $model->quotation_code . " - " . $model->quotation_name; ?></label>
@@ -627,7 +688,7 @@
           <?php foreach ($pax_estimated as $title=>$pax) { ?>
           <?php ++$ctr; ?>
           <td align="right">
-            <?php $fare[$pax][$level]['sglspl'] = round(($fare[$pax][$level]["usd"]) / ceil($pax/2) / 2 * 1.15); ?>
+            <?php $fare[$pax][$level]['sglspl'] = round(($fare[$pax][$level]["usd"]) / ceil(total_pax($pax)/2) / 2 * 1.15); ?>
             <span title="<?php echo $fare[$pax][$level]['sglspl']; ?>" class="price_sglspl pax_<?php echo $ctr; ?> level_<?php echo $level; ?>">
             <?php echo number_format($fare[$pax][$level]['sglspl']); ?>
             </span>
@@ -679,33 +740,3 @@
     </tbody>    
   </table>
   <?php } ?>
-    <input type="button" class="btn btn-success btn-block" value="Save Calculation" onclick="saveCalc();" />
-    <a class="btn btn-primary btn-block" href="quotation~<?php echo $model->quotation_code; ?>_calculationPrint" target="NEW">Print Calculation</a>
-    <input type="hidden" id="quotation_code" value="<?php echo $model->quotation_code; ?>" />
-    <input type="hidden" id="calc_qs" value="" />
-  <br><br>
-  
-  <script>
-  calculate(<?php echo $model->detail["calc"]["pax_custom"]; ?>);
-  changeDP(5,1);
-  changeDP(5,2);
-  changeDP(5,3);
-  changeDP(5,4);
-  changeDP(5,5);
-  changeDP(5,6);
-  changeDP(5,7);
-  changeDP(4,1);
-  changeDP(4,2);
-  changeDP(4,3);
-  changeDP(4,4);
-  changeDP(4,5);
-  changeDP(4,6);
-  changeDP(4,7);
-  changeDP(3,1);
-  changeDP(3,2);
-  changeDP(3,3);
-  changeDP(3,4);
-  changeDP(3,5);
-  changeDP(3,6);
-  changeDP(3,7);
-  </script>

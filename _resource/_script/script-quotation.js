@@ -4,11 +4,12 @@ $(document).ready( function () {
   $('table.datatable').dataTable();             
 
   //CHANGE DAY===============================
-  $("#quotation_day").change(function(){        
+  $("#quotation_day").change(function(){
     dayCount = parseInt($("#quotation_day").val());
     if ($.trim(dayCount) == ""){
       dayCount = 0
     }
+    $("#quotation_night").val((dayCount-1).toString());
     
     jumElemen = $(".input-transport").length-1;
     selisih = jumElemen - dayCount;    
@@ -31,7 +32,10 @@ $(document).ready( function () {
         addMeal(i);
         
         //HOTEL
-        addHotel(i);
+        //Hari terakhir tanpa hotel
+        if (i != dayCount) {
+          addHotel(i);          
+        }
       }            
     }      
   });
@@ -119,19 +123,19 @@ function initCombobox(day){
 	});
 			
 	//MEAL==================================
-	$("#cbrestaurant_"+day+"_1").combobox({
+	$("#cbrestaurant_1_"+day).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+day+"_1").val(ui.item.value);				
+			$("#restaurant_1_"+day).val(ui.item.value);				
 		}
 	});		
-	$("#cbrestaurant_"+day+"_2").combobox({
+	$("#cbrestaurant_2_"+day).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+day+"_2").val(ui.item.value);				
+			$("#restaurant_2_"+day).val(ui.item.value);				
 		}
 	});
-	$("#cbrestaurant_"+day+"_3").combobox({
+	$("#cbrestaurant_3_"+day).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+day+"_3").val(ui.item.value);				
+			$("#restaurant_3_"+day).val(ui.item.value);				
 		}
 	});
 	
@@ -146,15 +150,15 @@ function addMeal(i){
 	
 	c = 1;
 	myEl.find("input[type='hidden']").each(function(){
-		$(this).attr("name", "restaurant_"+i+"_"+c);	
-		$(this).attr("id", "restaurant_"+i+"_"+c);	
+		$(this).attr("name", "restaurant_"+c+"_"+i);	
+		$(this).attr("id", "restaurant_"+c+"_"+i);	
 		c++;
 	});
 	
 	c = 1;
 	myEl.find("select").each(function(){									
-		$(this).attr('id', "cbrestaurant_"+i+"_"+c);
-		$(this).attr('name', "cbrestaurant_"+i+"_"+c);
+		$(this).attr('id', "cbrestaurant_"+c+"_"+i);
+		$(this).attr('name', "cbrestaurant_"+c+"_"+i);
 		c++;
 	});	
 	
@@ -162,21 +166,21 @@ function addMeal(i){
 	
 	$("#table-meal").append(myEl);
 	
-	$("#cbrestaurant_"+i+"_1").combobox({
+	$("#cbrestaurant_1_"+i).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+i+"_1").val(ui.item.value);				
+			$("#restaurant_1_"+i).val(ui.item.value);				
 		}
 	});
 	
-	$("#cbrestaurant_"+i+"_2").combobox({
+	$("#cbrestaurant_2_"+i).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+i+"_2").val(ui.item.value);				
+			$("#restaurant_2_"+i).val(ui.item.value);				
 		}
 	});
 	
-	$("#cbrestaurant_"+i+"_3").combobox({
+	$("#cbrestaurant_3_"+i).combobox({
 		select: function( event, ui ) {				
-			$("#restaurant_"+i+"_3").val(ui.item.value);				
+			$("#restaurant_3_"+i).val(ui.item.value);				
 		}
 	});	
 	
@@ -380,11 +384,10 @@ function changeRoute(no)
 	//AMBIL FILTER		
 	kode = $("input[type='hidden'][name='route_"+no+"']").val();    //mendapatkan RO0108
 	rute = $("input[type='hidden'][name='path_"+no+"']").val();	    //mendapatkan JEJU - BUSAN - DAEGU
-  	
 	pathRoute = rute.split(";");
 	startRoute = pathRoute[0];
 	endRoute = pathRoute[pathRoute.length-1];
-		
+
 	//FILTER NEXT ROUTE
 	nextNo = parseInt(no) + 1;
 	$("#cbroute_"+nextNo).children("*").attr("disabled","disabled");
@@ -410,15 +413,15 @@ function changeRoute(no)
 	$("#cbhotel_3_"+no).children("[name*='"+endRoute+"']").removeAttr("disabled");		
   
 	//FILTER MEAL
-	$("#cbrestaurant_"+no+"_1").children("*").attr("disabled","disabled");			
-	$("#cbrestaurant_"+no+"_2").children("*").attr("disabled","disabled");			
-	$("#cbrestaurant_"+no+"_3").children("*").attr("disabled","disabled");
-	
-	$("#cbrestaurant_"+no+"_1").children("[name*='*']").removeAttr("disabled");		
+	$("#cbrestaurant_1_"+no).children("*").attr("disabled","disabled");			
+	$("#cbrestaurant_2_"+no).children("*").attr("disabled","disabled");			
+	$("#cbrestaurant_3_"+no).children("*").attr("disabled","disabled");
+  
+	$("#cbrestaurant_1_"+no).children("[name*='*']").removeAttr("disabled");		
 	for (j=0; j<pathRoute.length; j++){
-		$("#cbrestaurant_"+no+"_1").children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
-		$("#cbrestaurant_"+no+"_2").children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
-		$("#cbrestaurant_"+no+"_3").children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
+		$("#cbrestaurant_1_"+no).children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
+		$("#cbrestaurant_2_"+no).children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
+		$("#cbrestaurant_3_"+no).children("[name*='"+pathRoute[j]+"']").removeAttr("disabled");		
 	}
 }
 

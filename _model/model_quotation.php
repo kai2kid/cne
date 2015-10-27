@@ -65,7 +65,7 @@ class model_quotation extends basicModel {
       
       //Restaurant
       $qry = "
-        SELECT d.*, q.*, r.restaurant_code, r.restaurant_name, r.restaurant_location, m.menu_code, m.menu_name, m.menu_price_lunch, m.menu_price_dinner
+        SELECT d.*, q.*, r.restaurant_code, r.restaurant_name, r.restaurant_location, q.menu_code, m.menu_name, m.menu_price_lunch, m.menu_price_dinner
         FROM quotation_day d
         LEFT JOIN qday_restaurant q ON d.qday_code = q.qday_code
         LEFT JOIN restaurant_menu m ON m.menu_code = q.menu_code
@@ -75,7 +75,7 @@ class model_quotation extends basicModel {
       ";
       $rows = $this->query($qry);
       foreach ($rows as $row) {
-        $this->detail['restaurant'][$row['qday_rest_type']][$row['qday_day']] = $row;
+        $this->detail['restaurant'][$row['qday_day']][$row['qday_rest_type']] = $row;
       }
       
 //      $this->detail['restaurant']['restaurant_price_low'] = 5000;
@@ -124,17 +124,74 @@ class model_quotation extends basicModel {
         $ctr++;
       }
       $this->detail['other_count'] = $ctr;
+      if ($ctr < 8) {
+        for ($i=$ctr+1 ; $i <= 8 ; $i++) {
+          $this->detail['other'][$i]['other_text'] = "";
+          $this->detail['other'][$i]['other_price'] = "0";
+          $this->detail['other'][$i]['other_satuan'] = "0";
+          $this->detail['other'][$i]['other_satuan_text'] = "";
+          $this->detail['other'][$i]['other_times'] = "0";
+          $this->detail['other'][$i]['other_times_text'] = "";
+          $this->detail['other'][$i]['other_subtotal'] = "0";
+        }
+      }
       
-      $this->detail['default']['maxmin'][5] = 150;
-      $this->detail['default']['range'][5] = 15;
-      $this->detail['default']['sglspl'][5] = 20;
-      $this->detail['default']['maxmin'][4] = 130;
-      $this->detail['default']['range'][4] = 15;
-      $this->detail['default']['sglspl'][4] = 20;
-      $this->detail['default']['maxmin'][3] = 100;
-      $this->detail['default']['range'][3] = 15;
-      $this->detail['default']['sglspl'][3] = 20;
-            
+      
+      //Calc
+
+      $this->detail['calc']['pax_custom'] = 10;
+      
+      $this->detail['calc']['maxmin_5'] = 150;
+      $this->detail['calc']['range_5'] = 15;
+      $this->detail['calc']['sglspl_5'] = 20;
+       
+      $this->detail['calc']['maxmin_4'] = 130;
+      $this->detail['calc']['range_4'] = 15;
+      $this->detail['calc']['sglspl_4'] = 20;
+       
+      $this->detail['calc']['maxmin_3'] = 100;
+      $this->detail['calc']['range_3'] = 15;
+      $this->detail['calc']['sglspl_3'] = 20;       
+      
+      $this->detail['calc']['price_decided_5_1'] = "";
+      $this->detail['calc']['price_decided_5_2'] = "";
+      $this->detail['calc']['price_decided_5_3'] = "";
+      $this->detail['calc']['price_decided_5_4'] = "";
+      $this->detail['calc']['price_decided_5_5'] = "";
+      $this->detail['calc']['price_decided_5_6'] = "";
+      $this->detail['calc']['price_decided_5_7'] = "";
+      
+      $this->detail['calc']['price_decided_4_1'] = "";
+      $this->detail['calc']['price_decided_4_2'] = "";
+      $this->detail['calc']['price_decided_4_3'] = "";
+      $this->detail['calc']['price_decided_4_4'] = "";
+      $this->detail['calc']['price_decided_4_5'] = "";
+      $this->detail['calc']['price_decided_4_6'] = "";
+      $this->detail['calc']['price_decided_4_7'] = "";
+      
+      $this->detail['calc']['price_decided_3_1'] = "";
+      $this->detail['calc']['price_decided_3_2'] = "";
+      $this->detail['calc']['price_decided_3_3'] = "";
+      $this->detail['calc']['price_decided_3_4'] = "";
+      $this->detail['calc']['price_decided_3_5'] = "";
+      $this->detail['calc']['price_decided_3_6'] = "";
+      $this->detail['calc']['price_decided_3_7'] = "";
+      
+      $this->detail['calc']['rate_usd'] = $this->detail["rate_USD"];
+      $this->detail['calc']['pax_cnb'] = 0;
+      $this->detail['calc']['pax_ceb'] = 0;
+      
+      $qry = "
+        SELECT qcalc_key, qcalc_value
+        FROM quotation_calc
+        WHERE quotation_code = '".$this->id."' AND qcalc_key IS NOT null
+      ";
+      
+      $rows = $this->query($qry);
+      foreach ($rows as $row) {
+        $this->detail['calc'][$row["qcalc_key"]] = $row["qcalc_value"];
+      }
+      
     } else {
       $qry = "
         SELECT *
@@ -215,7 +272,12 @@ class model_quotation extends basicModel {
             $insert["qdetail_code"] = $code . str_pad($ctr,2,"0",STR_PAD_LEFT);            
             $insert["qdetail_time_start"] = $data["qtimeStart_".$prefix];
             $insert["qdetail_time_end"] = $data["qtimeEnd_".$prefix];
-            $insert["qdetail_title"] = $data["entrance_".$prefix];
+            if ($this->rowCount("entrance","entrance_name = '".$data["entrance_".$prefix]."'") > 0) {
+              $row = $this->query_one("SELECT entrance_code FROM entrance WHERE entrance_name = '".$data["entrance_".$prefix]."'");
+              $insert["qdetail_title"] = $row["entrance_code"];
+            } else {
+              $insert["qdetail_title"] = $data["entrance_".$prefix];
+            }
             $insert["qdetail_status"] = "1";            
             if (!$this->insert($table2,$insert)) $ret = 0;
           }
@@ -267,7 +329,11 @@ class model_quotation extends basicModel {
       } else {
         $ret = 0;
       }
-    } 
+    }
+    $update['quotation_title1'] = $data['hotel_type1'];
+    $update['quotation_title2'] = $data['hotel_type2'];
+    $update['quotation_title3'] = $data['hotel_type3'];
+    $this->update("quotation",$update,"quotation_code = '" . $data['quotation_code'] . "'");
     $ret = 1;
     return $ret;
   }
@@ -296,7 +362,7 @@ class model_quotation extends basicModel {
       if ($this->delete($table,$where)) {
         $insert["qday_code"] = $code;
         for ($type = 1 ; $type <= 3 ; $type++) {
-          $insert["menu_code"] = $data["restaurant_".$day."_".$type];
+          $insert["menu_code"] = $data["restaurant_".$type."_".$day];
           $insert["restaurant_code"] = "";
           $insert["qday_rest_type"] = $type;
           if (!$this->insert($table,$insert)) $ret = 0;
@@ -341,7 +407,7 @@ class model_quotation extends basicModel {
       $insert["quotation_code"] = $code;
       for ($i=1 ; $i <= $data['other_count'] ; $i++) {
         $prefix = "other_".$i."_";
-        if (isset($data[$prefix."1"])) {
+        if (isset($data[$prefix."1"]) && $data[$prefix."1"] != "") {
           $insert["other_text"] = $data[$prefix."1"];
           $insert["other_price"] = $data[$prefix."2"];
           $insert["other_satuan"] = $data[$prefix."3"];
@@ -350,15 +416,28 @@ class model_quotation extends basicModel {
           $insert["other_times_text"] = $data[$prefix."41"];
           $insert["other_subtotal"] = $insert["other_price"] * $insert["other_satuan"] * $insert["other_times"];
           if (!$this->insert($table,$insert)) $ret = 0;
+          
         }
       }
+      
     } else {
       $ret = 0;
     }
     return $ret;
   }
-  public function modifyCalc() {
-    
+  public function save_calculation($data) {    
+    $insert["quotation_code"] = $data["quotation_code"];
+    $where = "quotation_code = '".$data["quotation_code"]."'";
+    $this->delete("quotation_calc",$where);
+    foreach($data as $key => $value) {
+      if ($key != "quotation_code" && $key != "param") {
+        $insert["qcalc_key"] = $key;
+        $insert["qcalc_value"] = $value;
+      }
+      if (!$this->insert("quotation_calc",$insert)) $ret = 0;
+    }
+    $ret = 1;
+    return $ret;
   }
 }
 ?>

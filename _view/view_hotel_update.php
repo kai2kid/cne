@@ -24,7 +24,7 @@
             <div class="col-md-4 no-pad-r" style="margin-right: 5px;">
               <input name="hotel_name" type="text" class="form-control" id="hotel_name" placeholder="Name" value="<?php echo $data['hotel_name']; ?>">
             </div>
-			<div class="col-md-4 no-pad-l">
+			        <div class="col-md-4 no-pad-l">
               <input name="hotel_name_korean" type="text" class="form-control" id="hotel_name_korean" placeholder="&#51060;&#47492;" value="<?php echo $data['hotel_name_korean']; ?>">
             </div>
           </div>     	             
@@ -44,6 +44,7 @@
 				<label for="hotel_type" class="control-label col-md-1 no-pad-r" style="margin-right: 5px;">Type</label>
 				<div class="col-md-3 no-pad-l">		
 					<select name="hotel_type" id="hotel_type" class="form-control">
+            <option value="" selected>CHOOSE ONE</option>
 						<option value="SD" <?php if ($data['hotel_type']=="SD") echo " selected";?>>SUPER DELUXE</option>
 						<option value="DX" <?php if ($data['hotel_type']=="DX") echo " selected";?>>DELUXE</option>
 						<option value="BS" <?php if ($data['hotel_type']=="BS") echo " selected";?>>BUSINESS</option>
@@ -132,7 +133,6 @@
       <input name="pic_email" type="email" class="form-control" id="pic_email" placeholder="Email" value="<?php echo $data['pic_email']; ?>">
     </div>            
   </div>
-			</div>
           <div class="form-group">
             <label class="control-label col-md-9">&nbsp;</label>
             <div class="col-md-2">

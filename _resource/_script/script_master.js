@@ -108,14 +108,20 @@ function submitForm(formID) {
   );
 }
 
-function quotationSubmitForm(formID) {  
+function quotationSubmitForm(formID,mode) {  
+  if (mode == null) mode = 1;
+  if (formID != "formInsertHeader") {
+    quotationSubmitForm("formInsertHeader",0);
+  }
   f = $("#"+formID);
   $.post(
     f.attr("action"),
     f.serialize() + "&quotation_code=" + $("#quotation_code").val(),
     function(data){
       if(data.result == 1) {
-        alert("Data has been saved.");
+        if (mode == 1) {
+          alert("Data has been saved.");
+        }
       } else {
         alert("Data cannot be saved.");
         alert(f.serialize() + "&quotation_code=" + $("#quotation_code").val());
@@ -135,7 +141,7 @@ function saveasnew() {
     var key;
     var formid= [];
     formid["header"] = "formInsertHeader";
-    //formid["transport"] = "formInsertTransport";
+    formid["transport"] = "formInsertTransport";
     formid["hotel"] = "formInsertHotel";
     formid["meal"] = "formInsertMeal";
     formid["other"] = "formInsertOther";
@@ -150,7 +156,7 @@ function saveasnew() {
         success: function(data){
           //alert("buyar");
           if(data.result == 1) {
-            alert("Data "+ key +" has been saved.");
+            //alert("Data "+ key +" has been saved.");
           } else {
             alert("Data "+ key +" cannot be saved.");
             //alert(f.serialize() + "&quotation_code=" + newcode);
@@ -159,6 +165,7 @@ function saveasnew() {
         async:false
       });      
     }
+    alert("Data has been saved as a new quotation");
     //window.location = "quotation~"+newcode+"_formUpdate";
   }
 }

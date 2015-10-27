@@ -55,9 +55,11 @@ function calculateGrandTotal(pax,level) {
   $(".price_gt.price_grandtotal.pax_"+pax.toString()+".level_"+level.toString()).attr("title",total.toString());
   $(".price_gt.price_grandtotal.pax_"+pax.toString()+".level_"+level.toString()).html(addCommas(total.toString()));
   
-  people = parseInt($("#num_pax_"+pax.toString()).val());
+  people = parseInt($("#num_people_"+pax.toString()).val());
   rate = parseInt($("#rate_usd").val());
-  calc = Math.round(total / people);
+  CNB = parseInt($("#pax_cnb").val());
+  CEB = parseInt($("#pax_ceb").val());   
+  calc = Math.round(total / (people + 0.5*CNB + 0.75*CEB) );
   $(".price_fare_krw.pax_"+pax.toString()+".level_"+level.toString()).attr("title",calc.toString());
   $(".price_fare_krw.pax_"+pax.toString()+".level_"+level.toString()).html(addCommas(calc.toString()));
   
@@ -66,15 +68,13 @@ function calculateGrandTotal(pax,level) {
   $(".price_fare_usd.pax_"+pax.toString()+".level_"+level.toString()).html(addCommas(calc.toString()));
   
   calc = Math.round(calc / Math.ceil(people/2) / 2 * 1.15);
-  $(".price_gt.price_sglspl.pax_"+pax.toString()+".level_"+level.toString()).attr("title",calc.toString());
-  $(".price_gt.price_sglspl.pax_"+pax.toString()+".level_"+level.toString()).html(addCommas(calc.toString()));
+  $(".price_sglspl.pax_"+pax.toString()+".level_"+level.toString()).attr("title",calc.toString());
+  $(".price_sglspl.pax_"+pax.toString()+".level_"+level.toString()).html(addCommas(calc.toString()));
 
   changeDP(level,pax);
 }
 
 function calculate(pax) {
-  
-  
   pax = parseInt(pax);
   var guide = 1 + Math.floor(pax/30);
   var totalpax = pax + guide;
@@ -86,7 +86,31 @@ function calculate(pax) {
   $(".price_title.pax_1").html(pax.toString() + "+" + guide.toString());
   var room = Math.ceil(totalpax/2);
   $(".price_title.pax_1.title_hotel").html(pax.toString() + "+" + guide.toString() + " ( "+room.toString()+" RM)");  
-  calculateGrandTotal(1,5);
-  calculateGrandTotal(1,4);
-  calculateGrandTotal(1,3);
+  for (i=1 ; i<=7 ; i++) {
+    for (j=3 ; j<=5 ; j++) {
+      calculateGrandTotal(i,j);
+    }
+  }
+}
+
+function saveCalc() {
+  mode = 1;
+  $(".calc_save").each(function() {
+    $("#calc_qs").val($("#calc_qs").val() + "&" + $(this).attr("id") + "=" + $(this).val());
+    
+  });
+  $.post(
+    "quotation_saveCalc",
+    "quotation_code=" + $("#quotation_code").val() + $("#calc_qs").val(),
+    function(data){
+      if(data.result == 1) {
+        if (mode == 1) {
+          alert("Data has been saved.");
+        }
+      } else {
+        alert("Data cannot be saved.");
+        alert(f.serialize() + "&quotation_code=" + $("#quotation_code").val());
+      }
+    }
+  );
 }

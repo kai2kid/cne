@@ -53,9 +53,20 @@ class controller_quotation extends basicController {
     $param['model'] = new model_quotation($this->id);    
 //    $param['pax_estimated'] = ["10+1"=>11,"15+1"=>16,"20+1"=>21,"25+1"=>26,"30+2"=>32,"35+2"=>37,"40+2"=>42];
     $param['pax_estimated'] = ["10+1"=>10,"15+1"=>15,"20+1"=>20,"25+1"=>25,"30+2"=>30,"35+2"=>35,"40+2"=>40];
-    $param['rate'] = (1 / $param['model']->detail["rate_USD"]);
+    $param['rate'] = (1 / $param['model']->detail["calc"]["rate_usd"]);
     $param['data'] = "";
     $this->loadView("quotation_calculation",$param);
+  }
+  public function calculationPrint() {
+    $param['model'] = new model_quotation($this->id);    
+    $model = $param['model'];
+    $param['pax_estimated'] = [$model->detail["calc"]["pax_custom"]."+".floor($model->detail["calc"]["pax_custom"]/30)=>$model->detail["calc"]["pax_custom"]+floor($model->detail["calc"]["pax_custom"]/30),"15+1"=>15,"20+1"=>20,"25+1"=>25,"30+2"=>30,"35+2"=>35,"40+2"=>40];
+    $param['rate'] = (1 / $param['model']->detail["calc"]["rate_usd"]);
+    $param['data'] = "";
+    $param['color'][5] = "yellow";
+    $param['color'][4] = "orange";
+    $param['color'][3] = "lightblue";
+    $this->loadView("quotation_calculation_print",$param,"print");
   }
   public function proposal() {
     $param['model'] = new model_quotation($this->id);    
@@ -136,6 +147,15 @@ class controller_quotation extends basicController {
     $model = new model_quotation($_POST['quotation_code']);
     $model->deleting();
     $this->forward("quotation");
+  }
+  
+  public function saveCalc() {
+    $o['result'] = "0";
+    $q = new model_quotation($_REQUEST['quotation_code']);    
+    if ($q->save_calculation($_REQUEST)) {
+      $o['result'] = "1";
+    }
+    $this->output_json($o);
   }
 }
 ?>
